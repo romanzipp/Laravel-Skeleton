@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9fdd3dd775376fb918469fd3413fc108",
+    "content-hash": "cdeec732d1e13a8b76b53f1c117731f6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2118,6 +2118,64 @@
             "time": "2020-03-29T13:02:15+00:00"
         },
         {
+            "name": "romanzipp/laravel-seo",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/romanzipp/Laravel-SEO.git",
+                "reference": "a178aac2fc077b6626932552e51a3c7c23001541"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-SEO/zipball/a178aac2fc077b6626932552e51a3c7c23001541",
+                "reference": "a178aac2fc077b6626932552e51a3c7c23001541",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/console": "^5.5|^6.0|^7.0",
+                "illuminate/support": "^5.5|^6.0|^7.0",
+                "php": ">=7.1",
+                "spatie/schema-org": "^2.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.8",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "romanzipp\\Seo\\Providers\\SeoServiceProvider"
+                    ],
+                    "aliases": {
+                        "Seo": "romanzipp\\Seo\\Facades\\Seo"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "romanzipp\\Seo\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "romanzipp",
+                    "email": "ich@ich.wtf",
+                    "homepage": "https://ich.wtf"
+                }
+            ],
+            "description": "Laravel SEO package",
+            "time": "2020-03-16T10:58:48+00:00"
+        },
+        {
             "name": "spatie/data-transfer-object",
             "version": "1.13.3",
             "source": {
@@ -2163,6 +2221,66 @@
                 "spatie"
             ],
             "time": "2020-01-29T15:10:20+00:00"
+        },
+        {
+            "name": "spatie/schema-org",
+            "version": "2.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/schema-org.git",
+                "reference": "367c57cf16a93dc9e119dea507a353bca2b87580"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/schema-org/zipball/367c57cf16a93dc9e119dea507a353bca2b87580",
+                "reference": "367c57cf16a93dc9e119dea507a353bca2b87580",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.3"
+            },
+            "require-dev": {
+                "graham-campbell/analyzer": "^2.1.1",
+                "league/flysystem": "^1.0",
+                "phpunit/phpunit": "^8.0",
+                "scrutinizer/ocular": "^1.5",
+                "symfony/console": "^3.2",
+                "symfony/css-selector": "^3.2",
+                "symfony/dom-crawler": "^3.2",
+                "twig/twig": "^1.28"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\SchemaOrg\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Tom Witkowski",
+                    "email": "dev.gummibeer@gmail.com",
+                    "homepage": "https://gummibeer.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fluent builder Schema.org types and ld+json generator",
+            "homepage": "https://github.com/spatie/schema-org",
+            "keywords": [
+                "schema-org",
+                "spatie"
+            ],
+            "time": "2020-03-17T11:08:16+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5704,7 +5822,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2.5",
+        "php": "^7.4",
         "ext-json": "*"
     },
     "platform-dev": []

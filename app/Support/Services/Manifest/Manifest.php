@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Manifest
 {
-    private $manifest = 'manifest-dashboard.json';
+    private $manifest = 'mix-manifest.json';
 
     public static function make(): Manifest
     {

@@ -137,5 +137,6 @@ temp/
 
 public/js/*.js
 public/css/*.css
+public/**/*LICENSE*
 public/*manifest*.json
 .idea/

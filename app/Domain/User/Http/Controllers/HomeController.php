@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Domain\User\Http\Controllers;
 
-class HomeController extends Controller
+use Support\Http\Controllers\AbstractController;
+
+final class HomeController extends AbstractController
 {
     /**
      * Create a new controller instance.

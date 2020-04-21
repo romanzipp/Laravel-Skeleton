@@ -7,6 +7,9 @@ This is a modified version of the Laravel framework skeleton.
 - [Domain oriented Laravel](https://stitcher.io/blog/laravel-beyond-crud-01-domain-oriented-laravel)
 - [Actions](https://stitcher.io/blog/laravel-beyond-crud-03-actions)
 - Database UUIDs
+- Invoked controllers
+- Model Repository pattern
+- Final classes by default
 
 See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/master/app/Domain/User) directory for an example Model, Action & Data structure.
 
@@ -21,17 +24,23 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 - [PHP 7.4](https://www.php.net)
 - [Composer](https://packagist.org)
 - [Yarn](https://yarnpkg.com)
-- [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)
 
 ## Additional Packages
 
-- **PHP packages**
+- **Composer packages**
   - [myclabs/php-enum](https://github.com/myclabs/php-enum)
   - [spatie/data-transfer-object](https://github.com/spatie/data-transfer-object)
   - [romanzipp/laravel-queue-monitor](https://github.com/romanzipp/Laravel-Queue-Monitor)
   - [romanzipp/laravel-seo](https://github.com/romanzipp/Laravel-SEO)
 - **npm packages**
   - [tailwindcss](https://github.com/tailwindcss/tailwindcss)
+  - [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)
+
+## Extended
+
+### Table names
+
+Table names are stored in the `Support\Enums\TableName` enum prefixed by the used Domain. These enums are used across all Models and Migrations.
 
 ## License
 

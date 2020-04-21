@@ -1,36 +1,39 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Domain\User\Http\Controllers\Auth\Register;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Domain\Data\CreateUser;
-use Domain\Data\CreateUserData;
+use Domain\User\Actions\CreateUser;
+use Domain\User\Data\CreateUserData;
 use Domain\User\Models\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
+use Illuminate\Validation\Rule;
+use Support\Http\Controllers\AbstractController;
 
-class RegisterController extends Controller
+final class ProcessRegisterController extends AbstractController
 {
     use RegistersUsers;
-
-    protected $redirectTo = RouteServiceProvider::HOME;
 
     private CreateUser $createUser;
 
     public function __construct(CreateUser $createUser)
     {
         $this->createUser = $createUser;
-        $this->middleware('guest');
+    }
+
+    public function __invoke(Request $request)
+    {
+        return $this->register($request);
     }
 
     protected function validator(array $data): Validator
     {
         return ValidatorFacade::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::getTableName())],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }

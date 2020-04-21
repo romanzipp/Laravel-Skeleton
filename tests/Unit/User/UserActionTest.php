@@ -7,12 +7,12 @@ use Domain\User\Actions\UpdateUser;
 use Domain\User\Data\CreateUserData;
 use Domain\User\Data\UpdateUserData;
 use Domain\User\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UserActionTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testCreate()
     {

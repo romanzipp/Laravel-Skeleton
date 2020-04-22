@@ -6,7 +6,7 @@ use Support\Data\AbstractData;
 
 final class UpdateUserData extends AbstractData
 {
-    public ?string $name = null;
+    public ?string $name;
 
-    public ?string $password = null;
+    public ?string $password;
 }

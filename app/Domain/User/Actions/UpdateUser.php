@@ -9,11 +9,11 @@ final class UpdateUser
 {
     public function execute(User $user, UpdateUserData $data): User
     {
-        if ($data->name !== null) {
+        if (isset($data->name)) {
             $user->name = $data->name;
         }
 
-        if ($data->password !== null) {
+        if (isset($data->password)) {
             $user->password = $data->password;
         }
 

@@ -10,83 +10,13 @@
 
         @csrf
 
-        <div class="field my-4">
+        <x-form-field type="email" name="email" label="E-Mail Address" autocomplete="email" placeholder="john@doe.com" :required="true" :autofocus="true" />
 
-            <label for="name">
-                {{ __('Name') }}
-            </label>
+        <x-form-field type="text" name="name" label="Name" autocomplete="name" placeholder="John Doe" :required="true" />
 
-            <input id="name"
-                   type="text"
-                   name="name"
-                   value="{{ old('name') }}"
-                   required
-                   autocomplete="name"
-                   autofocus
-                   placeholder="Name"
-                   class="input @if($errors->has('name')) input-error @endif">
+        <x-form-field type="password" name="password" label="Password" autocomplete="new-password" placeholder="********" :required="true" />
 
-            @if($errors->has('name'))
-                {{ $errors->first('name') }}
-            @endif
-
-        </div>
-
-        <div class="field my-4">
-
-            <label for="email">
-                {{ __('E-Mail Address') }}
-            </label>
-
-            <input id="email"
-                   type="email"
-                   name="email"
-                   value="{{ old('email') }}"
-                   required
-                   autocomplete="email"
-                   autofocus
-                   placeholder="E-Mail"
-                   class="input @if($errors->has('email')) input-error @endif">
-
-            @if($errors->has('email'))
-                {{ $errors->first('email') }}
-            @endif
-
-        </div>
-
-        <div class="field my-4">
-
-            <label for="password">
-                {{ __('Password') }}
-            </label>
-
-            <input id="password"
-                   type="password"
-                   name="password"
-                   required
-                   placeholder="Password"
-                   class="input @if($errors->has('password')) input-error @endif">
-
-            @if($errors->has('password'))
-                {{ $errors->first('password') }}
-            @endif
-
-        </div>
-
-        <div class="field my-4">
-
-            <label for="password_confirmation">
-                {{ __('Confirm Password') }}
-            </label>
-
-            <input id="password_confirmation"
-                   type="password"
-                   name="password_confirmation"
-                   required
-                   placeholder="Confirm Password"
-                   class="input">
-
-        </div>
+        <x-form-field type="password" name="password_confirmation" label="Confirm Password" autocomplete="new-password" placeholder="********" :required="true" />
 
         <div class="my-4">
 

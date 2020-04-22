@@ -9,47 +9,9 @@
     <form method="post" action="{{ route('auth.login.process') }}">
         @csrf
 
-        <div class="my-4 field">
+        <x-form-field type="email" name="email" label="E-Mail Address" autocomplete="email" placeholder="john@doe.com" :required="true" />
 
-            <label for="email">
-                {{ __('E-Mail Address') }}
-            </label>
-
-            <input id="email"
-                   type="email"
-                   name="email"
-                   value="{{ old('email') }}"
-                   required
-                   autocomplete="email"
-                   autofocus
-                   placeholder="E-Mail"
-                   class="input @if($errors->has('email')) input-error @endif">
-
-            @if($errors->has('email'))
-                {{ $errors->first('email') }}
-            @endif
-
-        </div>
-
-        <div class="my-4 field">
-
-            <label for="password">
-                {{ __('Password') }}
-            </label>
-
-            <input id="password"
-                   type="password"
-                   name="password"
-                   required
-                   autocomplete="current-password"
-                   placeholder="Password"
-                   class="input @if($errors->has('password')) input-error @endif">
-
-            @if($errors->has('password'))
-                {{ $errors->first('password') }}
-            @endif
-
-        </div>
+        <x-form-field type="password" name="password" label="Password" autocomplete="current-password" placeholder="********" />
 
         <div class="field checkbox-field my-4">
 

@@ -11,63 +11,11 @@
 
         <input type="hidden" name="token" value="{{ $token }}">
 
-        <div class="my-4 field">
+        <x-form-field type="email" name="email" label="E-Mail Address" autocomplete="email" :value="$email ?? old('email')" :required="true" />
 
-            <label for="email">
-                {{ __('E-Mail Address') }}
-            </label>
+        <x-form-field type="password" name="password" label="Password" autocomplete="new-password" placeholder="********" :required="true" />
 
-            <input id="email"
-                   type="email"
-                   name="email"
-                   value="{{ $email ?? old('email') }}"
-                   required
-                   autocomplete="email"
-                   autofocus
-                   placeholder="E-Mail"
-                   class="input @if($errors->has('email')) input-error @endif">
-
-            @if($errors->has('email'))
-                {{ $errors->first('email') }}
-            @endif
-
-        </div>
-
-        <div class="my-4 field">
-
-            <label for="password">
-                {{ __('Password') }}
-            </label>
-
-            <input id="password"
-                   type="password"
-                   name="password"
-                   required
-                   autocomplete="new-password"
-                   placeholder="Password"
-                   class="input @if($errors->has('password')) input-error @endif">
-
-            @if($errors->has('password'))
-                {{ $errors->first('password') }}
-            @endif
-
-        </div>
-
-        <div class="field my-4">
-
-            <label for="password_confirmation">
-                {{ __('Confirm Password') }}
-            </label>
-
-            <input id="password_confirmation"
-                   type="password"
-                   name="password_confirmation"
-                   required
-                   autocomplete="new-password"
-                   placeholder="Confirm Password"
-                   class="input">
-
-        </div>
+        <x-form-field type="password" name="password_confirmation" label="Confirm Password" autocomplete="new-password" placeholder="********" :required="true" />
 
         <div class="my-4">
 

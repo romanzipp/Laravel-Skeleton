@@ -1,15 +1,17 @@
 module.exports = function ({ theme, addComponents }) {
     addComponents({
         '.input': {
-            backgroundColor: theme('colors.gray.200'),
-            padding: `${theme('margin.1')} ${theme('margin.2')}`,
-            borderRadius: theme('borderRadius.sm'),
+            backgroundColor: theme('colors.gray.100'),
+            padding: `${theme('margin.2')} ${theme('margin.3')}`,
+            borderRadius: theme('borderRadius.default'),
             fontSize: theme('fontSize.sm'),
             color: theme('colors.gray.800'),
-            border: `3px solid ${theme('colors.gray.200')}`,
+            border: `2px solid ${theme('colors.gray.300')}`,
+            lineHeight: theme('leading.normal'),
             outline: 'none',
             '&:focus': {
-                borderColor: theme('colors.blue.300')
+                borderColor: theme('colors.blue.300'),
+                backgroundColor: theme('colors.blue.100')
             },
             '&::placeholder': {
                 color: theme('colors.gray.500')
@@ -28,8 +30,9 @@ module.exports = function ({ theme, addComponents }) {
                 'label': {
                     display: 'block',
                     fontSize: theme('fontSize.xs'),
-                    color: theme('colors.gray.700'),
-                    marginBottom: theme('margin.2')
+                    color: theme('colors.gray.600'),
+                    marginBottom: theme('margin.1'),
+                    textTransform: 'uppercase'
                 },
                 '&.checkbox-field': {
                     display: 'flex',

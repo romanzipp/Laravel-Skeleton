@@ -9,27 +9,7 @@
     <form method="post" action="{{ route('auth.password.email') }}">
         @csrf
 
-        <div class="field my-4">
-
-            <label for="email">
-                {{ __('E-Mail Address') }}
-            </label>
-
-            <input id="email"
-                   type="email"
-                   name="email"
-                   value="{{ old('email') }}"
-                   required
-                   autocomplete="email"
-                   autofocus
-                   placeholder="E-Mail Address"
-                   class="input @if($errors->has('email')) input-error @endif">
-
-            @if($errors->has('email'))
-                {{ $errors->first('email') }}
-            @endif
-
-        </div>
+        <x-form-field type="email" name="email" label="E-Mail Address" autocomplete="email" placeholder="john@doe.com" :required="true" />
 
         <div class="my-4">
 

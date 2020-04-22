@@ -10,7 +10,7 @@
 
         @csrf
 
-        <div class="my-4">
+        <div class="field my-4">
 
             <label for="name">
                 {{ __('Name') }}
@@ -23,7 +23,8 @@
                    required
                    autocomplete="name"
                    autofocus
-                   class="@if($errors->has('name')) bg-red-500 @else bg-gray-200 @endif">
+                   placeholder="Name"
+                   class="input @if($errors->has('name')) input-error @endif">
 
             @if($errors->has('name'))
                 {{ $errors->first('name') }}
@@ -31,7 +32,7 @@
 
         </div>
 
-        <div class="my-4">
+        <div class="field my-4">
 
             <label for="email">
                 {{ __('E-Mail Address') }}
@@ -44,7 +45,8 @@
                    required
                    autocomplete="email"
                    autofocus
-                   class="@if($errors->has('email')) bg-red-500 @else bg-gray-200 @endif">
+                   placeholder="E-Mail"
+                   class="input @if($errors->has('email')) input-error @endif">
 
             @if($errors->has('email'))
                 {{ $errors->first('email') }}
@@ -52,7 +54,7 @@
 
         </div>
 
-        <div class="my-4">
+        <div class="field my-4">
 
             <label for="password">
                 {{ __('Password') }}
@@ -62,7 +64,8 @@
                    type="password"
                    name="password"
                    required
-                   class="@if($errors->has('password')) bg-red-500 @else bg-gray-200 @endif">
+                   placeholder="Password"
+                   class="input @if($errors->has('password')) input-error @endif">
 
             @if($errors->has('password'))
                 {{ $errors->first('password') }}
@@ -70,7 +73,7 @@
 
         </div>
 
-        <div class="my-4">
+        <div class="field my-4">
 
             <label for="password_confirmation">
                 {{ __('Confirm Password') }}
@@ -80,13 +83,14 @@
                    type="password"
                    name="password_confirmation"
                    required
-                   class="bg-gray-200">
+                   placeholder="Confirm Password"
+                   class="input">
 
         </div>
 
         <div class="my-4">
 
-            <button type="submit">
+            <button type="submit" class="button button-blue">
                 {{ __('Register') }}
             </button>
 

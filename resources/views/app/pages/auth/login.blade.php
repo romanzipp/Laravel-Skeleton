@@ -9,7 +9,7 @@
     <form method="post" action="{{ route('auth.login.process') }}">
         @csrf
 
-        <div class="my-4">
+        <div class="my-4 field">
 
             <label for="email">
                 {{ __('E-Mail Address') }}
@@ -22,7 +22,8 @@
                    required
                    autocomplete="email"
                    autofocus
-                   class="@if($errors->has('email')) bg-red-500 @else bg-gray-200 @endif">
+                   placeholder="E-Mail"
+                   class="input @if($errors->has('email')) input-error @endif">
 
             @if($errors->has('email'))
                 {{ $errors->first('email') }}
@@ -30,7 +31,7 @@
 
         </div>
 
-        <div class="my-4">
+        <div class="my-4 field">
 
             <label for="password">
                 {{ __('Password') }}
@@ -41,7 +42,8 @@
                    name="password"
                    required
                    autocomplete="current-password"
-                   class="@if($errors->has('password')) bg-red-500 @else bg-gray-200 @endif">
+                   placeholder="Password"
+                   class="input @if($errors->has('password')) input-error @endif">
 
             @if($errors->has('password'))
                 {{ $errors->first('password') }}
@@ -49,7 +51,7 @@
 
         </div>
 
-        <div class="my-4">
+        <div class="field checkbox-field my-4">
 
             <input type="checkbox"
                    name="remember"
@@ -63,15 +65,18 @@
 
         <div class="my-4">
 
-            <button type="submit">
+            <button type="submit" class="button button-blue">
                 {{ __('Login') }}
             </button>
 
-            @if (Route::has('password.request'))
-                <a class="btn btn-link" href="{{ route('password.request') }}">
+            @if (Route::has('auth.password.request'))
+
+                <a class="button button-blue button-secondary" href="{{ route('auth.password.request') }}">
                     {{ __('Forgot Your Password?') }}
                 </a>
+
             @endif
+
         </div>
 
     </form>

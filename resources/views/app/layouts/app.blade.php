@@ -27,15 +27,38 @@
 
                 </div>
 
-                <div>
+                <div class="flex">
 
-                    <a href="{{ route('auth.login.show') }}" class="px-2 hover:text-blue-500">
-                        Login
-                    </a>
+                    @auth
 
-                    <a href="{{ route('auth.register.show') }}" class="px-2 hover:text-blue-500">
-                        Register
-                    </a>
+                        <div class="px-2">
+                            {{ auth()->user()->name }}
+                        </div>
+
+                        <div class="px-2">
+
+                            <form action="{{ route('auth.logout.process') }}" method="post">
+                                @csrf
+
+                                <button type="submit" class="inline hover:text-blue-500">
+                                    Logout
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    @else
+
+                        <a href="{{ route('auth.login.show') }}" class="px-2 hover:text-blue-500">
+                            Login
+                        </a>
+
+                        <a href="{{ route('auth.register.show') }}" class="px-2 hover:text-blue-500">
+                            Register
+                        </a>
+
+                    @endauth
 
                 </div>
 
@@ -46,7 +69,9 @@
     </div>
 
     <main class="container mx-auto py-4">
+
         @yield('content')
+
     </main>
 
 </body>

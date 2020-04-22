@@ -9,7 +9,7 @@
     <form method="post" action="{{ route('auth.password.email') }}">
         @csrf
 
-        <div class="my-4">
+        <div class="field my-4">
 
             <label for="email">
                 {{ __('E-Mail Address') }}
@@ -22,7 +22,8 @@
                    required
                    autocomplete="email"
                    autofocus
-                   class="@if($errors->has('email')) bg-red-500 @else bg-gray-200 @endif">
+                   placeholder="E-Mail Address"
+                   class="input @if($errors->has('email')) input-error @endif">
 
             @if($errors->has('email'))
                 {{ $errors->first('email') }}
@@ -32,7 +33,7 @@
 
         <div class="my-4">
 
-            <button type="submit">
+            <button type="submit" class="button button-blue">
                 {{ __('Send Password Reset Link') }}
             </button>
 

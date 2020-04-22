@@ -40,21 +40,22 @@ Route::prefix('auth')->group(function () {
             Route::post('reset', \Domain\User\Http\Controllers\Auth\Password\Reset\ProcessResetPasswordController::class)->name('auth.password.update');
 
         });
+
     });
 
     Route::prefix('email')->middleware(['auth'])->group(function () {
 
-        Route::get('verify', \Domain\User\Http\Controllers\Auth\Verification\ShowVerificationController::class)->name('verification.notice');
+        Route::get('verify', \Domain\User\Http\Controllers\Auth\Verification\ShowVerificationController::class)->name('auth.verification.notice');
 
         Route::middleware(['signed'])->group(function () {
 
-            Route::get('verify/{id}/{hash}', \Domain\User\Http\Controllers\Auth\Verification\ProcessVerificationController::class)->name('verification.verify');
+            Route::get('verify/{id}/{hash}', \Domain\User\Http\Controllers\Auth\Verification\ProcessVerificationController::class)->name('auth.verification.verify');
 
         });
 
         Route::middleware(['throttle:6,1'])->group(function () {
 
-            Route::post('resend', \Domain\User\Http\Controllers\Auth\Verification\ResendVerificationController::class)->name('verification.resend');
+            Route::post('resend', \Domain\User\Http\Controllers\Auth\Verification\ResendVerificationController::class)->name('auth.verification.resend');
 
         });
 

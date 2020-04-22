@@ -17,4 +17,11 @@ final class UserRepository extends AbstractRepository
     {
         return UserResource::class;
     }
+
+    public function withPendingVerification(): self
+    {
+        $this->query->whereNull('verified_at');
+
+        return $this;
+    }
 }

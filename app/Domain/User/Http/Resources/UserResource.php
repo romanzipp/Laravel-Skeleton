@@ -4,7 +4,7 @@ namespace Domain\User\Http\Resources;
 
 use Support\Http\Resources\AbstractResource;
 
-class UserResource extends AbstractResource
+final class UserResource extends AbstractResource
 {
     public function toArray($request)
     {

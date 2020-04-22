@@ -46,9 +46,9 @@ abstract class AbstractResource extends BaseResource
             ->{static::$wrap};
     }
 
-    public static function collection($resource): AbstractResourceCollection
+    public static function collection($resource): ResourceCollection
     {
-        return tap(new AbstractResourceCollection($resource, static::class), function ($collection) {
+        return tap(new ResourceCollection($resource, static::class), function ($collection) {
             if (property_exists(static::class, 'preserveKeys')) {
                 $collection->preserveKeys = (new static([]))->preserveKeys === true;
             }

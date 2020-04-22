@@ -40,11 +40,11 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 
 ### Table names
 
-Table names are stored in the `Support\Enums\TableName` enum prefixed by the used Domain. These enums are used across all Models and Migrations.
+Table names are stored in the `Support\Enums\TableName` enum prefixed by the used Domain (example: `user-password_resets`, `user-users`). These enums are used across all Models and Migrations.
 
 ### Styles
 
-All styles are contained in [Tailwind Plugins](https://tailwindcss.com/docs/plugins) to easily adapt on core style changes. Look at the [`button`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/resources/js/tailwind/button.js) plugin for an easy example.
+All styles are contained in [Tailwind Plugins](https://tailwindcss.com/docs/plugins) to easily adapt on core style changes. Take a look at the [`button`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/resources/js/tailwind/button.js) plugin for an easy example.
 
 ### Blade Components
 
@@ -55,13 +55,120 @@ The contained authentication forms are built with [Blade Components](https://lar
 Instead of building Model queries each in a separate Controller, we use the Repository pattern to create reusable query building.
 Simply extend the `Support\Repositories\AbstractRepository` class to create a new model repository.
 
+```php
+use Domain\User\Http\Resources\UserResource;
+use Domain\User\Models\User;
+use Support\Repositories\AbstractRepository;
+
+final class UserRepository extends AbstractRepository
+{
+    public function getModelClass(): string
+    {
+        return User::class;
+    }
+
+    public function getResourceClass(): string
+    {
+        return UserResource::class;
+    }
+
+    public function withPendingVerification(): self
+    {
+        $this->query->whereNull('verified_at');
+
+        return $this;
+    }
+}
+```
+
+Example usage in controllers:
+
+```php
+use Domain\User\Repositories\UserRepository;
+use Illuminate\Http\Request;
+
+final class UserController
+{
+    private UserRepository $users;
+
+    public function __construct(UserRepository $users)
+    {
+        $this->users = $users;    
+    }
+
+    public function __invoke(Request $request)
+    {
+        $users = $this
+            ->users
+            ->withPendingVerification()
+            ->toResources()
+            ->toView($request);
+
+        return view('users', [
+            'users' => $users,
+        ]);
+    }
+}
+```
+
 ### Models
 
 [Eloquent Models](https://laravel.com/docs/master/eloquent#introduction) must always extend `Support\Models\AbstractModel` class.
 
+```php
+use Support\Http\Resources\AbstractResource;
+use Support\Enums\TableName;
+
+final class User extends AbstractResource
+{
+    protected $table = TableName::USER_USERS;
+}
+```
+
 ### Resources
 
 [Eloquent Resources](https://laravel.com/docs/master/eloquent-resources#introduction) must always extend the `Support\Http\Resources\AbstractResource` class.
+
+```php
+use Support\Http\Resources\AbstractResource;
+use Domain\User\Models\User;
+
+final class UserResource extends AbstractResource
+{
+    public static $wrap = 'user';
+
+    public function toArray($request)
+    {
+        /** @var \Domain\User\Models\User $resource */
+        $resource = $this->resource;
+
+        return [
+            'id' => $resource->id,
+
+            $this->withDates(),
+        
+            $this->withPolicies(fn (User $user) => [
+                'accessAdmin' => $user->can('accessAdmin')
+            ]),
+        ];
+    }
+}
+```
+
+Example output:
+
+```json
+{
+    "user": {
+        "id": 1,
+        "created_at": "2020-01-01 01:00:00",
+        "updated_at": "2020-01-01 01:00:00",
+        "can": {
+            "accessAdmin": true
+        }
+    }
+}
+```
 
 ### View Data
 

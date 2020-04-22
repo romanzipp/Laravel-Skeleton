@@ -42,6 +42,45 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 
 Table names are stored in the `Support\Enums\TableName` enum prefixed by the used Domain. These enums are used across all Models and Migrations.
 
+### Styles
+
+All styles are contained in [Tailwind Plugins](https://tailwindcss.com/docs/plugins) to easily adapt on core style changes. Look at the [`button`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/resources/js/tailwind/button.js) plugin for an easy example.
+
+### Blade Components
+
+The contained authentication forms are built with [Blade Components](https://laravel.com/docs/master/blade#components).
+
+### Repositories
+
+Instead of building Model queries each in a separate Controller, we use the Repository pattern to create reusable query building.
+Simply extend the `Support\Repositories\AbstractRepository` class to create a new model repository.
+
+### Models
+
+[Eloquent Models](https://laravel.com/docs/master/eloquent#introduction) must always extend `Support\Models\AbstractModel` class.
+
+### Resources
+
+[Eloquent Resources](https://laravel.com/docs/master/eloquent-resources#introduction) must always extend the `Support\Http\Resources\AbstractResource` class.
+
+### View Data
+
+To make data as consistent as possible, data passed to views must always be [Eloquent Resources](https://laravel.com/docs/master/eloquent-resources#introduction).
+
+To elevate this, Resources and ResourceCollections feature a new method `toView(Request $request)` which will convert this data into a more API-like schema.
+
+```php
+use Domain\User\Http\Resources\UserResource;
+
+$adminResource = new UserResource($admin);
+$usersResources = UserResource::collection($users);
+
+return view('users', [
+    'admin' => $adminResource->toView($request),
+    'users' => $usersResources->toView($request),
+]);
+```
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

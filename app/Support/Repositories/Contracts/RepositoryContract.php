@@ -1,6 +1,6 @@
 <?php
 
-namespace Support\Repositories;
+namespace Support\Repositories\Contracts;
 
 interface RepositoryContract
 {

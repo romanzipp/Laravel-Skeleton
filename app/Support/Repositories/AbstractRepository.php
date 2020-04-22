@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Traits\ForwardsCalls;
 use InvalidArgumentException;
-use Support\Services\DatabaseConfiguration\Concerns\BuildsResources;
+use Support\Repositories\Contracts\RepositoryContract;
 
 /**
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 abstract class AbstractRepository implements RepositoryContract
 {
-    use BuildsResources;
     use ForwardsCalls;
 
     protected Builder $query;

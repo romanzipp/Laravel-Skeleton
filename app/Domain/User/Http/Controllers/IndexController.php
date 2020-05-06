@@ -8,6 +8,6 @@ final class IndexController extends AbstractController
 {
     public function __invoke()
     {
-        return view('home');
+        return view('app.pages.index');
     }
 }

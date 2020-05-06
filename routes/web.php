@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'app.pages.index')->name('index');
+Route::get('', \Domain\User\Http\Controllers\IndexController::class)->name('index');
 
 Route::prefix('auth')->group(function () {
 

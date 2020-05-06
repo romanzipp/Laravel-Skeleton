@@ -8,12 +8,12 @@ final class UserResource extends AbstractResource
 {
     public function toArray($request)
     {
-        /** @var \Domain\User\Models\User $resource */
-        $resource = $this->resource;
+        /** @var \Domain\User\Models\User $user */
+        $user = $this->resource;
 
         return [
 
-            'name' => $resource->name,
+            'name' => $user->name,
 
             $this->withDates(),
         ];

@@ -19,7 +19,7 @@
         "myclabs/php-enum": "^1.7",
         "romanzipp/laravel-queue-monitor": "^2.0",
         "romanzipp/laravel-seo": "^2.0",
-        "spatie/data-transfer-object": "^1.13"
+        "spatie/data-transfer-object": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

@@ -35,7 +35,7 @@ class Manifest
         $manifest = public_path($this->manifest);
 
         if ( ! file_exists($manifest)) {
-            return null;
+            return $path;
         }
 
         $content = @json_decode(

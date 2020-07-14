@@ -14,6 +14,7 @@ module.exports = {
     },
     variants: {},
     plugins: [
+        require('@tailwindcss/typography'),
         form,
         button
     ]

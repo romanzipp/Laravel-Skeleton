@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Support\Services\Manifest\Manifest;
 
 if ( ! function_exists('manifest')) {
@@ -7,6 +8,14 @@ if ( ! function_exists('manifest')) {
     function manifest(string $path = null, bool $absolute = false, string $manifest = 'mix-manifest.json'): ?string
     {
         return Manifest::make()->manifest($manifest)->url($path, $absolute);
+    }
+}
+
+if ( ! function_exists('carbon')) {
+
+    function carbon(string $date): Carbon
+    {
+        return Carbon::make($date);
     }
 }
 

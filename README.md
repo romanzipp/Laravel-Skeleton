@@ -116,10 +116,10 @@ final class UserController
 [Eloquent Models](https://laravel.com/docs/master/eloquent#introduction) must always extend `Support\Models\AbstractModel` class.
 
 ```php
-use Support\Http\Resources\AbstractResource;
 use Support\Enums\TableName;
+use Support\Models\AbstractModel;
 
-final class User extends AbstractResource
+final class User extends AbstractModel
 {
     protected $table = TableName::USER_USERS;
 }

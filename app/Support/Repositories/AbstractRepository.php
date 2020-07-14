@@ -88,7 +88,7 @@ abstract class AbstractRepository implements RepositoryContract
         $class = $this->getResourceClass();
 
         return new $class(
-            $this->fetch()
+            $this->fetch()->first()
         );
     }
 

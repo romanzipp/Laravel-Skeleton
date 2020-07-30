@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 trait UsesUuid
 {
@@ -69,9 +70,9 @@ trait UsesUuid
     /**
      * Resolve a UUID instance for the configured version.
      *
-     * @return \Ramsey\Uuid\Uuid
+     * @return \Ramsey\Uuid\UuidInterface
      */
-    public static function resolveUuid(): Uuid
+    public static function resolveUuid(): UuidInterface
     {
         if (($version = self::resolveUuidVersion()) === 'ordered') {
             return Str::orderedUuid();

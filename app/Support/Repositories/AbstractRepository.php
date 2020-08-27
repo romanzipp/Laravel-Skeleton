@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Traits\ForwardsCalls;
 use InvalidArgumentException;
-use Support\Http\Resources\AbstractResource;
-use Support\Http\Resources\ResourceCollection;
+use Support\Repositories\Concerns\BuildsResources;
 use Support\Repositories\Contracts\RepositoryContract;
 
 /**
@@ -17,6 +16,7 @@ use Support\Repositories\Contracts\RepositoryContract;
 abstract class AbstractRepository implements RepositoryContract
 {
     use ForwardsCalls;
+    use BuildsResources;
 
     protected Builder $query;
 
@@ -72,24 +72,6 @@ abstract class AbstractRepository implements RepositoryContract
         $this->paginationPerPage = $perPage;
 
         return $this;
-    }
-
-    public function toResources(): ResourceCollection
-    {
-        $class = $this->getResourceClass();
-
-        return $class::collection(
-            $this->fetch()
-        );
-    }
-
-    public function toResource(): AbstractResource
-    {
-        $class = $this->getResourceClass();
-
-        return new $class(
-            $this->fetch()->first()
-        );
     }
 
     /*

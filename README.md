@@ -223,6 +223,54 @@ final class UserResource extends AbstractResource
 }
 ```
 
+### Actions
+
+To make as much logic as possible reusable, all heavy lifting actions must be wrapped in **Actions**.
+
+```php
+use Domain\User\Data\CreateUserData;
+use Domain\User\Models\User;
+
+final class CreateUser
+{
+    public function execute(CreateUserData $data): User
+    {
+        /** @var User $user */
+        $user = User::query()->make([
+            'display_name' => $data->displayName,
+            'email' => $data->email,
+            'password' => $data->password,
+        ]);
+
+        $user->save();
+
+        return $user;
+    }
+}
+```
+
+### Data
+
+Data passed to actions or around the application must always extend the [`Support\Data\AbstractData`]((https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Data/AbstractData.php)) class.
+
+The `AbstractData` class is a modified version of the [spatie/data-transfer-object](https://github.com/spatie/data-transfer-object).
+
+```php
+use Support\Data\AbstractData;
+
+final class CreateUserData extends AbstractData
+{
+    /** @required */
+    public string $email;
+
+    /** @required */
+    public string $password;
+
+    public ?string $displayName = null;
+}
+
+```
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

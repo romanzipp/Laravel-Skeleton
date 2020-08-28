@@ -13,8 +13,18 @@ if ( ! function_exists('manifest')) {
 
 if ( ! function_exists('carbon')) {
 
-    function carbon(string $date): Carbon
+    /**
+     * Spawn a new Carbon date instance from a given timestamp or "now".
+     *
+     * @param string|null $date
+     * @return \Carbon\Carbon
+     */
+    function carbon(string $date = null): Carbon
     {
+        if ($date === null) {
+            return Carbon::now();
+        }
+
         return Carbon::make($date);
     }
 }

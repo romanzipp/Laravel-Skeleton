@@ -38,9 +38,13 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 
 ## Extended
 
+### Enums
+
+Enums must always extend the [`Support\Enums\AbstractEnum`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Enums/AbstractEnum.php) class
+
 ### Table names
 
-Table names are stored in the `Support\Enums\TableName` enum prefixed by the used Domain (example: `user-password_resets`, `user-users`). These enums are used across all Models and Migrations.
+Table names are stored in the [`Support\Enums\TableName`]https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Enums/TableName.php enum prefixed by the used Domain (example: `user-password_resets`, `user-users`). These enums are used across all Models and Migrations.
 
 ### Styles
 
@@ -53,7 +57,7 @@ The contained authentication forms are built with [Blade Components](https://lar
 ### Repositories
 
 Instead of building Model queries each in a separate Controller, we use the Repository pattern to create reusable query building.
-Simply extend the `Support\Repositories\AbstractRepository` class to create a new model repository.
+Simply extend the [`Support\Repositories\AbstractRepository`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Repositories/AbstractRepository.php) class to create a new model repository.
 
 ```php
 use Domain\User\Http\Resources\UserResource;
@@ -83,7 +87,13 @@ final class UserRepository extends AbstractRepository
 
 #### Example usage
 
-When sharing models to the view, we always use the `toView` (or `oneToView`, `manyToView`) method to convert the data into a collection or single object. This is the same conversion when responding with resources in JSON endpoints.
+To make data as consistent as possible, data passed to views must always be [Eloquent Resources](https://laravel.com/docs/master/eloquent-resources#introduction) converted to a data collection or single object.
+
+To achieve this, the [`AbstractRepository`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Repositories/AbstractRepository.php) class features various helping methods:
+- `manyToView(Request $request): stdClass`
+- `oneToView(Request $request): ?stdClass`
+
+When sharing models to the view, we always use the `toView` (or `oneToView`, `manyToView`) method to convert the data to a collection or single object in an API-like schema.
 
 ```php
 use Domain\User\Repositories\UserRepository;
@@ -154,7 +164,7 @@ final class UserController
 
 ### Models
 
-[Eloquent Models](https://laravel.com/docs/master/eloquent#introduction) must always extend `Support\Models\AbstractModel` class.
+[Eloquent Models](https://laravel.com/docs/master/eloquent#introduction) must always extend [`Support\Models\AbstractModel`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Model/AbstractModel.php) class.
 
 ```php
 use Support\Enums\TableName;
@@ -168,7 +178,7 @@ final class User extends AbstractModel
 
 ### Resources
 
-[Eloquent Resources](https://laravel.com/docs/master/eloquent-resources#introduction) must always extend the `Support\Http\Resources\AbstractResource` class.
+[Eloquent Resources](https://laravel.com/docs/master/eloquent-resources#introduction) must always extend the [`Support\Http\Resources\AbstractResource`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Http/Resources/AbstractResource.php) class.
 
 ```php
 use Support\Http\Resources\AbstractResource;

@@ -14,6 +14,11 @@ abstract class AbstractResource extends BaseResource
         return true;
     }
 
+    /**
+     * Get the currently authenticated user.
+     *
+     * @return \Domain\User\Models\User
+     */
     protected function user(): User
     {
         return auth()->user();
@@ -26,6 +31,12 @@ abstract class AbstractResource extends BaseResource
         ]);
     }
 
+    /**
+     * Merge the model timestamps (created & updated) with resource data.
+     *
+     * @param array|null $columns
+     * @return \Illuminate\Http\Resources\MergeValue|mixed
+     */
     public function withDates(?array $columns = null)
     {
         /** @var \Support\Models\AbstractModel $resource */
@@ -38,6 +49,12 @@ abstract class AbstractResource extends BaseResource
         );
     }
 
+    /**
+     * Convert the resource to a view data object.
+     *
+     * @param $request
+     * @return \stdClass
+     */
     public function toView($request): stdClass
     {
         return $this

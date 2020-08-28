@@ -100,12 +100,19 @@ final class UserController
     {
         $users = $this
             ->users
+            ->fresh()
             ->withPendingVerification()
-            ->toResources()
-            ->toView($request);
+            ->manyToView($request);
+
+        $admin = $this
+            ->users
+            ->fresh()
+            ->where('admin', true)
+            ->oneToView($request);
 
         return view('users', [
             'users' => $users,
+            'admin' => $admin,
         ]);
     }
 }

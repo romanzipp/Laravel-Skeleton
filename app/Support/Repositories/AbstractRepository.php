@@ -35,21 +35,51 @@ abstract class AbstractRepository implements RepositoryContract
         $this->query = $this->newQuery();
     }
 
+    /**
+     * Create a new Repository instance.
+     *
+     * @return static
+     */
     public static function make()
     {
         return new static;
     }
 
+    /**
+     * Create a new Repository instance.
+     *
+     * @return static
+     */
+    public function __invoke()
+    {
+        return $this->fresh();
+    }
+
+    /**
+     * Create a new Repository instance.
+     *
+     * @return static
+     */
     public function fresh()
     {
         return new static;
     }
 
+    /**
+     * Get the current Eloquent Query Builder.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function query(): Builder
     {
         return $this->query;
     }
 
+    /**
+     * Prepare the query with adding relation & relation count loading.
+     *
+     * @return $this
+     */
     public function prepare(): AbstractRepository
     {
         if ($this->prepared) {
@@ -66,6 +96,12 @@ abstract class AbstractRepository implements RepositoryContract
         return $this;
     }
 
+    /**
+     * Paginate the query.
+     *
+     * @param int|null $perPage
+     * @return $this
+     */
     public function paginate(int $perPage = null): AbstractRepository
     {
         $this->paginate = true;
@@ -102,6 +138,8 @@ abstract class AbstractRepository implements RepositoryContract
      */
 
     /**
+     * Fetch the query results.
+     *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     protected function fetch()
@@ -118,11 +156,21 @@ abstract class AbstractRepository implements RepositoryContract
         return $this->query()->get();
     }
 
+    /**
+     * Get the current request.
+     *
+     * @return \Illuminate\Http\Request
+     */
     public function getRequest(): Request
     {
         return request();
     }
 
+    /**
+     * Spawn a new query instance.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     protected function newQuery(): Builder
     {
         return app($this->getModelClass())->query();

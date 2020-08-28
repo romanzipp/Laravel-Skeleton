@@ -44,7 +44,7 @@ Enums must always extend the [`Support\Enums\AbstractEnum`](https://github.com/r
 
 ### Table names
 
-Table names are stored in the [`Support\Enums\TableName`]https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Enums/TableName.php enum prefixed by the used Domain (example: `user-password_resets`, `user-users`). These enums are used across all Models and Migrations.
+Table names are stored in the [`Support\Enums\TableName`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Enums/TableName.php) enum prefixed by the used Domain (example: `user-password_resets`, `user-users`). These enums are used across all Models and Migrations.
 
 ### Styles
 
@@ -87,13 +87,13 @@ final class UserRepository extends AbstractRepository
 
 #### Example usage
 
-To make data as consistent as possible, data passed to views must always be [Eloquent Resources](https://laravel.com/docs/master/eloquent-resources#introduction) converted to a data collection or single object.
+To make data as consistent as possible, data passed to views must always be [Eloquent Resources](https://laravel.com/docs/eloquent-resources#introduction) converted to a data collection or single object. This schema is the same when returning resources form an API endpoint.
 
 To achieve this, the [`AbstractRepository`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Repositories/AbstractRepository.php) class features various helping methods:
 - `manyToView(Request $request): stdClass`
 - `oneToView(Request $request): ?stdClass`
 
-When sharing models to the view, we always use the `toView` (or `oneToView`, `manyToView`) method to convert the data to a collection or single object in an API-like schema.
+These repository methods are shortcuts to the [`AbstractResource`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Http/Resources/AbstractResource.php) `toView($request): stdClass` method.
 
 ```php
 use Domain\User\Repositories\UserRepository;
@@ -130,6 +130,8 @@ final class UserController
 }
 ```
 
+#### Example output
+
 ```json
 {
     "users": {
@@ -164,7 +166,7 @@ final class UserController
 
 ### Models
 
-[Eloquent Models](https://laravel.com/docs/master/eloquent#introduction) must always extend [`Support\Models\AbstractModel`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Model/AbstractModel.php) class.
+[Eloquent Models](https://laravel.com/docs/eloquent#introduction) must always extend [`Support\Models\AbstractModel`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Model/AbstractModel.php) class.
 
 ```php
 use Support\Enums\TableName;
@@ -178,7 +180,7 @@ final class User extends AbstractModel
 
 ### Resources
 
-[Eloquent Resources](https://laravel.com/docs/master/eloquent-resources#introduction) must always extend the [`Support\Http\Resources\AbstractResource`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Http/Resources/AbstractResource.php) class.
+[Eloquent Resources](https://laravel.com/docs/eloquent-resources#introduction) must always extend the [`Support\Http\Resources\AbstractResource`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Http/Resources/AbstractResource.php) class.
 
 ```php
 use Support\Http\Resources\AbstractResource;
@@ -206,7 +208,7 @@ final class UserResource extends AbstractResource
 }
 ```
 
-Example output:
+#### Example output
 
 ```json
 {
@@ -219,24 +221,6 @@ Example output:
         }
     }
 }
-```
-
-### View Data
-
-To make data as consistent as possible, data passed to views must always be [Eloquent Resources](https://laravel.com/docs/master/eloquent-resources#introduction).
-
-To elevate this, Resources and ResourceCollections feature a new method `toView(Request $request)` which will convert this data into a more API-like schema.
-
-```php
-use Domain\User\Http\Resources\UserResource;
-
-$adminResource = new UserResource($admin);
-$usersResources = UserResource::collection($users);
-
-return view('users', [
-    'admin' => $adminResource->toView($request),
-    'users' => $usersResources->toView($request),
-]);
 ```
 
 ## License

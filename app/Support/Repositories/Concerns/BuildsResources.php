@@ -10,6 +10,11 @@ use Support\Http\Resources\ResourceCollection;
 
 trait BuildsResources
 {
+    /**
+     * Fetch the query results and map into a resource collection.
+     *
+     * @return \Support\Http\Resources\ResourceCollection
+     */
     public function toResources(): ResourceCollection
     {
         $class = $this->getResourceClass();
@@ -23,6 +28,11 @@ trait BuildsResources
         );
     }
 
+    /**
+     * Fetch the query results and map into a single resource.
+     *
+     * @return \Support\Http\Resources\AbstractResource|null
+     */
     public function toResource(): ?AbstractResource
     {
         $class = $this->getResourceClass();
@@ -36,6 +46,13 @@ trait BuildsResources
         return new $class($result);
     }
 
+    /**
+     * Convert the query results into a view data object.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param bool $collection
+     * @return \stdClass|null
+     */
     public function toView(Request $request, bool $collection): ?stdClass
     {
         $resources = null;
@@ -53,11 +70,23 @@ trait BuildsResources
         return $resource->toView($request);
     }
 
+    /**
+     * Convert the query results into a single view object.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \stdClass|null
+     */
     public function oneToView(Request $request): ?stdClass
     {
         return $this->toView($request, false);
     }
 
+    /**
+     * Convert the query results into a view data object collection.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \stdClass
+     */
     public function manyToView(Request $request): stdClass
     {
         return $this->toView($request, true);

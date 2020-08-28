@@ -2,9 +2,7 @@
 
 namespace Support\Enums;
 
-use MyCLabs\Enum\Enum;
-
-class TableName extends Enum
+class TableName extends AbstractEnum
 {
     public const SUPPORT_JOBS = 'support-jobs';
     public const SUPPORT_FAILED_JOBS = 'support-failed_jobs';

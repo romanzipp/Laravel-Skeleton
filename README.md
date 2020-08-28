@@ -81,7 +81,9 @@ final class UserRepository extends AbstractRepository
 }
 ```
 
-Example usage in controllers:
+#### Example usage
+
+When sharing models to the view, we always use the `toView` (or `oneToView`, `manyToView`) method to convert the data into a collection or single object. This is the same conversion when responding with resources in JSON endpoints.
 
 ```php
 use Domain\User\Repositories\UserRepository;
@@ -114,6 +116,38 @@ final class UserController
             'users' => $users,
             'admin' => $admin,
         ]);
+    }
+}
+```
+
+```json
+{
+    "users": {
+        "data": [
+            {
+                "id": 123,
+                "name": "Roman"
+            }
+        ],
+        "links": {
+            "first": "http://localhost/users?page=1",
+            "last": "http://localhost/users?page=1",
+            "prev": null,
+            "next": null
+        },
+        "meta": {
+            "current_page": 1,
+            "from": 1,
+            "last_page": 1,
+            "path": "http://localhost/users",
+            "per_page": 25,
+            "to": 1,
+            "total": 1
+        }
+    },
+    "admin": {
+        "id": 123,
+        "name": "Roman"
     }
 }
 ```

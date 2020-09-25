@@ -7,11 +7,9 @@ use Support\Enums\TableName;
 
 class CreateUserPasswordResetsTable extends Migration
 {
-    private const TABLE = TableName::USER_PASSWORD_RESETS;
-
     public function up()
     {
-        Schema::create(self::TABLE, function (Blueprint $table) {
+        Schema::create(TableName::USER_PASSWORD_RESETS, function (Blueprint $table) {
 
             $table->string('email')->index();
             $table->string('token');
@@ -22,6 +20,6 @@ class CreateUserPasswordResetsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists(self::TABLE);
+        Schema::dropIfExists(TableName::USER_PASSWORD_RESETS);
     }
 }

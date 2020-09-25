@@ -7,11 +7,9 @@ use Support\Enums\TableName;
 
 class CreateSupportFailedJobsTable extends Migration
 {
-    private const TABLE = TableName::SUPPORT_FAILED_JOBS;
-
     public function up()
     {
-        Schema::create(self::TABLE, function (Blueprint $table) {
+        Schema::create(TableName::SUPPORT_FAILED_JOBS, function (Blueprint $table) {
 
             $table->id();
 
@@ -26,6 +24,6 @@ class CreateSupportFailedJobsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists(self::TABLE);
+        Schema::dropIfExists(TableName::SUPPORT_FAILED_JOBS);
     }
 }

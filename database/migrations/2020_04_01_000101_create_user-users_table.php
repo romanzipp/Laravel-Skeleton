@@ -7,11 +7,9 @@ use Support\Enums\TableName;
 
 class CreateUserUsersTable extends Migration
 {
-    private const TABLE = TableName::USER_USERS;
-
     public function up()
     {
-        Schema::create(self::TABLE, function (Blueprint $table) {
+        Schema::create(TableName::USER_USERS, function (Blueprint $table) {
 
             $table->uuid('id')->primary();
 
@@ -28,6 +26,6 @@ class CreateUserUsersTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists(self::TABLE);
+        Schema::dropIfExists(TableName::USER_USERS);
     }
 }

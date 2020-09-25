@@ -7,11 +7,9 @@ use Support\Enums\TableName;
 
 class CreateSupportJobsTable extends Migration
 {
-    private const TABLE = TableName::SUPPORT_JOBS;
-
     public function up()
     {
-        Schema::create(self::TABLE, function (Blueprint $table) {
+        Schema::create(TableName::SUPPORT_JOBS, function (Blueprint $table) {
 
             $table->bigIncrements('id');
 
@@ -27,6 +25,6 @@ class CreateSupportJobsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists(self::TABLE);
+        Schema::dropIfExists(TableName::SUPPORT_JOBS);
     }
 }

@@ -18,9 +18,9 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "myclabs/php-enum": "^1.7",
+        "romanzipp/dto": "^0.0.2",
         "romanzipp/laravel-queue-monitor": "^2.0",
-        "romanzipp/laravel-seo": "^2.0.2",
-        "spatie/data-transfer-object": "^2.2.1"
+        "romanzipp/laravel-seo": "^2.0.2"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

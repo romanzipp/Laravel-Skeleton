@@ -3,7 +3,7 @@
 namespace Tests\Unit\Support;
 
 use Domain\User\Models\User;
-use Spatie\DataTransferObject\DataTransferObjectError;
+use romanzipp\DTO\Exceptions\InvalidDataException;
 use Support\Data\AbstractData;
 use Tests\TestCase;
 
@@ -60,48 +60,54 @@ class DataTest extends TestCase
 
     public function testDocBlockRequiredMissing()
     {
-        $this->expectException(DataTransferObjectError::class);
+        $this->expectException(InvalidDataException::class);
 
         new class extends AbstractData {
-            /** @required */
+
+            protected static array $required = [
+                'what',
+            ];
+
             public bool $what;
         };
     }
 
     public function testRequiredMissing()
     {
-        $this->expectException(DataTransferObjectError::class);
+        $this->expectException(InvalidDataException::class);
 
         new class extends AbstractData {
-            /** @required */
+
+            protected static array $required = [
+                'what',
+            ];
+
             public bool $what;
         };
     }
 
     public function testRequiredDefaultValueMissing()
     {
-        $this->expectException(DataTransferObjectError::class);
+        $this->expectException(InvalidDataException::class);
 
         new class extends AbstractData {
-            /** @required */
+
+            protected static array $required = [
+                'what',
+            ];
+
             public bool $what = true;
-        };
-    }
-
-    public function testRequiredNullValueMissing()
-    {
-        $this->expectException(DataTransferObjectError::class);
-
-        new class extends AbstractData {
-            /** @required */
-            public ?string $what = null;
         };
     }
 
     public function testRequiredFilled()
     {
         $data = new class(['what' => true]) extends AbstractData {
-            /** @required */
+
+            protected static array $required = [
+                'what',
+            ];
+
             public bool $what;
         };
 

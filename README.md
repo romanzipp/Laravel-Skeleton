@@ -29,7 +29,7 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 
 - **Composer packages**
   - [myclabs/php-enum](https://github.com/myclabs/php-enum)
-  - [spatie/data-transfer-object](https://github.com/spatie/data-transfer-object)
+  - [romanzipp/dto](https://github.com/romanzipp/dto)
   - [romanzipp/laravel-queue-monitor](https://github.com/romanzipp/Laravel-Queue-Monitor)
   - [romanzipp/laravel-seo](https://github.com/romanzipp/Laravel-SEO)
 - **npm packages**
@@ -253,17 +253,20 @@ final class CreateUser
 
 Data passed to actions or around the application must always extend the [`Support\Data\AbstractData`]((https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Data/AbstractData.php)) class.
 
-The `AbstractData` class is a modified version of the [spatie/data-transfer-object](https://github.com/spatie/data-transfer-object).
+The `AbstractData` class is a just an extending class of [romanzipp/dto](https://github.com/romanzipp/dto).
 
 ```php
 use Support\Data\AbstractData;
 
 final class CreateUserData extends AbstractData
 {
-    /** @required */
+    protected static array $required = [
+        'name',
+        'password'
+    ];
+
     public string $email;
 
-    /** @required */
     public string $password;
 
     public ?string $displayName = null;

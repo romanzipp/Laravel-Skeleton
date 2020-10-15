@@ -6,12 +6,15 @@ use Support\Data\AbstractData;
 
 final class CreateUserData extends AbstractData
 {
-    /** @required */
+    protected static array $required = [
+        'name',
+        'email',
+        'password',
+    ];
+
     public string $name;
 
-    /** @required */
     public string $email;
 
-    /** @required */
     public string $password;
 }

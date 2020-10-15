@@ -6,10 +6,6 @@ on:
     branches:
       - '*'
 
-  pull_request:
-    branches:
-      - '*'
-
 jobs:
   test:
 
@@ -17,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         php: [7.4]
-        composer-dependency: [prefer-stable, prefer-lowest]
+        composer-dependency: [prefer-stable]
 
     name: "PHP ${{ matrix.php }} - ${{ matrix.composer-dependency }}"
 

@@ -24,7 +24,7 @@ class UserActionTest extends TestCase
             ])
         );
 
-        $this->assertEquals('foo', User::query()->first()->name);
+        self::assertEquals('foo', User::query()->first()->name);
     }
 
     public function testUpdate()
@@ -34,7 +34,7 @@ class UserActionTest extends TestCase
             'name' => 'foo',
         ]);
 
-        $this->assertEquals('foo', User::query()->first()->name);
+        self::assertEquals('foo', User::query()->first()->name);
 
         app(UpdateUser::class)->execute(
             $user,
@@ -43,6 +43,6 @@ class UserActionTest extends TestCase
             ])
         );
 
-        $this->assertEquals('bar', User::query()->first()->name);
+        self::assertEquals('bar', User::query()->first()->name);
     }
 }

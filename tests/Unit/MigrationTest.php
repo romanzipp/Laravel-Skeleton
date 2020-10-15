@@ -15,7 +15,7 @@ class MigrationTest extends TestCase
 
         $this->app[Kernel::class]->setArtisan(null);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testMigrateRollback()
@@ -30,7 +30,7 @@ class MigrationTest extends TestCase
 
         $this->app[Kernel::class]->setArtisan(null);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     private function getMigrations(): array

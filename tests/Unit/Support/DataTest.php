@@ -16,8 +16,8 @@ class DataTest extends TestCase
             public bool $no = false;
         };
 
-        $this->assertTrue($data->yes);
-        $this->assertFalse($data->no);
+        self::assertTrue($data->yes);
+        self::assertFalse($data->no);
     }
 
     public function testBasicBools()
@@ -27,8 +27,8 @@ class DataTest extends TestCase
             public bool $no;
         };
 
-        $this->assertTrue($data->yes);
-        $this->assertFalse($data->no);
+        self::assertTrue($data->yes);
+        self::assertFalse($data->no);
     }
 
     public function testTypeHintedUnintialized()
@@ -37,7 +37,7 @@ class DataTest extends TestCase
             public User $user;
         };
 
-        $this->assertFalse(property_set($data, 'user'));
+        self::assertFalse(property_set($data, 'user'));
     }
 
     public function testTypeHintedNullable()
@@ -46,7 +46,7 @@ class DataTest extends TestCase
             public ?User $user;
         };
 
-        $this->assertFalse(property_set($data, 'user'));
+        self::assertFalse(property_set($data, 'user'));
     }
 
     public function testTypeHintedNull()
@@ -55,7 +55,7 @@ class DataTest extends TestCase
             public ?User $user = null;
         };
 
-        $this->assertTrue(property_set($data, 'user'));
+        self::assertTrue(property_set($data, 'user'));
     }
 
     public function testDocBlockRequiredMissing()
@@ -111,6 +111,6 @@ class DataTest extends TestCase
             public bool $what;
         };
 
-        $this->assertTrue($data->what);
+        self::assertTrue($data->what);
     }
 }

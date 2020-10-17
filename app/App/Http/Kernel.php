@@ -24,6 +24,7 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Support\Http\Middleware\ProcessApiResponseData;
 
 class Kernel extends HttpKernel
 {
@@ -49,6 +50,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
+
         'web' => [
             EncryptCookies::class,
             AddQueuedCookiesToResponse::class,
@@ -62,7 +64,9 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             SubstituteBindings::class,
+            ProcessApiResponseData::class,
         ],
+
     ];
 
     /**

@@ -39,7 +39,7 @@ trait UsesUuid
 
                 if (isset($model->attributes[$item]) && ! is_null($model->attributes[$item])) {
                     /* @var \Ramsey\Uuid\Uuid $uuid */
-                    $uuid = $uuid->fromString(strtolower($model->attributes[$item]));
+                    $uuid = Uuid::fromString(strtolower($model->attributes[$item]));
                 }
 
                 $model->attributes[$item] = $model->hasCast($item, 'uuid') ? $uuid->getBytes() : $uuid->toString();

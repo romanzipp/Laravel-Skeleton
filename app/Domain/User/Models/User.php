@@ -14,10 +14,7 @@ use Illuminate\Notifications\Notifiable;
 use Support\Enums\TableName;
 use Support\Models\AbstractModel;
 
-final class User extends AbstractModel implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+final class User extends AbstractModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
     use Notifiable;
     use Authenticatable;

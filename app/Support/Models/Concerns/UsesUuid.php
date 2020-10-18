@@ -36,7 +36,6 @@ trait UsesUuid
             $uuid = self::resolveUuid();
 
             foreach ($model->uuidColumns() as $item) {
-
                 if (isset($model->attributes[$item]) && ! is_null($model->attributes[$item])) {
                     /* @var \Ramsey\Uuid\Uuid $uuid */
                     $uuid = Uuid::fromString(strtolower($model->attributes[$item]));
@@ -74,7 +73,7 @@ trait UsesUuid
      */
     public static function resolveUuid(): UuidInterface
     {
-        if (($version = self::resolveUuidVersion()) === 'ordered') {
+        if ('ordered' === ($version = self::resolveUuidVersion())) {
             return Str::orderedUuid();
         }
 
@@ -82,7 +81,7 @@ trait UsesUuid
     }
 
     /**
-     * Find by id
+     * Find by id.
      *
      * @param $id
      * @return static
@@ -113,7 +112,7 @@ trait UsesUuid
      */
     public function scopeWhereUuid($query, $uuid, $uuidColumn = null): Builder
     {
-        $uuidColumn = $uuidColumn !== null && in_array($uuidColumn, $this->uuidColumns())
+        $uuidColumn = null !== $uuidColumn && in_array($uuidColumn, $this->uuidColumns())
             ? $uuidColumn
             : $this->uuidColumns()[0];
 

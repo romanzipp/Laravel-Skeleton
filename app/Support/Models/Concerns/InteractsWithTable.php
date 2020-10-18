@@ -11,7 +11,7 @@ trait InteractsWithTable
      */
     public static function getTableName(): string
     {
-        return (new static)->getTable();
+        return (new static())->getTable();
     }
 
     /**
@@ -22,6 +22,6 @@ trait InteractsWithTable
      */
     public static function primaryColumn(bool $full = true): string
     {
-        return sprintf('%s.%s', static::getTableName(), (new static)->getKeyName());
+        return sprintf('%s.%s', static::getTableName(), (new static())->getKeyName());
     }
 }

@@ -42,7 +42,7 @@ abstract class AbstractRepository implements RepositoryContract
      */
     public static function make()
     {
-        return new static;
+        return new static();
     }
 
     /**
@@ -62,7 +62,7 @@ abstract class AbstractRepository implements RepositoryContract
      */
     public function fresh()
     {
-        return new static;
+        return new static();
     }
 
     /**

@@ -25,10 +25,8 @@ abstract class AbstractListener
     public function subscribe(Dispatcher $dispatcher): void
     {
         foreach ($this->subscribe as $event => $callback) {
-
             if (is_array($callback)) {
-
-                if (count($callback) === 1) {
+                if (1 === count($callback)) {
                     $callback = [static::class, $callback[0]];
                 }
 

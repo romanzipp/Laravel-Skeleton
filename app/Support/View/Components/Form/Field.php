@@ -29,8 +29,7 @@ class Field extends Component
         string $class = null,
         bool $required = false,
         bool $autofocus = false
-    )
-    {
+    ) {
         $this->type = $type;
         $this->name = $name;
         $this->value = $value;

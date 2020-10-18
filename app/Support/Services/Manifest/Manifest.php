@@ -11,7 +11,7 @@ class Manifest
 
     public static function make(): Manifest
     {
-        return new self;
+        return new self();
     }
 
     public function manifest(string $manifest): Manifest

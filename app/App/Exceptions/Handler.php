@@ -11,7 +11,7 @@ use Throwable;
 class Handler extends ExceptionHandler
 {
     protected $dontReport = [
-        //
+
     ];
 
     protected $dontFlash = [
@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler
      * Determines if request is an api call.
      *
      * @param Request $request
-     * @return boolean
+     * @return bool
      */
     protected function isApiCall(Request $request): bool
     {

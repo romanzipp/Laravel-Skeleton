@@ -10,7 +10,6 @@ class CreateSupportFailedJobsTable extends Migration
     public function up()
     {
         Schema::create(TableName::SUPPORT_FAILED_JOBS, function (Blueprint $table) {
-
             $table->id();
 
             $table->text('connection');

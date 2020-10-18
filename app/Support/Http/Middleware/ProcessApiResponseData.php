@@ -62,7 +62,7 @@ class ProcessApiResponseData
      * Determine if is a JsonResponse instance.
      *
      * @param $response
-     * @return boolean
+     * @return bool
      */
     private function isJson($response): bool
     {
@@ -73,7 +73,7 @@ class ProcessApiResponseData
      * Determine if data is editable.
      *
      * @param mixed $data
-     * @return boolean
+     * @return bool
      */
     private function isEditableData($data): bool
     {
@@ -82,10 +82,10 @@ class ProcessApiResponseData
 
     /**
      * Guess response boolean state.
-     * This method is provided by Symfony\Component\HttpFoundation\Response
+     * This method is provided by Symfony\Component\HttpFoundation\Response.
      *
      * @param mixed $response
-     * @return boolean
+     * @return bool
      */
     private function guessSuccessState($response): bool
     {

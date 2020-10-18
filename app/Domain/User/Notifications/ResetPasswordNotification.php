@@ -31,7 +31,7 @@ final class ResetPasswordNotification extends ResetPassword
             );
         }
 
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(
                 Lang::get('Reset Password Notification')
             )

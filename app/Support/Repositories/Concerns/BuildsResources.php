@@ -20,7 +20,7 @@ trait BuildsResources
         $class = $this->getResourceClass();
 
         if ( ! method_exists($class, 'collection')) {
-            throw new BadMethodCallException("Can not build given repository resource class to collection");
+            throw new BadMethodCallException('Can not build given repository resource class to collection');
         }
 
         return $class::collection(
@@ -39,7 +39,7 @@ trait BuildsResources
 
         $result = $this->fetch()->first();
 
-        if ($result === null) {
+        if (null === $result) {
             return null;
         }
 
@@ -63,7 +63,7 @@ trait BuildsResources
 
         $resource = $this->toResource();
 
-        if ($resource === null) {
+        if (null === $resource) {
             return null;
         }
 

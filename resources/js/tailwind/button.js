@@ -1,15 +1,16 @@
+const Color = require('color');
 const plugin = require('tailwindcss/plugin');
 
 module.exports = plugin(function ({ addComponents, theme }) {
+
     const buttons = {
         '.button': {
             display: 'inline-flex',
             flex: theme('flex.initial'),
             justifyContent: 'center',
             alignItems: 'center',
-            padding: `${theme('padding.2')} ${theme('padding.4')}`,
+            padding: `${theme('padding.3')} ${theme('padding.6')}`,
             borderRadius: theme('borderRadius.default'),
-            fontFamily: theme('fontFamily.display'),
             fontSize: theme('fontSize.sm'),
             fontWeight: theme('fontWeight.medium'),
             textAlign: 'center',
@@ -20,7 +21,7 @@ module.exports = plugin(function ({ addComponents, theme }) {
                 fontSize: theme('fontSize.xs')
             },
             '&.button-lg': {
-                padding: `${theme('padding.3')} ${theme('padding.12')}`,
+                padding: `${theme('padding.4')} ${theme('padding.12')}`,
                 fontSize: theme('fontSize.base')
             },
             '&[disabled]': {
@@ -51,53 +52,43 @@ module.exports = plugin(function ({ addComponents, theme }) {
             backgroundColor: theme(`colors.${color}.${baseColor}`),
             color: theme(`colors.${color}.${baseColor - 400}`),
             transition: 'background-color .15s, box-shadow .15s, border .15s',
-            borderWidth: '0px',
 
-            '&:hover': {
-                backgroundColor: theme(`colors.${color}.${baseColor + 100}`)
-            },
+            boxShadow: `
+                0 0.1px 0.5px ${Color(theme(`colors.${color}.500`)).alpha(0.081).hsl()},
+                0 0.4px 1.6px ${Color(theme(`colors.${color}.500`)).alpha(0.119).hsl()},
+                0 2px 7px ${Color(theme(`colors.${color}.500`)).alpha(0.2).hsl()}
+            `,
 
-            '&.button-bold': {
-                boxShadow: `
-                    ${theme(`colors.${color}.${baseColor - 300}`)} 0px 1px 2px 0px,
-                    ${theme(`colors.${color}.${baseColor - 100}`)} 0px 1px 0px 0px inset`,
-                borderWidth: '1px',
-                borderColor: theme(`colors.${color}.${baseColor + 100}`),
-
-                '&:hover': {
-                    backgroundColor: theme(`colors.${color}.${baseColor + 100}`),
-                    boxShadow: `
-                    ${theme(`colors.${color}.${baseColor - 300}`)} 0px 1px 2px 0px,
-                    ${theme(`colors.${color}.${baseColor}`)} 0px 1px 0px 0px inset`,
-                    borderColor: theme(`colors.${color}.${baseColor + 200}`)
-                }
-            },
-
-            '&.button-basic': {
-                backgroundColor: theme(`colors.${color}.100`),
-                color: theme(`colors.${color}.${baseColor + 300}`),
-
-                '&:hover:not([disabled])': {
-                    backgroundColor: theme(`colors.${color}.${baseColor - 300}`)
-                }
+            '&:hover:not([disabled])': {
+                backgroundColor: theme(`colors.${color}.${baseColor + 100}`),
             },
 
             '&.button-secondary': {
 
                 backgroundColor: theme(`colors.${color}.200`),
                 color: theme(`colors.${color}.800`),
-                boxShadow: `${theme('colors.gray.300')} 0px 1px 2px 0px`,
-                borderWidth: '1px',
-                borderColor: theme(`colors.${color}.300`),
 
-                '&:hover': {
+                '&:hover:not([disabled])': {
                     backgroundColor: theme(`colors.${color}.300`),
-                    boxShadow: `${theme('colors.gray.400')} 0px 1px 2px 0px`,
-                    borderColor: theme(`colors.${color}.400`)
                 }
             }
         };
     }
+
+    buttons['.button-white'] = {
+        backgroundColor: theme('colors.white'),
+        color: theme('colors.gray.800'),
+        '&:hover:not([disabled])': {
+            backgroundColor: theme('colors.gray.100')
+        },
+        '&.button-secondary': {
+            backgroundColor: theme('colors.gray.200'),
+            color: theme('colors.gray.800'),
+            '&:hover:not([disabled])': {
+                backgroundColor: theme('colors.gray.300')
+            }
+        }
+    };
 
     addComponents(buttons);
 });

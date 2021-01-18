@@ -6,7 +6,7 @@ use Support\Http\Resources\AbstractResource;
 
 final class UserResource extends AbstractResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
         /** @var \Domain\User\Models\User $user */
         $user = $this->resource;

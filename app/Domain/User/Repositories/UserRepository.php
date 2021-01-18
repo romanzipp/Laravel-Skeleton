@@ -24,4 +24,9 @@ final class UserRepository extends AbstractRepository
 
         return $this;
     }
+
+    public function findById(string $id): ?User
+    {
+        return $this->query->find($id);
+    }
 }

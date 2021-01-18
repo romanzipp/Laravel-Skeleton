@@ -2,42 +2,36 @@
 
 namespace Support\Repositories;
 
+use BadMethodCallException;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Traits\ForwardsCalls;
-use InvalidArgumentException;
-use Support\Repositories\Concerns\BuildsResources;
-use Support\Repositories\Contracts\RepositoryContract;
+use RuntimeException;
+use stdClass;
+use Support\Http\Resources\AbstractResource;
+use Support\Http\Resources\ResourceCollection;
+use Support\Objects\Scope;
 
-/**
- * @mixin \Illuminate\Database\Eloquent\Builder
- */
 abstract class AbstractRepository implements RepositoryContract
 {
-    use ForwardsCalls;
-    use BuildsResources;
+    public const COMMON_RELATIONS = [];
+
+    public const COMMON_RELATION_COUNTS = [];
 
     protected Builder $query;
 
-    protected bool $prepared = false;
+    private QueryOptions $options;
 
-    protected array $with = [];
+    private bool $prepared = false;
 
-    protected array $withCount = [];
-
-    protected bool $paginate = false;
-
-    protected ?int $paginationPerPage = null;
+    private ?Request $request = null;
 
     public function __construct()
     {
-        $this->query = $this->newQuery();
+        $this->query = app($this->getModelClass())->query();
+        $this->options = new QueryOptions();
     }
 
     /**
-     * Create a new Repository instance.
-     *
      * @return static
      */
     public static function make()
@@ -46,18 +40,16 @@ abstract class AbstractRepository implements RepositoryContract
     }
 
     /**
-     * Create a new Repository instance.
+     * @param \Illuminate\Http\Request $request
      *
      * @return static
      */
-    public function __invoke()
+    public static function api(Request $request)
     {
-        return $this->fresh();
+        return (new static())->setOptionsFromApiRequest($request);
     }
 
     /**
-     * Create a new Repository instance.
-     *
      * @return static
      */
     public function fresh()
@@ -65,132 +57,219 @@ abstract class AbstractRepository implements RepositoryContract
         return new static();
     }
 
-    /**
-     * Get the current Eloquent Query Builder.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
     public function query(): Builder
     {
         return $this->query;
     }
 
     /**
-     * Prepare the query with adding relation & relation count loading.
+     * @param int|null $perPage
      *
-     * @return $this
+     * @return static
      */
-    public function prepare(): AbstractRepository
+    public function paginate(int $perPage = 50): AbstractRepository
     {
-        if ($this->prepared) {
-            return $this;
-        }
-
-        $this
-            ->query
-            ->with($this->with)
-            ->withCount($this->withCount);
-
-        $this->prepared = true;
+        $this->options->paginate = $perPage;
 
         return $this;
     }
 
     /**
-     * Paginate the query.
+     * @param \Illuminate\Http\Request $request
      *
-     * @param int|null $perPage
-     * @return $this
+     * @return static
      */
-    public function paginate(int $perPage = null): AbstractRepository
+    protected function setOptionsFromApiRequest(Request $request)
     {
-        $this->paginate = true;
-        $this->paginationPerPage = $perPage;
+        $this->request = $request;
+
+        if ($limit = $request->query('limit')) {
+            $this->options->limit = (int) $limit;
+        }
+
+        $this->options->orderBy['created_at'] = 'desc';
+
+        return $this;
+    }
+
+    protected function prepare(): Builder
+    {
+        if ($this->prepared) {
+            throw new RuntimeException('Can not prepare a repository query multiple times');
+        }
+
+        $this
+            ->query
+            ->with($this->options->with)
+            ->withCount($this->options->withCount);
+
+        if (null !== $this->options->limit) {
+            $this->query->limit($this->options->limit);
+        }
+
+        foreach ($this->options->orderBy as $column => $direction) {
+            $this->query->orderBy($column, $direction);
+        }
+
+        $this->prepared = true;
+
+        return $this->query;
+    }
+
+    /*
+     *--------------------------------------------------------------------------
+     * Options
+     *--------------------------------------------------------------------------
+     */
+
+    /**
+     * @param array $relations
+     *
+     * @return static
+     */
+    public function with(array $relations)
+    {
+        $this->options->with = $relations;
+
+        return $this;
+    }
+
+    /**
+     * @param array $relations
+     *
+     * @return static
+     */
+    public function withCount(array $relations)
+    {
+        $this->options->withCount = $relations;
+
+        return $this;
+    }
+
+    /**
+     * @param string $field
+     * @param string $direction
+     *
+     * @return static
+     */
+    public function orderBy(string $field, string $direction)
+    {
+        $this->options->orderBy[$field] = $direction;
 
         return $this;
     }
 
     /*
      *--------------------------------------------------------------------------
-     * Builder Overrides
+     * Query Overrides
      *--------------------------------------------------------------------------
      */
 
     public function exists(): bool
     {
-        return $this->prepare()->query()->exists();
+        return $this->prepare()->exists();
     }
 
-    public function count($columns = '*'): int
+    public function count($columns = ['*']): int
     {
-        return $this->prepare()->query()->count($columns);
+        return $this->prepare()->count($columns);
     }
 
-    public function get($columns = '*'): Collection
+    /**
+     * @param string[] $columns
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function get($columns = ['*'])
     {
-        return $this->prepare()->query()->get($columns);
+        $query = $this->prepare();
+
+        // Do not apply pagination if a limit has been set
+        if (null !== $this->options->paginate && null === $this->options->limit) {
+            $results = $query->paginate($this->options->paginate, $columns);
+
+            if (null !== $this->request) {
+                $results->appends($this->request->query());
+            }
+
+            return $results;
+        }
+
+        return $query->get($columns);
+    }
+
+    public function first($columns = ['*'])
+    {
+        return $this->prepare()->first($columns);
+    }
+
+    public function find($id, $columns = ['*'])
+    {
+        return $this->prepare()->find($id, $columns);
+    }
+
+    public function each(callable $callback, $count = 1000): bool
+    {
+        return $this->prepare()->each($callback, $count);
     }
 
     /*
      *--------------------------------------------------------------------------
-     * Protected Methods
+     * Conversions
      *--------------------------------------------------------------------------
      */
 
-    /**
-     * Fetch the query results.
-     *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    protected function fetch()
+    public function toResources(?Scope $scope = null): ResourceCollection
     {
-        $this->prepare();
+        $class = $this->getResourceClass();
 
-        if ($this->paginate) {
-            return $this
-                ->query()
-                ->paginate($this->paginationPerPage)
-                ->appends($this->getRequest()->query());
+        if ( ! method_exists($class, 'collection')) {
+            throw new BadMethodCallException('Can not build given repository resource class to collection');
         }
 
-        return $this->query()->get();
+        return $class::collection(
+            $this->get(),
+            $scope
+        );
     }
 
-    /**
-     * Get the current request.
-     *
-     * @return \Illuminate\Http\Request
-     */
-    public function getRequest(): Request
+    public function toResource(?Scope $scope = null): ?AbstractResource
     {
-        return request();
-    }
+        $class = $this->getResourceClass();
 
-    /**
-     * Spawn a new query instance.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    protected function newQuery(): Builder
-    {
-        return app($this->getModelClass())->query();
-    }
+        $result = $this->first();
 
-    /**
-     * Handle dynamic method calls into the query builder.
-     *
-     * @param string $method
-     * @param array $parameters
-     * @return \Support\Repositories\AbstractRepository
-     */
-    public function __call($method, $parameters)
-    {
-        if (in_array($method, ['get', 'paginate', 'exists'])) {
-            throw new InvalidArgumentException('Fetch method must be called through repository methods');
+        if (null === $result) {
+            return null;
         }
 
-        $this->forwardCallTo($this->query, $method, $parameters);
+        return new $class($result, $scope);
+    }
 
-        return $this;
+    public function toView(Request $request, bool $collection, ?Scope $scope = null): ?stdClass
+    {
+        $resources = null;
+
+        if ($collection) {
+            return $this->toResources($scope)->toView($request);
+        }
+
+        $resource = $this->toResource($scope);
+
+        if (null === $resource) {
+            return null;
+        }
+
+        return $resource->toView($request);
+    }
+
+    public function oneToView(Request $request, ?Scope $scope = null): ?stdClass
+    {
+        return $this->toView($request, false, $scope);
+    }
+
+    public function manyToView(Request $request, ?Scope $scope = null): stdClass
+    {
+        return $this->toView($request, true, $scope);
     }
 }

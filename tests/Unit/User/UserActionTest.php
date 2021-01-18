@@ -19,8 +19,8 @@ class UserActionTest extends TestCase
         app(CreateUser::class)->execute(
             new CreateUserData([
                 'name' => 'foo',
-                'email' => $this->faker()->email,
-                'password' => $this->faker()->password(8),
+                'email' => self::faker()->email,
+                'password' => self::faker()->password(8),
             ])
         );
 

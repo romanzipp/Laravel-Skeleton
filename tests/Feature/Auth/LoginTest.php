@@ -21,7 +21,7 @@ class LoginTest extends TestCase
     public function testSubmitValid()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = $this->faker()->password),
+            'password' => bcrypt($password = self::faker()->password),
         ]);
 
         $response = $this->post(route('auth.login.show'), [
@@ -36,11 +36,11 @@ class LoginTest extends TestCase
     public function testSubmitInvalidEmail()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = $this->faker()->password),
+            'password' => bcrypt($password = self::faker()->password),
         ]);
 
         $response = $this->post(route('auth.login.show'), [
-            'email' => $this->faker()->email,
+            'email' => self::faker()->email,
             'password' => $password,
         ]);
 

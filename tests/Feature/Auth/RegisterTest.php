@@ -20,11 +20,11 @@ class RegisterTest extends TestCase
 
     public function testSubmitValid()
     {
-        $password = $this->faker()->password(8);
+        $password = self::faker()->password(8);
 
         $response = $this->post(route('auth.register.process'), [
-            'email' => $this->faker()->safeEmail,
-            'name' => $this->faker()->name,
+            'email' => self::faker()->safeEmail,
+            'name' => self::faker()->name,
             'password' => $password,
             'password_confirmation' => $password,
         ]);
@@ -36,10 +36,10 @@ class RegisterTest extends TestCase
     public function testSubmitInvalidPasswordConfirmation()
     {
         $response = $this->post(route('auth.register.process'), [
-            'email' => $this->faker()->safeEmail,
-            'name' => $this->faker()->name,
-            'password' => $this->faker()->unique()->password(8),
-            'password_confirmation' => $this->faker()->unique()->password(8),
+            'email' => self::faker()->safeEmail,
+            'name' => self::faker()->name,
+            'password' => self::faker()->unique()->password(8),
+            'password_confirmation' => self::faker()->unique()->password(8),
         ]);
 
         $response->assertStatus(302);
@@ -49,13 +49,13 @@ class RegisterTest extends TestCase
     public function testSubmitInvalidEmailTaken()
     {
         $user = factory(User::class)->create([
-            'password' => bcrypt($this->faker()->password),
+            'password' => bcrypt(self::faker()->password),
         ]);
 
         $response = $this->post(route('auth.register.process'), [
             'email' => $user->email,
             'name' => $user->name,
-            'password' => $password = $this->faker()->password(8),
+            'password' => $password = self::faker()->password(8),
             'password_confirmation' => $password,
         ]);
 

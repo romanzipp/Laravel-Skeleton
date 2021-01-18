@@ -12,7 +12,6 @@ final class UserResource extends AbstractResource
         $user = $this->resource;
 
         return [
-
             'name' => $user->name,
 
             $this->withDates(),

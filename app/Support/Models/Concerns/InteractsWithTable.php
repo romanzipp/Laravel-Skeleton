@@ -18,6 +18,7 @@ trait InteractsWithTable
      * Get the model primary column name with table.
      *
      * @param bool $full
+     *
      * @return string
      */
     public static function primaryColumn(bool $full = true): string

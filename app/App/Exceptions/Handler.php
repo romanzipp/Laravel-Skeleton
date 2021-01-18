@@ -11,7 +11,6 @@ use Throwable;
 class Handler extends ExceptionHandler
 {
     protected $dontReport = [
-
     ];
 
     protected $dontFlash = [
@@ -48,6 +47,7 @@ class Handler extends ExceptionHandler
      *
      * @param \Illuminate\Http\Request $request
      * @param \Illuminate\Auth\AuthenticationException $exception
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
@@ -61,6 +61,7 @@ class Handler extends ExceptionHandler
      * Determines if request is an api call.
      *
      * @param Request $request
+     *
      * @return bool
      */
     protected function isApiCall(Request $request): bool

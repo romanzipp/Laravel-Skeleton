@@ -16,6 +16,7 @@ trait UsesUuid
      *
      * @param string $key
      * @param array|string|null $types
+     *
      * @return bool
      */
     abstract public function hasCast($key, $types = null);
@@ -31,7 +32,6 @@ trait UsesUuid
     public static function bootUsesUuid(): void
     {
         static::creating(function ($model) {
-
             /* @var \Illuminate\Database\Eloquent\Model|static $model */
             $uuid = self::resolveUuid();
 
@@ -84,6 +84,7 @@ trait UsesUuid
      * Find by id.
      *
      * @param $id
+     *
      * @return static
      */
     public static function uuid($id): ?self
@@ -127,6 +128,7 @@ trait UsesUuid
      * Convert a single UUID or array of UUIDs to bytes.
      *
      * @param \Illuminate\Contracts\Support\Arrayable|array|string $uuid
+     *
      * @return array
      */
     protected function bytesFromUuid($uuid): array

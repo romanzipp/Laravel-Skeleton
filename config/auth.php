@@ -3,7 +3,6 @@
 use Support\Enums\TableName;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -115,5 +114,4 @@ return [
     */
 
     'password_timeout' => 10800,
-
 ];

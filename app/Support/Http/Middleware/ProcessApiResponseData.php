@@ -13,6 +13,7 @@ class ProcessApiResponseData
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -41,6 +42,7 @@ class ProcessApiResponseData
      *
      * @param mixed $response
      * @param mixed $data
+     *
      * @return \stdClass
      */
     private function appendSuccessState($response, $data): stdClass
@@ -62,6 +64,7 @@ class ProcessApiResponseData
      * Determine if is a JsonResponse instance.
      *
      * @param $response
+     *
      * @return bool
      */
     private function isJson($response): bool
@@ -73,6 +76,7 @@ class ProcessApiResponseData
      * Determine if data is editable.
      *
      * @param mixed $data
+     *
      * @return bool
      */
     private function isEditableData($data): bool
@@ -85,6 +89,7 @@ class ProcessApiResponseData
      * This method is provided by Symfony\Component\HttpFoundation\Response.
      *
      * @param mixed $response
+     *
      * @return bool
      */
     private function guessSuccessState($response): bool

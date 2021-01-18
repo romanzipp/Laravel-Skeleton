@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fdf6623812d725adb9406e4f5c5147c7",
+    "content-hash": "891ead2ccf193750030d461bc9f7d0e7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2527,16 +2527,16 @@
         },
         {
             "name": "romanzipp/dto",
-            "version": "1.0.7",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/DTO.git",
-                "reference": "d58499468ff58fb24bbcdbb0deae5013b40a8f7f"
+                "reference": "1dc3e57cf9bab3d921d4a2baf646b8cc8b072adf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/DTO/zipball/d58499468ff58fb24bbcdbb0deae5013b40a8f7f",
-                "reference": "d58499468ff58fb24bbcdbb0deae5013b40a8f7f",
+                "url": "https://api.github.com/repos/romanzipp/DTO/zipball/1dc3e57cf9bab3d921d4a2baf646b8cc8b072adf",
+                "reference": "1dc3e57cf9bab3d921d4a2baf646b8cc8b072adf",
                 "shasum": ""
             },
             "require": {
@@ -2546,6 +2546,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.16",
                 "phpunit/phpunit": "^9.0",
+                "romanzipp/php-cs-fixer-config": "^1.0",
                 "symfony/var-dumper": "^5.1"
             },
             "type": "library",
@@ -2568,22 +2569,22 @@
             "description": "A strongly typed Data Transfer Object without magic for PHP 7.4+",
             "support": {
                 "issues": "https://github.com/romanzipp/DTO/issues",
-                "source": "https://github.com/romanzipp/DTO/tree/1.0.7"
+                "source": "https://github.com/romanzipp/DTO/tree/1.0.9"
             },
-            "time": "2020-12-08T15:19:29+00:00"
+            "time": "2021-01-16T08:32:19+00:00"
         },
         {
             "name": "romanzipp/laravel-queue-monitor",
-            "version": "2.0.22",
+            "version": "2.0.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-Queue-Monitor.git",
-                "reference": "4e48ec85f9d29e53aa4f5029acaf69b808d8bd69"
+                "reference": "6ff700985a01c457f81d76117feae31bbb5156a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-Queue-Monitor/zipball/4e48ec85f9d29e53aa4f5029acaf69b808d8bd69",
-                "reference": "4e48ec85f9d29e53aa4f5029acaf69b808d8bd69",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-Queue-Monitor/zipball/6ff700985a01c457f81d76117feae31bbb5156a5",
+                "reference": "6ff700985a01c457f81d76117feae31bbb5156a5",
                 "shasum": ""
             },
             "require": {
@@ -2591,7 +2592,8 @@
                 "ext-mbstring": "*",
                 "illuminate/queue": "^5.5|^6.0|^7.0|^8.0",
                 "illuminate/support": "^5.5|^6.0|^7.0|^8.0",
-                "php": "^7.2|^8.0"
+                "php": "^7.2|^8.0",
+                "romanzipp/php-cs-fixer-config": "^1.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.17",
@@ -2627,22 +2629,22 @@
             "description": "Queue Monitoring for Laravel Database Job Queue",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-Queue-Monitor/issues",
-                "source": "https://github.com/romanzipp/Laravel-Queue-Monitor/tree/2.0.22"
+                "source": "https://github.com/romanzipp/Laravel-Queue-Monitor/tree/2.0.23"
             },
-            "time": "2021-01-14T05:52:14+00:00"
+            "time": "2021-01-15T19:47:23+00:00"
         },
         {
             "name": "romanzipp/laravel-seo",
-            "version": "2.2.2",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-SEO.git",
-                "reference": "2c865a344ba6d630e31ff4363371b02e2b8d0573"
+                "reference": "178201f927b8e602d44919afb0d5157e6ca50cf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-SEO/zipball/2c865a344ba6d630e31ff4363371b02e2b8d0573",
-                "reference": "2c865a344ba6d630e31ff4363371b02e2b8d0573",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-SEO/zipball/178201f927b8e602d44919afb0d5157e6ca50cf9",
+                "reference": "178201f927b8e602d44919afb0d5157e6ca50cf9",
                 "shasum": ""
             },
             "require": {
@@ -2650,6 +2652,7 @@
                 "illuminate/console": "^5.5|^6.0|^7.0|^8.0",
                 "illuminate/support": "^5.5|^6.0|^7.0|^8.0",
                 "php": "^7.1|^8.0",
+                "romanzipp/php-cs-fixer-config": "^1.0",
                 "spatie/schema-org": "^2.1|^3.2"
             },
             "require-dev": {
@@ -2690,9 +2693,54 @@
             "description": "Laravel SEO package",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-SEO/issues",
-                "source": "https://github.com/romanzipp/Laravel-SEO/tree/2.2.2"
+                "source": "https://github.com/romanzipp/Laravel-SEO/tree/2.2.3"
             },
-            "time": "2021-01-13T09:36:00+00:00"
+            "time": "2021-01-15T19:49:08+00:00"
+        },
+        {
+            "name": "romanzipp/php-cs-fixer-config",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/romanzipp/PHP-CS-Fixer-Config.git",
+                "reference": "ef463b9091514774d6bc318a73e02a5cf6de1f3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/romanzipp/PHP-CS-Fixer-Config/zipball/ef463b9091514774d6bc318a73e02a5cf6de1f3e",
+                "reference": "ef463b9091514774d6bc318a73e02a5cf6de1f3e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.12",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "romanzipp\\Fixer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "romanzipp",
+                    "email": "ich@ich.wtf",
+                    "homepage": "https://ich.wtf"
+                }
+            ],
+            "description": "Personal PHP-CS-Fixer Configuration",
+            "support": {
+                "issues": "https://github.com/romanzipp/PHP-CS-Fixer-Config/issues",
+                "source": "https://github.com/romanzipp/PHP-CS-Fixer-Config/tree/1.0.7"
+            },
+            "time": "2021-01-15T19:55:15+00:00"
         },
         {
             "name": "spatie/schema-org",
@@ -5903,16 +5951,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.17.3",
+            "version": "v2.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "bd32f5dd72cdfc7b53f54077f980e144bfa2f595"
+                "reference": "cbc5b50bfa2688a1afca20e5a8c71f058e9ccbef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/bd32f5dd72cdfc7b53f54077f980e144bfa2f595",
-                "reference": "bd32f5dd72cdfc7b53f54077f980e144bfa2f595",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/cbc5b50bfa2688a1afca20e5a8c71f058e9ccbef",
+                "reference": "cbc5b50bfa2688a1afca20e5a8c71f058e9ccbef",
                 "shasum": ""
             },
             "require": {
@@ -5934,7 +5982,6 @@
                 "symfony/stopwatch": "^3.0 || ^4.0 || ^5.0"
             },
             "require-dev": {
-                "johnkary/phpunit-speedtrap": "^1.1 || ^2.0 || ^3.0",
                 "justinrainbow/json-schema": "^5.0",
                 "keradus/cli-executor": "^1.4",
                 "mikey179/vfsstream": "^1.6",
@@ -5943,11 +5990,11 @@
                 "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.2",
                 "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.2.1",
                 "phpspec/prophecy-phpunit": "^1.1 || ^2.0",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.13 || ^9.4.4 <9.5",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.13 || ^9.5",
                 "phpunitgoodpractices/polyfill": "^1.5",
                 "phpunitgoodpractices/traits": "^1.9.1",
                 "sanmai/phpunit-legacy-adapter": "^6.4 || ^8.2.1",
-                "symfony/phpunit-bridge": "^5.1",
+                "symfony/phpunit-bridge": "^5.2.1",
                 "symfony/yaml": "^3.0 || ^4.0 || ^5.0"
             },
             "suggest": {
@@ -5995,7 +6042,7 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues",
-                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v2.17.3"
+                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v2.18.0"
             },
             "funding": [
                 {
@@ -6003,7 +6050,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-24T11:14:44+00:00"
+            "time": "2021-01-18T03:31:06+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -7105,16 +7152,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.0",
+            "version": "9.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8e16c225d57c3d6808014df6b1dd7598d0a5bbbe"
+                "reference": "e7bdf4085de85a825f4424eae52c99a1cec2f360"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8e16c225d57c3d6808014df6b1dd7598d0a5bbbe",
-                "reference": "8e16c225d57c3d6808014df6b1dd7598d0a5bbbe",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e7bdf4085de85a825f4424eae52c99a1cec2f360",
+                "reference": "e7bdf4085de85a825f4424eae52c99a1cec2f360",
                 "shasum": ""
             },
             "require": {
@@ -7192,7 +7239,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.0"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.1"
             },
             "funding": [
                 {
@@ -7204,7 +7251,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-04T05:05:53+00:00"
+            "time": "2021-01-17T07:42:25+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -8557,7 +8604,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "ext-json": "*"
     },
     "platform-dev": [],

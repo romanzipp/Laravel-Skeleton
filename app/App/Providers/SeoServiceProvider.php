@@ -25,7 +25,7 @@ class SeoServiceProvider extends ServiceProvider
         seo()->description('My Description');
 
         seo()->addMany([
-            Structs\Meta::make()->name('copyright')->content('Roman Zipp'),
+            Structs\Meta::make()->name('copyright')->content('Laravel'),
 
             Structs\Meta::make()->name('mobile-web-app-capable')->content('yes'),
             Structs\Meta::make()->name('theme-color')->content('#f03a17'),

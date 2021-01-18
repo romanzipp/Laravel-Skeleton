@@ -1,4 +1,4 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Laravel Skeleton
 
 This is a modified version of the Laravel framework skeleton.
 
@@ -8,7 +8,7 @@ This is a modified version of the Laravel framework skeleton.
 - [Actions](https://stitcher.io/blog/laravel-beyond-crud-03-actions)
 - Database UUIDs
 - Invoked controllers
-- Model Repository pattern
+- [Model Repository pattern](#repositories)
 - Final classes by default
 
 See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/master/app/Domain/User) directory for an example Model, Action & Data structure.
@@ -25,7 +25,7 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 - [Composer](https://packagist.org)
 - [Yarn](https://yarnpkg.com)
 
-## Additional Packages
+### Additional Packages
 
 - **Composer packages**
   - [myclabs/php-enum](https://github.com/myclabs/php-enum)
@@ -36,23 +36,15 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
   - [tailwindcss](https://github.com/tailwindcss/tailwindcss)
   - [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)
 
-## Extended
+## Documentation
 
 ### Enums
 
-Enums must always extend the [`Support\Enums\AbstractEnum`](app/Support/Enums/AbstractEnum.php) class
+Enums must always extend the [`Support\Enums\AbstractEnum`](app/Support/Enums/AbstractEnum.php) class.
 
 ### Table names
 
 Table names are stored in the [`Support\Enums\TableName`](app/Support/Enums/TableName.php) enum prefixed by the used Domain (example: `user-password_resets`, `user-users`). These enums are used across all Models and Migrations.
-
-### Styles
-
-All styles are contained in [Tailwind Plugins](https://tailwindcss.com/docs/plugins) to easily adapt on core style changes. Take a look at the [`button`](resources/js/tailwind/button.js) plugin for an easy example.
-
-### Blade Components
-
-The contained authentication forms are built with [Blade Components](https://laravel.com/docs/master/blade#components).
 
 ### Repositories
 
@@ -297,6 +289,16 @@ final class CreateUserData extends AbstractData
     public ?string $displayName = null;
 }
 ```
+
+## Frontend
+
+### Styles
+
+All styles are contained in [Tailwind Plugins](https://tailwindcss.com/docs/plugins) to easily adapt on core style changes. Take a look at the [`button`](resources/js/tailwind/button.js) plugin for an easy example.
+
+### Blade Components
+
+The contained authentication forms are built with [Blade Components](https://laravel.com/docs/master/blade#components).
 
 ## License
 

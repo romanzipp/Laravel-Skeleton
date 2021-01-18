@@ -38,10 +38,7 @@ class Manifest
             return $path;
         }
 
-        $content = @json_decode(
-            file_get_contents($manifest),
-            true
-        );
+        $content = json_decode(file_get_contents($manifest), true, 512, JSON_THROW_ON_ERROR);
 
         if ( ! Str::startsWith($path, '/')) {
             $path = sprintf('/%s', $path);

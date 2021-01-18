@@ -263,12 +263,12 @@ abstract class AbstractRepository implements RepositoryContract
         return $resource->toView($request);
     }
 
-    public function oneToView(Request $request, ?Scope $scope = null): ?stdClass
+    public function toObject(Request $request, ?Scope $scope = null): ?stdClass
     {
         return $this->toView($request, false, $scope);
     }
 
-    public function manyToView(Request $request, ?Scope $scope = null): stdClass
+    public function toObjects(Request $request, ?Scope $scope = null): stdClass
     {
         return $this->toView($request, true, $scope);
     }

@@ -114,7 +114,7 @@ final class UserController
             ->users
             ->fresh()
             ->withPendingVerification()
-            ->manyToView($request);
+            ->toObjects($request);
 
         $admin = $this
             ->users

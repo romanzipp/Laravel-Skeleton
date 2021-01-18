@@ -21,7 +21,7 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 
 ## Requirements
 
-- [PHP 7.4](https://www.php.net)
+- [PHP 7.4](https://www.php.net) or [PHP 8.0](https://www.php.net)
 - [Composer](https://packagist.org)
 - [Yarn](https://yarnpkg.com)
 
@@ -40,15 +40,15 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 
 ### Enums
 
-Enums must always extend the [`Support\Enums\AbstractEnum`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Enums/AbstractEnum.php) class
+Enums must always extend the [`Support\Enums\AbstractEnum`](app/Support/Enums/AbstractEnum.php) class
 
 ### Table names
 
-Table names are stored in the [`Support\Enums\TableName`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Enums/TableName.php) enum prefixed by the used Domain (example: `user-password_resets`, `user-users`). These enums are used across all Models and Migrations.
+Table names are stored in the [`Support\Enums\TableName`](app/Support/Enums/TableName.php) enum prefixed by the used Domain (example: `user-password_resets`, `user-users`). These enums are used across all Models and Migrations.
 
 ### Styles
 
-All styles are contained in [Tailwind Plugins](https://tailwindcss.com/docs/plugins) to easily adapt on core style changes. Take a look at the [`button`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/resources/js/tailwind/button.js) plugin for an easy example.
+All styles are contained in [Tailwind Plugins](https://tailwindcss.com/docs/plugins) to easily adapt on core style changes. Take a look at the [`button`](resources/js/tailwind/button.js) plugin for an easy example.
 
 ### Blade Components
 
@@ -56,8 +56,33 @@ The contained authentication forms are built with [Blade Components](https://lar
 
 ### Repositories
 
-Instead of building Model queries each in a separate Controller, we use the Repository pattern to create reusable query building.
-Simply extend the [`Support\Repositories\AbstractRepository`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Repositories/AbstractRepository.php) class to create a new model repository.
+Instead of building Model queries in a separate Controllers, we use the **Repository pattern** to create reusable query building.
+Simply extend the [`Support\Repositories\AbstractRepository`](app/Support/Repositories/AbstractRepository.php) class to create a new model repository.
+
+#### AbstractRepository API
+
+**Query building**
+
+- `paginate(int $perPage = 50): AbstractRepository`
+- `with(array $relations)`
+- `withCount(array $relations)`
+- `orderBy(string $field, string $direction)`
+
+**Query Builder overrides**
+
+- `exists(): bool`
+- `count($columns = ['*']): int`
+- `get($columns = ['*'])`
+- `first($columns = ['*'])`
+- `find($id, $columns = ['*'])`
+- `each(callable $callback, $count = 1000): bool`
+
+**Data conversion**
+
+- `toResources(?Scope $scope = null): ResourceCollection`
+- `toResource(?Scope $scope = null): ?AbstractResource`
+- `toObject(Request $request, ?Scope $scope = null): ?stdClass`
+- `toObjects(Request $request, ?Scope $scope = null): stdClass`
 
 ```php
 use Domain\User\Http\Resources\UserResource;
@@ -75,6 +100,13 @@ final class UserRepository extends AbstractRepository
     {
         return UserResource::class;
     }
+    
+    public function whereIsAdmin(): self
+    {
+        $this->query->where('admin', true);
+
+        return $this;
+    }
 
     public function withPendingVerification(): self
     {
@@ -89,11 +121,11 @@ final class UserRepository extends AbstractRepository
 
 To make data as consistent as possible, data passed to views must always be [Eloquent Resources](https://laravel.com/docs/eloquent-resources#introduction) converted to a data collection or single object. This schema is the same when returning resources form an API endpoint.
 
-To achieve this, the [`AbstractRepository`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Repositories/AbstractRepository.php) class features various helping methods:
-- `manyToView(Request $request): stdClass`
-- `oneToView(Request $request): ?stdClass`
+To achieve this, the [`AbstractRepository`](app/Support/Repositories/AbstractRepository.php) class features various helping methods:
+- `toObjects(Request $request): stdClass`
+- `toObject(Request $request): ?stdClass`
 
-These repository methods are shortcuts to the [`AbstractResource`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Http/Resources/AbstractResource.php) `toView($request): stdClass` method.
+These repository methods are shortcuts to the [`AbstractResource`](app/Support/Http/Resources/AbstractResource.php) `toView($request): stdClass` method.
 
 ```php
 use Domain\User\Repositories\UserRepository;
@@ -102,25 +134,27 @@ use Illuminate\Http\Request;
 final class UserController
 {
     private UserRepository $users;
+    
+    private UserRepository $admins;
 
-    public function __construct(UserRepository $users)
+    public function __construct(UserRepository $users, UserRepository $admins)
     {
-        $this->users = $users;    
+        $this->users = $users;
+        $this->admins = $admins;
     }
 
     public function __invoke(Request $request)
     {
         $users = $this
             ->users
-            ->fresh()
             ->withPendingVerification()
+            ->paginate()
             ->toObjects($request);
 
         $admin = $this
-            ->users
-            ->fresh()
-            ->where('admin', true)
-            ->oneToView($request);
+            ->admins
+            ->whereIsAdmin()
+            ->toObject($request);
 
         return view('users', [
             'users' => $users,
@@ -130,7 +164,7 @@ final class UserController
 }
 ```
 
-#### Example output
+#### Example data passed to view
 
 ```json
 {
@@ -142,19 +176,10 @@ final class UserController
             }
         ],
         "links": {
-            "first": "http://localhost/users?page=1",
-            "last": "http://localhost/users?page=1",
-            "prev": null,
-            "next": null
+            "...": "..."
         },
         "meta": {
-            "current_page": 1,
-            "from": 1,
-            "last_page": 1,
-            "path": "http://localhost/users",
-            "per_page": 25,
-            "to": 1,
-            "total": 1
+            "...": "..."
         }
     },
     "admin": {
@@ -166,7 +191,7 @@ final class UserController
 
 ### Models
 
-[Eloquent Models](https://laravel.com/docs/eloquent#introduction) must always extend [`Support\Models\AbstractModel`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Model/AbstractModel.php) class.
+[Eloquent Models](https://laravel.com/docs/eloquent#introduction) must always extend [`Support\Models\AbstractModel`](app/Support/Model/AbstractModel.php) class.
 
 ```php
 use Support\Enums\TableName;
@@ -180,7 +205,7 @@ final class User extends AbstractModel
 
 ### Resources
 
-[Eloquent Resources](https://laravel.com/docs/eloquent-resources#introduction) must always extend the [`Support\Http\Resources\AbstractResource`](https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Http/Resources/AbstractResource.php) class.
+[Eloquent Resources](https://laravel.com/docs/eloquent-resources#introduction) must always extend the [`Support\Http\Resources\AbstractResource`](app/Support/Http/Resources/AbstractResource.php) class.
 
 ```php
 use Support\Http\Resources\AbstractResource;
@@ -208,7 +233,7 @@ final class UserResource extends AbstractResource
 }
 ```
 
-#### Example output
+#### Example `toArray` output
 
 ```json
 {
@@ -225,7 +250,7 @@ final class UserResource extends AbstractResource
 
 ### Actions
 
-To make as much logic as possible reusable, all heavy lifting actions must be wrapped in **Actions**.
+Heavy lifting procedures including model creation, updating and deletion must be wrapped in **Actions**.
 
 ```php
 use Domain\User\Data\CreateUserData;
@@ -251,7 +276,7 @@ final class CreateUser
 
 ### Data
 
-Data passed to actions or around the application must always extend the [`Support\Data\AbstractData`]((https://github.com/romanzipp/Laravel-Skeleton/blob/master/app/Support/Data/AbstractData.php)) class.
+Data passed to actions or around the application must always extend the [`Support\Data\AbstractData`]((app/Support/Data/AbstractData.php)) class.
 
 The `AbstractData` class is a just an extending class of [romanzipp/dto](https://github.com/romanzipp/dto).
 
@@ -271,7 +296,6 @@ final class CreateUserData extends AbstractData
 
     public ?string $displayName = null;
 }
-
 ```
 
 ## License

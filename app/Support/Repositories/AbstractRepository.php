@@ -246,7 +246,7 @@ abstract class AbstractRepository implements RepositoryContract
         return new $class($result, $scope);
     }
 
-    public function toView(Request $request, bool $collection, ?Scope $scope = null): ?stdClass
+    protected function toView(Request $request, bool $collection, ?Scope $scope = null): ?stdClass
     {
         $resources = null;
 

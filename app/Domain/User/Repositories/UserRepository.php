@@ -18,6 +18,13 @@ final class UserRepository extends AbstractRepository
         return UserResource::class;
     }
 
+    public function whereIsAdmin(): self
+    {
+        $this->query->where('admin', true);
+
+        return $this;
+    }
+
     public function withPendingVerification(): self
     {
         $this->query->whereNull('verified_at');

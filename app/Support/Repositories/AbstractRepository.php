@@ -176,6 +176,8 @@ abstract class AbstractRepository implements RepositoryContract
     }
 
     /**
+     * Execute the query as a "select" statement.
+     *
      * @param string[] $columns
      *
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator
@@ -198,16 +200,39 @@ abstract class AbstractRepository implements RepositoryContract
         return $query->get($columns);
     }
 
+    /**
+     * Execute the query and get the first result.
+     *
+     * @param string[] $columns
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+     */
     public function first($columns = ['*'])
     {
         return $this->prepare()->first($columns);
     }
 
+    /**
+     * Find a model by its primary key.
+     *
+     * @param $id
+     * @param string[] $columns
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     */
     public function find($id, $columns = ['*'])
     {
         return $this->prepare()->find($id, $columns);
     }
 
+    /**
+     * Execute a callback over each item while chunking.
+     *
+     * @param callable $callback
+     * @param int $count
+     *
+     * @return bool
+     */
     public function each(callable $callback, $count = 1000): bool
     {
         return $this->prepare()->each($callback, $count);
@@ -219,6 +244,13 @@ abstract class AbstractRepository implements RepositoryContract
      *--------------------------------------------------------------------------
      */
 
+    /**
+     * Fetch & convert the repository to a corresponding model resource collection.
+     *
+     * @param \Support\Objects\Scope|null $scope
+     *
+     * @return \Support\Http\Resources\ResourceCollection
+     */
     public function toResources(?Scope $scope = null): ResourceCollection
     {
         $class = $this->getResourceClass();
@@ -233,6 +265,13 @@ abstract class AbstractRepository implements RepositoryContract
         );
     }
 
+    /**
+     * Fetch the first item and convert to corresponding model resource.
+     *
+     * @param \Support\Objects\Scope|null $scope
+     *
+     * @return \Support\Http\Resources\AbstractResource|null
+     */
     public function toResource(?Scope $scope = null): ?AbstractResource
     {
         $class = $this->getResourceClass();
@@ -246,30 +285,33 @@ abstract class AbstractRepository implements RepositoryContract
         return new $class($result, $scope);
     }
 
-    protected function toView(Request $request, bool $collection, ?Scope $scope = null): ?stdClass
+    /**
+     * Fetch the first item and convert to stdClass resulting from the model resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Support\Objects\Scope|null $scope
+     *
+     * @return \stdClass|null
+     */
+    public function toObject(Request $request, ?Scope $scope = null): ?stdClass
     {
-        $resources = null;
-
-        if ($collection) {
-            return $this->toResources($scope)->toView($request);
-        }
-
-        $resource = $this->toResource($scope);
-
-        if (null === $resource) {
+        if (null === ($resource = $this->toResource($scope))) {
             return null;
         }
 
         return $resource->toView($request);
     }
 
-    public function toObject(Request $request, ?Scope $scope = null): ?stdClass
-    {
-        return $this->toView($request, false, $scope);
-    }
-
+    /**
+     * Fetch & convert the repository to a stdClass resulting from the model resource collection.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Support\Objects\Scope|null $scope
+     *
+     * @return \stdClass
+     */
     public function toObjects(Request $request, ?Scope $scope = null): stdClass
     {
-        return $this->toView($request, true, $scope);
+        return $this->toResources($scope)->toView($request);
     }
 }

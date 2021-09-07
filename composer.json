@@ -20,17 +20,17 @@
         "myclabs/php-enum": "^1.7",
         "romanzipp/dto": "^1.0|^2.0",
         "romanzipp/laravel-queue-monitor": "^2.0",
-        "romanzipp/laravel-seo": "^2.0.2"
+        "romanzipp/laravel-seo": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
         "facade/ignition": "^2.3.6",
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "fzaninotto/faker": "^1.9.1",
+        "fakerphp/faker": "^1.16",
+        "friendsofphp/php-cs-fixer": "^3.1.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.0",
-        "romanzipp/php-cs-fixer-config": "^1.0"
+        "romanzipp/php-cs-fixer-config": "^3.0"
     },
     "config": {
         "optimize-autoloader": true,

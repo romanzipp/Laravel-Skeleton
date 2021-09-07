@@ -3,19 +3,12 @@ const button = require('./resources/js/tailwind/button');
 
 module.exports = {
     theme: {
-        extend: {
-            fontFamily: {
-                display: [
-                    'Montserrat',
-                    'sans-serif'
-                ]
-            }
-        }
+        extend: { },
     },
     variants: {},
     plugins: [
         require('@tailwindcss/typography'),
         form,
-        button
-    ]
+        button,
+    ],
 };

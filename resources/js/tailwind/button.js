@@ -1,8 +1,7 @@
 const Color = require('color');
 const plugin = require('tailwindcss/plugin');
 
-module.exports = plugin(function ({ addComponents, theme }) {
-
+module.exports = plugin(({ addComponents, theme }) => {
     const buttons = {
         '.button': {
             display: 'inline-flex',
@@ -18,29 +17,28 @@ module.exports = plugin(function ({ addComponents, theme }) {
             cursor: 'pointer',
             '&.button-sm': {
                 padding: `${theme('padding.1')} ${theme('padding.3')}`,
-                fontSize: theme('fontSize.xs')
+                fontSize: theme('fontSize.xs'),
             },
             '&.button-lg': {
                 padding: `${theme('padding.4')} ${theme('padding.12')}`,
-                fontSize: theme('fontSize.base')
+                fontSize: theme('fontSize.base'),
             },
             '&[disabled]': {
-                opacity: .625,
-                cursor: theme('cursor.not-allowed')
+                opacity: 0.625,
+                cursor: theme('cursor.not-allowed'),
             },
             'ion-icon:not(.ignore)': {
                 '&.left': {
-                    marginRight: theme('margin.3')
+                    marginRight: theme('margin.3'),
                 },
                 '&:not(.left)': {
-                    marginLeft: theme('margin.3')
-                }
-            }
-        }
+                    marginLeft: theme('margin.3'),
+                },
+            },
+        },
     };
 
-    for (let color of Object.keys(theme('colors'))) {
-
+    for (const color of Object.keys(theme('colors'))) {
         if (typeof theme(`colors.${color}.500`) === 'undefined') {
             continue;
         }
@@ -70,8 +68,8 @@ module.exports = plugin(function ({ addComponents, theme }) {
 
                 '&:hover:not([disabled])': {
                     backgroundColor: theme(`colors.${color}.300`),
-                }
-            }
+                },
+            },
         };
     }
 
@@ -79,15 +77,15 @@ module.exports = plugin(function ({ addComponents, theme }) {
         backgroundColor: theme('colors.white'),
         color: theme('colors.gray.800'),
         '&:hover:not([disabled])': {
-            backgroundColor: theme('colors.gray.100')
+            backgroundColor: theme('colors.gray.100'),
         },
         '&.button-secondary': {
             backgroundColor: theme('colors.gray.200'),
             color: theme('colors.gray.800'),
             '&:hover:not([disabled])': {
-                backgroundColor: theme('colors.gray.300')
-            }
-        }
+                backgroundColor: theme('colors.gray.300'),
+            },
+        },
     };
 
     addComponents(buttons);

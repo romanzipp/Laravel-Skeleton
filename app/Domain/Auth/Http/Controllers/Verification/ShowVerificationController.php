@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\User\Http\Controllers\Auth\Verification;
+namespace Domain\Auth\Http\Controllers\Verification;
 
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\User\Http\Controllers\Auth\Login;
+namespace Domain\Auth\Http\Controllers\Login;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;

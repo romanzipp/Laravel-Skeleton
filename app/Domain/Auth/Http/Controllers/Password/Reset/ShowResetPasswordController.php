@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\User\Http\Controllers\Auth\Password\Reset;
+namespace Domain\Auth\Http\Controllers\Password\Reset;
 
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;

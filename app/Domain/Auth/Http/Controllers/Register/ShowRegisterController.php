@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\User\Http\Controllers\Auth\Register;
+namespace Domain\Auth\Http\Controllers\Register;
 
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Support\Http\Controllers\AbstractController;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\User\Http\Controllers\Auth\Register;
+namespace Domain\Auth\Http\Controllers\Register;
 
 use Domain\User\Actions\CreateUser;
 use Domain\User\Data\CreateUserData;

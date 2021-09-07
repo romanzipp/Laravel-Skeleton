@@ -13,7 +13,7 @@ class UserRepositoryTest extends TestCase
 
     public function testFindUserById()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $users = new UserRepository();
 

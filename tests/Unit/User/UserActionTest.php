@@ -30,7 +30,7 @@ class UserActionTest extends TestCase
     public function testUpdate()
     {
         /** @var User $user */
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'name' => 'foo',
         ]);
 

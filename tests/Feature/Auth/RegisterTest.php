@@ -48,7 +48,7 @@ class RegisterTest extends TestCase
 
     public function testSubmitInvalidEmailTaken()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => bcrypt(self::faker()->password),
         ]);
 

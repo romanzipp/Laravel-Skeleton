@@ -20,7 +20,7 @@ class LoginTest extends TestCase
 
     public function testSubmitValid()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => bcrypt($password = self::faker()->password),
         ]);
 
@@ -35,7 +35,7 @@ class LoginTest extends TestCase
 
     public function testSubmitInvalidEmail()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => bcrypt($password = self::faker()->password),
         ]);
 

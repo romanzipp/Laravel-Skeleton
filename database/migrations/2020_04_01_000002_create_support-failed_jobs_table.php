@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Support\Enums\TableName;
 
-class CreateSupportFailedJobsTable extends Migration
-{
+return new class() extends Migration {
     public function up()
     {
         Schema::create(TableName::SUPPORT_FAILED_JOBS, function (Blueprint $table) {
@@ -25,4 +24,4 @@ class CreateSupportFailedJobsTable extends Migration
     {
         Schema::dropIfExists(TableName::SUPPORT_FAILED_JOBS);
     }
-}
+};

@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Support\Enums\TableName;
 
-class CreateUserUsersTable extends Migration
-{
+return new class() extends Migration {
     public function up()
     {
         Schema::create(TableName::USER_USERS, function (Blueprint $table) {
@@ -29,4 +28,4 @@ class CreateUserUsersTable extends Migration
     {
         Schema::dropIfExists(TableName::USER_USERS);
     }
-}
+};

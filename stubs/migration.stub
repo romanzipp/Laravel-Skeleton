@@ -5,15 +5,18 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Support\Enums\TableName;
 
-class {{ class }} extends Migration
-{
+return new class() extends Migration {
     public function up()
     {
-        //
+        Schema::create(TableName::TABLE, function (Blueprint $table) {
+            $table->uuid('id')->primary();
+
+            $table->timestamps();
+        });
     }
 
     public function down()
     {
-        //
+        Schema::dropIfExists(TableName::TABLE);
     }
-}
+};

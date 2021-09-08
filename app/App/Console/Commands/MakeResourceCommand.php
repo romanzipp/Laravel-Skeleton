@@ -23,13 +23,15 @@ final class MakeResourceCommand extends AbstractGeneratorCommand
     {
         $stub = $this->files->get($this->getStub());
 
-        $modelShort = Arr::last(explode('\\', $this->option('model')));
+        if ($this->option('model')) {
+            $modelShort = Arr::last(explode('\\', $this->option('model')));
 
-        // Replace model var
-        $stub = str_replace('{{ modelVariable }}', Str::camel($modelShort), $stub);
+            // Replace model var
+            $stub = str_replace('{{ modelVariable }}', Str::camel($modelShort), $stub);
 
-        // Replace model fqdn
-        $stub = str_replace('{{ modelFqdn }}', $this->option('model'), $stub);
+            // Replace model fqdn
+            $stub = str_replace('{{ modelFqdn }}', $this->option('model'), $stub);
+        }
 
         return $this
             ->replaceNamespace($stub, $name)
@@ -43,7 +45,9 @@ final class MakeResourceCommand extends AbstractGeneratorCommand
 
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/resource.stub');
+        return $this->option('model')
+            ? $this->resolveStubPath('/stubs/resource.stub')
+            : $this->resolveStubPath('/stubs/resource.plain.stub');
     }
 
     protected function getOptions()

@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ namespace }};
+
+use Support\Enums\TableName;
+use Support\Models\AbstractModel;
+
+class {{ class }} extends AbstractModel
+{
+    protected $table = TableName::{{ table_constant }};
+}

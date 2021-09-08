@@ -2,17 +2,15 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
-final class MakeResourceCommand extends AbstractGeneratorCommand
+final class MakeRepositoryCommand extends AbstractGeneratorCommand
 {
-    protected $name = 'make:resource';
+    protected $name = 'make:repository';
 
-    protected $description = 'Create a new model resource class (with domain)';
+    protected $description = 'Create a new model repository class (with domain)';
 
-    protected $type = 'Resource';
+    protected $type = 'Repository';
 
     public function handle()
     {
@@ -23,13 +21,11 @@ final class MakeResourceCommand extends AbstractGeneratorCommand
     {
         $stub = $this->files->get($this->getStub());
 
-        $modelShort = Arr::last(explode('\\', $this->option('model')));
-
-        // Replace model var
-        $stub = str_replace('{{ modelVariable }}', Str::camel($modelShort), $stub);
-
         // Replace model fqdn
         $stub = str_replace('{{ modelFqdn }}', $this->option('model'), $stub);
+
+        // Replace resource fqdn
+        $stub = str_replace('{{ resourceFqdn }}', str_replace('\\Models\\', '\\Http\\Resources\\', $this->option('model')) . 'Resource', $stub);
 
         return $this
             ->replaceNamespace($stub, $name)
@@ -38,18 +34,19 @@ final class MakeResourceCommand extends AbstractGeneratorCommand
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return sprintf('%s\\%s', $rootNamespace, 'Http\\Resources');
+        return sprintf('%s\\%s', $rootNamespace, 'Repositories');
     }
 
     protected function getStub()
     {
-        return $this->resolveStubPath('/stubs/resource.stub');
+        return $this->resolveStubPath('/stubs/repository.stub');
     }
 
     protected function getOptions()
     {
         return [
             ['model', null, InputOption::VALUE_REQUIRED, 'The eloquent model'],
+            ['resource', null, InputOption::VALUE_REQUIRED, 'The model resource'],
             ['domain', 'd', InputOption::VALUE_REQUIRED, 'Specify the domain'],
         ];
     }

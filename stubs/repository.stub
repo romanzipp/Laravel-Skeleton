@@ -1,0 +1,18 @@
+<?php
+
+namespace {{ namespace }};
+
+use Support\Repositories\AbstractRepository;
+
+class {{ class }} extends AbstractRepository
+{
+    public function getModelClass(): string
+    {
+        return \{{ modelFqdn }}::class;
+    }
+
+    public function getResourceClass(): string
+    {
+        return \{{ resourceFqdn }}::class;
+    }
+}

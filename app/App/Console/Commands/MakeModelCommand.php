@@ -81,6 +81,9 @@ final class MakeModelCommand extends AbstractGeneratorCommand
         // Repalce {{ tableConstant }}
         $stub = str_replace('{{ tableConstant }}', $this->getTableName($name, true), $stub);
 
+        // Replace {{ factoryClass }}
+        $stub = str_replace('{{ factoryClass }}', sprintf('Database\\Factories\\%s\\%sFactory', $this->getDomain(), class_basename($name)), $stub);
+
         return $this
             ->replaceNamespace($stub, $name)
             ->replaceClass($stub, $name);
@@ -104,6 +107,10 @@ final class MakeModelCommand extends AbstractGeneratorCommand
 
     protected function getStub()
     {
+        if ($this->option('factory') || $this->option('all')) {
+            return $this->resolveStubPath('/stubs/model.factory.stub');
+        }
+
         return $this->resolveStubPath('/stubs/model.stub');
     }
 

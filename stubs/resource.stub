@@ -8,11 +8,11 @@ final class {{ class }} extends AbstractResource
 {
     public function toArray($request): array
     {
-        /** @var \{{ model_fqdn }} ${{ model_variable }} */
-        ${{ model_variable }} = $this->resource;
+        /** @var \{{ modelFqdn }} ${{ modelVariable }} */
+        ${{ modelVariable }} = $this->resource;
 
         return [
-            'id' => ${{ model_variable }}->id,
+            'id' => ${{ modelVariable }}->id,
 
             $this->withDates(),
         ];

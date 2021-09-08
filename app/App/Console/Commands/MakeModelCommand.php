@@ -27,6 +27,10 @@ final class MakeModelCommand extends AbstractGeneratorCommand
             $this->input->setOption('repository', true);
         }
 
+        if ($this->option('factory')) {
+            $this->createFactory();
+        }
+
         if ($this->option('resource')) {
             $this->createResource();
         }
@@ -34,6 +38,17 @@ final class MakeModelCommand extends AbstractGeneratorCommand
         if ($this->option('repository')) {
             $this->createRepository();
         }
+    }
+
+    public function createFactory()
+    {
+        $factory = Str::studly($this->argument('name'));
+
+        $this->call('make:factory', [
+            'name' => "{$factory}Factory",
+            '--model' => $this->qualifyClass($this->getNameInput()),
+            '--domain' => $this->getDomain(),
+        ]);
     }
 
     private function createResource()
@@ -63,8 +78,8 @@ final class MakeModelCommand extends AbstractGeneratorCommand
     {
         $stub = $this->files->get($this->getStub());
 
-        // Repalce {{ table_constant }}
-        $stub = str_replace('{{ table_constant }}', $this->getTableName($name, true), $stub);
+        // Repalce {{ tableConstant }}
+        $stub = str_replace('{{ tableConstant }}', $this->getTableName($name, true), $stub);
 
         return $this
             ->replaceNamespace($stub, $name)

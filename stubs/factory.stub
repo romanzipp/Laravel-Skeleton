@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class {{ class }} extends Factory
+{
+    protected $model = \{{ modelFqdn }}::class;
+
+    public function definition()
+    {
+        // TODO: Implement definition() method.
+    }
+}

@@ -27,25 +27,27 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
         return $this->domain;
     }
 
-    // TODO override
     protected function qualifyModel(string $model)
     {
         $model = ltrim($model, '\\/');
 
         $model = str_replace('/', '\\', $model);
 
-        $rootNamespace = $this->rootNamespace();
+        $rootNamespace = $this->domainNamespace() . '\\';
 
         if (Str::startsWith($model, $rootNamespace)) {
             return $model;
         }
 
-        return is_dir(app_path('Models'))
-            ? $rootNamespace . 'Models\\' . $model
-            : $rootNamespace . $model;
+        return $rootNamespace . 'Models\\' . $model;
     }
 
     protected function rootNamespace()
+    {
+        return sprintf('Domain\\%s', $this->getDomain());
+    }
+
+    public function domainNamespace()
     {
         return sprintf('Domain\\%s', $this->getDomain());
     }

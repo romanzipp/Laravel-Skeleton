@@ -38,13 +38,33 @@ class MakeFactoryCommand extends AbstractGeneratorCommand
             '{{ factoryNamespace }}' => $namespace,
             '{{ namespacedModel }}' => $namespaceModel,
             '{{ model }}' => $model,
-            '{{ modelFqdn }}' => $this->option('model'),
+            '{{ modelFqdn }}' => $namespaceModel,
             '{{ factory }}' => $factory,
         ];
 
         return str_replace(
             array_keys($replace), array_values($replace), parent::buildClass($name)
         );
+    }
+
+    protected function guessModelName($name)
+    {
+        // Database\Factories\Test\ProjectFactory
+        if (Str::endsWith($name, 'Factory')) {
+            // Database\Factories\Test\Project
+            $name = substr($name, 0, -7);
+        }
+
+        // Project
+        $modelName = $this->qualifyModel(
+            Str::after($name, $this->rootNamespace() . '\\' . $this->getDomain())
+        );
+
+        if (class_exists($modelName)) {
+            return $modelName;
+        }
+
+        return $this->rootNamespace() . 'Model';
     }
 
     protected function getPath($name)

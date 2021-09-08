@@ -1,0 +1,19 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Support\Enums\TableName;
+use Support\Models\AbstractModel;
+
+class {{ class }} extends AbstractModel
+{
+    use HasFactory;
+
+    protected $table = TableName::{{ tableConstant }};
+
+    protected static function newFactory()
+    {
+        return new \{{ factoryClass }}();
+    }
+}

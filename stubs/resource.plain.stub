@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ namespace }};
+
+use Support\Http\Resources\AbstractResource;
+
+final class {{ class }} extends AbstractResource
+{
+    public function toArray($request): array
+    {
+        return [
+            $this->withDates(),
+        ];
+    }
+}

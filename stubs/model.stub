@@ -7,5 +7,5 @@ use Support\Models\AbstractModel;
 
 class {{ class }} extends AbstractModel
 {
-    protected $table = TableName::{{ table_constant }};
+    protected $table = TableName::{{ tableConstant }};
 }

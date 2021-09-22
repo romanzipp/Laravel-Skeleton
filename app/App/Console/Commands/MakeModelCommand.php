@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -91,7 +90,7 @@ final class MakeModelCommand extends AbstractGeneratorCommand
 
     protected function getTableName($name, bool $codeSafe): string
     {
-        $table = strtolower($this->getDomain()) . '-' . Str::plural(Str::snake(strtolower(Arr::last(explode('\\', $name)))));
+        $table = strtolower($this->getDomain()) . '-' . Str::plural(Str::snake(strtolower(class_basename($name))));
 
         if ( ! $codeSafe) {
             return $table;

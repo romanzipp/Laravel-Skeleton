@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f17bdfa473461bbf11b8cc9ed81684b",
+    "content-hash": "1c5e5d98bc8134e9cef1bf258b76517a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2863,16 +2863,16 @@
         },
         {
             "name": "romanzipp/laravel-previously-deleted",
-            "version": "1.2.6",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-Previously-Deleted.git",
-                "reference": "26d5785666d0f6829052ff08aabff76c3d72a58c"
+                "reference": "1efec04708957413cbb89a019d5964fb1cd28a21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-Previously-Deleted/zipball/26d5785666d0f6829052ff08aabff76c3d72a58c",
-                "reference": "26d5785666d0f6829052ff08aabff76c3d72a58c",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-Previously-Deleted/zipball/1efec04708957413cbb89a019d5964fb1cd28a21",
+                "reference": "1efec04708957413cbb89a019d5964fb1cd28a21",
                 "shasum": ""
             },
             "require": {
@@ -2914,9 +2914,9 @@
             "description": "Store previously deleted Model attributes",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-Previously-Deleted/issues",
-                "source": "https://github.com/romanzipp/Laravel-Previously-Deleted/tree/1.2.6"
+                "source": "https://github.com/romanzipp/Laravel-Previously-Deleted/tree/1.3.0"
             },
-            "time": "2021-08-06T11:42:08+00:00"
+            "time": "2021-09-22T10:46:04+00:00"
         },
         {
             "name": "romanzipp/laravel-queue-monitor",

@@ -300,6 +300,11 @@ All styles are contained in [Tailwind Plugins](https://tailwindcss.com/docs/plug
 
 The contained authentication forms are built with [Blade Components](https://laravel.com/docs/master/blade#components).
 
+### Laravel-Mix
+
+There is a new `manifest('css/app.css')` helper which replaces the `mix()` function.
+
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

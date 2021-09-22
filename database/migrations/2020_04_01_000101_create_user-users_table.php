@@ -11,15 +11,19 @@ return new class() extends Migration {
         Schema::create(TableName::USER_USERS, function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+
+            $table->string('name')->unique();
+            $table->string('display_name');
+
             $table->string('password');
 
             $table->string('timezone')->nullable();
 
             $table->rememberToken();
 
+            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('terms_accepted_at')->nullable();
             $table->timestamps();
         });
     }

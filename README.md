@@ -252,8 +252,7 @@ final class CreateUser
 {
     public function execute(CreateUserData $data): User
     {
-        /** @var User $user */
-        $user = User::query()->make([
+        $user = new User([
             'display_name' => $data->displayName,
             'email' => $data->email,
             'password' => $data->password,

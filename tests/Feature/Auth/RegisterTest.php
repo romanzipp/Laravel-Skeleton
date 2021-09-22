@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Auth;
 
-use Domain\User\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
@@ -18,48 +18,48 @@ class RegisterTest extends TestCase
         $response->assertViewIs('app.pages.auth.register');
     }
 
-    public function testSubmitValid()
+    public function testValidation()
     {
-        $password = self::faker()->password(8);
-
-        $response = $this->post(route('auth.register.process'), [
-            'email' => self::faker()->safeEmail,
-            'name' => self::faker()->name,
-            'password' => $password,
-            'password_confirmation' => $password,
+        $this->execute([
+            RegisterAttempt::create(null, null, null, null, null)->errors(['email', 'name', 'password', 'terms']),
+            RegisterAttempt::create('', '', '', '', '')->errors(['email', 'name', 'password', 'terms']),
+            RegisterAttempt::create('john@doe.com', null, '', '', '')->errors(['name', 'password', 'terms']),
+            RegisterAttempt::create('johndoe.com', null, '', '', '')->errors(['email', 'name', 'password', 'terms']),
+            RegisterAttempt::create('', null, '', '', 'y')->errors(['name', 'password', 'terms']),
+            RegisterAttempt::create('', null, '', '', 'yes')->errors(['name', 'password']),
+            RegisterAttempt::create('', null, '123456789', '', '')->errors(['email', 'name', 'password', 'terms']),
+            RegisterAttempt::create('', null, '123456789', '123456789', '')->errors(['email', 'name', 'terms']),
+            RegisterAttempt::create('', null, '123456789', '000000000', '')->errors(['email', 'name', 'password', 'terms']),
+            RegisterAttempt::create('', null, '1234567', '1234567', '')->errors(['email', 'name', 'password', 'terms']),
+            RegisterAttempt::create('john@doe.com', null, '123456789', '123456789', '')->errors(['name', 'terms']),
+            RegisterAttempt::create('john@doe.com', 'johndoe', '123456789', '123456789', '')->errors(['terms']),
+            RegisterAttempt::create('john@doe.com', 'jh', '123456789', '123456789', 'yes')->errors(['name']),
+            RegisterAttempt::create('john@doe.com', 'johndoe#', '123456789', '123456789', 'yes')->errors(['name']),
+            RegisterAttempt::create('john@doe.com', str_repeat('a', 40), '123456789', '123456789', 'yes')->errors(['name']),
         ]);
-
-        $response->assertStatus(302);
-        $response->assertSessionHasNoErrors();
     }
 
-    public function testSubmitInvalidPasswordConfirmation()
+    public function testTakenEmail()
     {
-        $response = $this->post(route('auth.register.process'), [
-            'email' => self::faker()->safeEmail,
-            'name' => self::faker()->name,
-            'password' => self::faker()->unique()->password(8),
-            'password_confirmation' => self::faker()->unique()->password(8),
+        $this->execute([
+            RegisterAttempt::create('john@doe.com', 'johndoe', '123456789', '123456789', 'yes')->errors([]),
+            RegisterAttempt::create('john@doe.com', 'johndoe1', '123456789', '123456789', 'yes')->errors(['email']),
         ]);
-
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors(['password']);
     }
 
-    public function testSubmitInvalidEmailTaken()
+    private function execute(array $attempts)
     {
-        $user = User::factory()->create([
-            'password' => bcrypt(self::faker()->password),
-        ]);
+        foreach ($attempts as $attempt) {
+            $response = $this->post('/auth/register', $attempt->toRequest());
+            $response->assertStatus(302);
 
-        $response = $this->post(route('auth.register.process'), [
-            'email' => $user->email,
-            'name' => $user->name,
-            'password' => $password = self::faker()->password(8),
-            'password_confirmation' => $password,
-        ]);
+            if ( ! empty($attempt->assertErrors)) {
+                $response->assertInvalid($attempt->assertErrors);
+            } else {
+                $response->assertSessionHasNoErrors();
+            }
 
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors(['email']);
+            Auth::logout();
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace Domain\Auth\Http\Controllers\Register;
 use Domain\User\Actions\CreateUser;
 use Domain\User\Data\CreateUserData;
 use Domain\User\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Illuminate\Validation\Rules\Unique;
 use romanzipp\PreviouslyDeleted\Rules\NotPreviouslyDeleted;
 use Support\Http\Controllers\AbstractController;
+use Throwable;
 
 final class ProcessRegisterController extends AbstractController
 {
@@ -30,32 +32,6 @@ final class ProcessRegisterController extends AbstractController
         return $this->register($request);
     }
 
-    protected function validator(array $data): Validator
-    {
-        return ValidatorFacade::make($data, [
-            'name' => [
-                'required',
-                'string',
-                'min:3',
-                'max:32',
-            ],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                new Unique(User::class, 'email'),
-                new NotPreviouslyDeleted(User::class, 'email'),
-            ],
-            'password' => [
-                'required',
-                'string',
-                'min:8',
-                'confirmed',
-            ],
-        ]);
-    }
-
     protected function create(array $data): User
     {
         return $this->createUser->execute(
@@ -65,5 +41,68 @@ final class ProcessRegisterController extends AbstractController
                 'password' => Hash::make($data['password']),
             ])
         );
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        try {
+            $user->notify(new VerifyEmail());
+        } catch (Throwable $e) {
+            report($e);
+        }
+    }
+
+    protected function validator(array $data): Validator
+    {
+        return ValidatorFacade::make($data, [
+            'name' => [
+                'required',
+                ...self::getNameRules(),
+            ],
+            'email' => [
+                'required',
+                ...self::getEmailRules(),
+            ],
+            'password' => [
+                'required',
+                ...self::getPasswordRules(),
+            ],
+            'terms' => [
+                'required',
+                'accepted',
+            ],
+        ]);
+    }
+
+    public static function getNameRules(): array
+    {
+        return [
+            'string',
+            'min:3',
+            'max:32',
+            'regex:/^([A-z0-9-_\.]+)$/',
+            new Unique(User::class, 'name'),
+            new NotPreviouslyDeleted(User::class, 'name'),
+        ];
+    }
+
+    public static function getEmailRules(): array
+    {
+        return [
+            'string',
+            'email',
+            'max:255',
+            new Unique(User::class, 'email'),
+            new NotPreviouslyDeleted(User::class, 'email'),
+        ];
+    }
+
+    public static function getPasswordRules(): array
+    {
+        return [
+            'string',
+            'min:8',
+            'confirmed',
+        ];
     }
 }

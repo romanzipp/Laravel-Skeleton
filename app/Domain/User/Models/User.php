@@ -28,19 +28,14 @@ final class User extends AbstractModel implements AuthenticatableContract, Autho
 
     protected $table = TableName::USER_USERS;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+    protected $dates = [
+        'email_verified_at',
+        'terms_accepted_at',
     ];
 
     /**

@@ -18,33 +18,48 @@ class LoginTest extends TestCase
         $response->assertViewIs('app.pages.auth.login');
     }
 
-    public function testSubmitValid()
+    public function testValidation()
     {
-        $user = User::factory()->create([
-            'password' => bcrypt($password = self::faker()->password),
-        ]);
+        $this->createUser();
 
-        $response = $this->post(route('auth.login.show'), [
-            'email' => $user->email,
-            'password' => $password,
+        $this->execute([
+            LoginAttempt::create(null, null)->errors(['email', 'password']),
+            LoginAttempt::create('', '')->errors(['email', 'password']),
+            LoginAttempt::create('johndoe.com', '')->errors(['password']),
+            LoginAttempt::create('john@doe.com', '')->errors(['password']),
+            LoginAttempt::create('', '123456789')->errors(['email']),
         ]);
-
-        $response->assertStatus(302);
-        $response->assertSessionHasNoErrors();
     }
 
-    public function testSubmitInvalidEmail()
+    public function testWrong()
     {
-        $user = User::factory()->create([
-            'password' => bcrypt($password = self::faker()->password),
-        ]);
+        $this->createUser();
 
-        $response = $this->post(route('auth.login.show'), [
-            'email' => self::faker()->email,
-            'password' => $password,
+        $this->execute([
+            LoginAttempt::create('john@doe.com', '12345678')->errors(['email']),
+            LoginAttempt::create('john@doe.co', '123456789')->errors(['email']),
         ]);
+    }
 
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors(['email']);
+    private function execute(array $attempts)
+    {
+        foreach ($attempts as $attempt) {
+            $response = $this->post('/auth/login', $attempt->toRequest());
+            $response->assertStatus(302);
+
+            if ( ! empty($attempt->assertErrors)) {
+                $response->assertInvalid($attempt->assertErrors);
+            } else {
+                $response->assertSessionHasNoErrors();
+            }
+        }
+    }
+
+    private function createUser(array $attributes = []): User
+    {
+        return User::factory()->create([
+            'email' => 'john@doe.com',
+            'password' => bcrypt('123456789'),
+        ] + $attributes);
     }
 }

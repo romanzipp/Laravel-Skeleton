@@ -13,7 +13,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $name = $this->faker->unique()->userName(),
+            'display_name' => $name,
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt('password'),

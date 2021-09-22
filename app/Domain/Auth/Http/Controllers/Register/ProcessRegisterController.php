@@ -10,7 +10,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
-use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Unique;
+use romanzipp\PreviouslyDeleted\Rules\NotPreviouslyDeleted;
 use Support\Http\Controllers\AbstractController;
 
 final class ProcessRegisterController extends AbstractController
@@ -32,9 +33,26 @@ final class ProcessRegisterController extends AbstractController
     protected function validator(array $data): Validator
     {
         return ValidatorFacade::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::getTableName())],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => [
+                'required',
+                'string',
+                'min:3',
+                'max:32',
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                new Unique(User::class, 'email'),
+                new NotPreviouslyDeleted(User::class, 'email'),
+            ],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+            ],
         ]);
     }
 

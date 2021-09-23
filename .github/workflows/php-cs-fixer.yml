@@ -9,7 +9,6 @@ jobs:
       fail-fast: false
       matrix:
         php: [7.4]
-        composer-dependency: [prefer-stable]
 
     name: "Run PHP-CS-Fixer"
 
@@ -24,8 +23,11 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
+      - name: Authenticate composer
+        run: composer config http-basic.nova.laravel.com ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_PASSWORD }}
+
       - name: Install dependencies
-        run: composer update --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist --${{ matrix.composer-dependency }}
+        run: composer install --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Execute PHP-CS-Fixer
         run: vendor/bin/php-cs-fixer fix

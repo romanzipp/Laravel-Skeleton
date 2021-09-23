@@ -9,9 +9,9 @@ jobs:
       fail-fast: false
       matrix:
         php: [7.4, 8.0]
-        composer-dependency: [prefer-stable]
+        composer-prefer: [stable]
 
-    name: "PHP ${{ matrix.php }} - ${{ matrix.composer-dependency }}"
+    name: "PHP ${{ matrix.php }} - ${{ matrix.composer-prefer }}"
 
     runs-on: ubuntu-latest
 
@@ -25,7 +25,7 @@ jobs:
           php-version: ${{ matrix.php }}
 
       - name: Install dependencies
-        run: composer update --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist --${{ matrix.composer-dependency }}
+        run: composer update --no-interaction --no-scripts --no-progress --prefer-dist --prefer-${{ matrix.composer-prefer }}
 
       - name: Generate app key
         run: |

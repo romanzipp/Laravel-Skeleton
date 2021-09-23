@@ -38,35 +38,24 @@ final class User extends AbstractModel implements AuthenticatableContract, Autho
         'terms_accepted_at',
     ];
 
-    /**
-     * Send the password reset notification.
-     *
-     * @param string $token
-     *
-     * @return void
+    /*
+     *--------------------------------------------------------------------------
+     * Methods
+     *--------------------------------------------------------------------------
      */
+
+    protected static function newFactory()
+    {
+        return new UserFactory();
+    }
+
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    /**
-     * Get the user timezone. Defaults to configured timezone in app.php.
-     *
-     * @return \DateTimeZone
-     */
     public function getTimezone(): DateTimeZone
     {
         return new DateTimeZone($this->timezone ?? config('app.timezone'));
-    }
-
-    /**
-     * Create a new factory instance for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-    protected static function newFactory()
-    {
-        return new UserFactory();
     }
 }

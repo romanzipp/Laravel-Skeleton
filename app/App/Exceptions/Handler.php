@@ -4,43 +4,16 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
-use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    protected $dontReport = [
-    ];
+    protected $dontReport = [];
 
     protected $dontFlash = [
         'password',
         'password_confirmation',
     ];
-
-    public function report(Throwable $exception)
-    {
-        parent::report($exception);
-    }
-
-    public function render($request, Throwable $exception)
-    {
-        if ( ! $this->isApiCall($request)) {
-            return parent::render($request, $exception);
-        }
-
-        $exception = $this->prepareException($exception);
-
-        if ($exception instanceof AuthenticationException) {
-            return $this->unauthenticated($request, $exception);
-        }
-
-        if ($exception instanceof HttpResponseException) {
-            return $exception->getResponse();
-        }
-
-        return $this->prepareJsonResponse($request, $exception);
-    }
 
     /**
      * Convert an authentication exception into a response.

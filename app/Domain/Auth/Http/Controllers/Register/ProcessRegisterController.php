@@ -5,7 +5,7 @@ namespace Domain\Auth\Http\Controllers\Register;
 use Domain\User\Actions\CreateUser;
 use Domain\User\Data\CreateUserData;
 use Domain\User\Models\User;
-use Illuminate\Auth\Notifications\VerifyEmail;
+use Domain\User\Notifications\VerifyEmail;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;

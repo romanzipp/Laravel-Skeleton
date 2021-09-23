@@ -9,14 +9,9 @@ use RuntimeException;
 use stdClass;
 use Support\Http\Resources\AbstractResource;
 use Support\Http\Resources\ResourceCollection;
-use Support\Objects\Scope;
 
 abstract class AbstractRepository implements RepositoryContract
 {
-    public const COMMON_RELATIONS = [];
-
-    public const COMMON_RELATION_COUNTS = [];
-
     protected Builder $query;
 
     private QueryOptions $options;
@@ -159,6 +154,16 @@ abstract class AbstractRepository implements RepositoryContract
         return $this;
     }
 
+    public static function getCommonRelations(): array
+    {
+        return [];
+    }
+
+    public static function getCommonCountRelations(): array
+    {
+        return [];
+    }
+
     /*
      *--------------------------------------------------------------------------
      * Query Overrides
@@ -233,7 +238,7 @@ abstract class AbstractRepository implements RepositoryContract
      *
      * @return bool
      */
-    public function each(callable $callback, $count = 1000): bool
+    public function each(callable $callback, int $count = 1000): bool
     {
         return $this->prepare()->each($callback, $count);
     }
@@ -247,11 +252,9 @@ abstract class AbstractRepository implements RepositoryContract
     /**
      * Fetch & convert the repository to a corresponding model resource collection.
      *
-     * @param \Support\Objects\Scope|null $scope
-     *
      * @return \Support\Http\Resources\ResourceCollection
      */
-    public function toResources(?Scope $scope = null): ResourceCollection
+    public function toResources(): ResourceCollection
     {
         $class = $this->getResourceClass();
 
@@ -260,19 +263,16 @@ abstract class AbstractRepository implements RepositoryContract
         }
 
         return $class::collection(
-            $this->get(),
-            $scope
+            $this->get()
         );
     }
 
     /**
      * Fetch the first item and convert to corresponding model resource.
      *
-     * @param \Support\Objects\Scope|null $scope
-     *
      * @return \Support\Http\Resources\AbstractResource|null
      */
-    public function toResource(?Scope $scope = null): ?AbstractResource
+    public function toResource(): ?AbstractResource
     {
         $class = $this->getResourceClass();
 
@@ -282,20 +282,19 @@ abstract class AbstractRepository implements RepositoryContract
             return null;
         }
 
-        return new $class($result, $scope);
+        return new $class($result);
     }
 
     /**
      * Fetch the first item and convert to stdClass resulting from the model resource.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Support\Objects\Scope|null $scope
      *
      * @return \stdClass|null
      */
-    public function toObject(Request $request, ?Scope $scope = null): ?stdClass
+    public function toObject(Request $request): ?stdClass
     {
-        if (null === ($resource = $this->toResource($scope))) {
+        if (null === ($resource = $this->toResource())) {
             return null;
         }
 
@@ -306,12 +305,11 @@ abstract class AbstractRepository implements RepositoryContract
      * Fetch & convert the repository to a stdClass resulting from the model resource collection.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Support\Objects\Scope|null $scope
      *
      * @return \stdClass
      */
-    public function toObjects(Request $request, ?Scope $scope = null): stdClass
+    public function toObjects(Request $request): stdClass
     {
-        return $this->toResources($scope)->toView($request);
+        return $this->toResources()->toView($request);
     }
 }

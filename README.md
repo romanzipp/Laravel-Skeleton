@@ -32,6 +32,7 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
   - [romanzipp/dto](https://github.com/romanzipp/dto)
   - [romanzipp/laravel-queue-monitor](https://github.com/romanzipp/Laravel-Queue-Monitor)
   - [romanzipp/laravel-seo](https://github.com/romanzipp/Laravel-SEO)
+  - [romanzipp/laravel-previously-deleted](https://github.com/romanzipp/Laravel-Previously-Deleted)
 - **npm packages**
   - [tailwindcss](https://github.com/tailwindcss/tailwindcss)
   - [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)

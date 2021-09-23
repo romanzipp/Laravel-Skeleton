@@ -7,7 +7,6 @@ use Illuminate\Http\Resources\MissingValue;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Collection;
 use stdClass;
-use Support\Objects\Scope;
 
 class ResourceCollection extends BaseResourceCollection
 {
@@ -19,23 +18,14 @@ class ResourceCollection extends BaseResourceCollection
     public $collects;
 
     /**
-     * The currently applied scope.
-     *
-     * @var \Support\Objects\Scope|null
-     */
-    public ?Scope $scope;
-
-    /**
      * Create a new anonymous resource collection.
      *
      * @param mixed $resource
      * @param string $collects
-     * @param \Support\Objects\Scope|null $scope
      */
-    public function __construct($resource, $collects, ?Scope $scope = null)
+    public function __construct($resource, $collects)
     {
         $this->collects = $collects;
-        $this->scope = $scope;
 
         parent::__construct($resource);
     }
@@ -61,7 +51,7 @@ class ResourceCollection extends BaseResourceCollection
 
         if ($collects && ! $resource->first() instanceof $collects) {
             $this->collection = $resource->map(function ($resource) use ($collects) {
-                return new $collects($resource, $this->scope);
+                return new $collects($resource);
             });
         } else {
             $this->collection = $resource->toBase();

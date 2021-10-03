@@ -1,0 +1,7 @@
+parameters:
+  level: 2
+  paths:
+    - app
+    - routes
+  ignoreErrors:
+    - '#Access to an undefined property [A-z\\]+\\Models\\[A-z\\]+::\$[A-z0-9]+#'

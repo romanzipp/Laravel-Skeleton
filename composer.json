@@ -28,6 +28,7 @@
         "friendsofphp/php-cs-fixer": "^3.1.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
+        "phpstan/phpstan": "^0.12.99",
         "phpunit/phpunit": "^9.0",
         "romanzipp/php-cs-fixer-config": "^3.0"
     },

@@ -12,9 +12,9 @@ final class MakeRepositoryCommand extends AbstractGeneratorCommand
 
     protected $type = 'Repository';
 
-    public function handle()
+    public function handle(): ?bool
     {
-        parent::handle();
+        return parent::handle();
     }
 
     protected function buildClass($name)

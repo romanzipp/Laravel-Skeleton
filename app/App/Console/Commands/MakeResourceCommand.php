@@ -14,9 +14,9 @@ final class MakeResourceCommand extends AbstractGeneratorCommand
 
     protected $type = 'Resource';
 
-    public function handle()
+    public function handle(): ?bool
     {
-        parent::handle();
+        return parent::handle();
     }
 
     protected function buildClass($name)

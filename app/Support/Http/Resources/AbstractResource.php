@@ -79,11 +79,11 @@ abstract class AbstractResource extends BaseResource
     /**
      * Convert the current resource to stdClass for view usage.
      *
-     * @param $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \stdClass
      */
-    public function toView($request): stdClass
+    public function toView(Request $request): stdClass
     {
         return $this
             ->toResponse($request)

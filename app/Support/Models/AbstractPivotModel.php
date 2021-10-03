@@ -14,4 +14,9 @@ abstract class AbstractPivotModel extends Pivot
     public $incrementing = false;
 
     protected $keyType = 'string';
+
+    final public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 }

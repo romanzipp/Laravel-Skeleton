@@ -2,6 +2,7 @@
 
 namespace Support\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection as BaseResourceCollection;
 use Illuminate\Http\Resources\MissingValue;
 use Illuminate\Pagination\AbstractPaginator;
@@ -65,11 +66,11 @@ class ResourceCollection extends BaseResourceCollection
     /**
      * Convert resource collection to view response.
      *
-     * @param $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \stdClass
      */
-    public function toView($request): stdClass
+    public function toView(Request $request): stdClass
     {
         return $this
             ->toResponse($request)

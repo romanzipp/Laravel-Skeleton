@@ -63,7 +63,7 @@ class ProcessApiResponseData
     /**
      * Determine if is a JsonResponse instance.
      *
-     * @param $response
+     * @param \Symfony\Component\HttpFoundation\Response $response
      *
      * @return bool
      */

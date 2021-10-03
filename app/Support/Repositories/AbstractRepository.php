@@ -20,7 +20,7 @@ abstract class AbstractRepository implements RepositoryContract
 
     private ?Request $request = null;
 
-    public function __construct()
+    final public function __construct()
     {
         $this->query = app($this->getModelClass())->query();
         $this->options = new QueryOptions();
@@ -58,7 +58,7 @@ abstract class AbstractRepository implements RepositoryContract
     }
 
     /**
-     * @param int|null $perPage
+     * @param int $perPage
      *
      * @return static
      */
@@ -220,12 +220,12 @@ abstract class AbstractRepository implements RepositoryContract
     /**
      * Find a model by its primary key.
      *
-     * @param $id
+     * @param string|int $id
      * @param string[] $columns
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
-    public function find($id, $columns = ['*'])
+    public function find($id, array $columns = ['*'])
     {
         return $this->prepare()->find($id, $columns);
     }

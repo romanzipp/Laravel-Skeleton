@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba868012aadf562f7d6d10edc4aac56c",
+    "content-hash": "4384fbdb1c469ec05d928387fda12c9c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3109,16 +3109,16 @@
         },
         {
             "name": "romanzipp/laravel-seo",
-            "version": "2.2.7",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-SEO.git",
-                "reference": "8f83de8455e19084a7c90343898a0f9d799cf450"
+                "reference": "77bc4070539607a6a196af9574795be712ff21c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-SEO/zipball/8f83de8455e19084a7c90343898a0f9d799cf450",
-                "reference": "8f83de8455e19084a7c90343898a0f9d799cf450",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-SEO/zipball/77bc4070539607a6a196af9574795be712ff21c7",
+                "reference": "77bc4070539607a6a196af9574795be712ff21c7",
                 "shasum": ""
             },
             "require": {
@@ -3131,6 +3131,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
                 "orchestra/testbench": "^3.8|^4.0|^5.0|^6.0",
+                "phpstan/phpstan": "^0.12.99",
                 "phpunit/phpunit": "^7.0|^8.0|^9.0",
                 "romanzipp/php-cs-fixer-config": "^3.0"
             },
@@ -3167,9 +3168,9 @@
             "description": "Laravel SEO package",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-SEO/issues",
-                "source": "https://github.com/romanzipp/Laravel-SEO/tree/2.2.7"
+                "source": "https://github.com/romanzipp/Laravel-SEO/tree/2.3.0"
             },
-            "time": "2021-09-08T16:15:30+00:00"
+            "time": "2021-10-03T09:35:52+00:00"
         },
         {
             "name": "spatie/schema-org",

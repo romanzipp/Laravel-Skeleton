@@ -16,4 +16,9 @@ abstract class AbstractModel extends Eloquent
     protected $keyType = 'string';
 
     protected $guarded = [];
+
+    final public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 }

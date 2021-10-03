@@ -34,8 +34,8 @@ if ( ! function_exists('carbon')) {
     {
         $tz = null;
 
-        /** @var \Domain\User\Models\User $user */
         if (true === $local && ($user = AuthFacade::user())) {
+            /** @var \Domain\User\Models\User $user */
             $tz = $user->getTimezone();
         }
 

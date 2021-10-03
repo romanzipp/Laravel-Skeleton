@@ -83,13 +83,13 @@ trait UsesUuid
     /**
      * Find by id.
      *
-     * @param $id
+     * @param string|int $id
      *
      * @return static
      */
     public static function uuid($id): ?self
     {
-        return self::query()->find($id);
+        return static::query()->find($id);
     }
 
     /**

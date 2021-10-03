@@ -2942,16 +2942,16 @@
         },
         {
             "name": "romanzipp/dto",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/DTO.git",
-                "reference": "3551d3bf46870449833a0621a807023f30395d70"
+                "reference": "0b1ef13f4ff63a337a094a263a32164f0fcfc455"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/DTO/zipball/3551d3bf46870449833a0621a807023f30395d70",
-                "reference": "3551d3bf46870449833a0621a807023f30395d70",
+                "url": "https://api.github.com/repos/romanzipp/DTO/zipball/0b1ef13f4ff63a337a094a263a32164f0fcfc455",
+                "reference": "0b1ef13f4ff63a337a094a263a32164f0fcfc455",
                 "shasum": ""
             },
             "require": {
@@ -2960,6 +2960,7 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
+                "phpstan/phpstan": "^0.12.99",
                 "phpunit/phpunit": "^9.0",
                 "romanzipp/php-cs-fixer-config": "^3.0",
                 "symfony/var-dumper": "^5.1"
@@ -2984,22 +2985,22 @@
             "description": "A strongly typed Data Transfer Object without magic for PHP 7.4+",
             "support": {
                 "issues": "https://github.com/romanzipp/DTO/issues",
-                "source": "https://github.com/romanzipp/DTO/tree/1.1.1"
+                "source": "https://github.com/romanzipp/DTO/tree/1.2.0"
             },
-            "time": "2021-08-06T11:47:19+00:00"
+            "time": "2021-10-03T10:02:06+00:00"
         },
         {
             "name": "romanzipp/laravel-previously-deleted",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-Previously-Deleted.git",
-                "reference": "1efec04708957413cbb89a019d5964fb1cd28a21"
+                "reference": "72efe42c1f93e7d13de52dbe7c68a10e0fb0c46a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-Previously-Deleted/zipball/1efec04708957413cbb89a019d5964fb1cd28a21",
-                "reference": "1efec04708957413cbb89a019d5964fb1cd28a21",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-Previously-Deleted/zipball/72efe42c1f93e7d13de52dbe7c68a10e0fb0c46a",
+                "reference": "72efe42c1f93e7d13de52dbe7c68a10e0fb0c46a",
                 "shasum": ""
             },
             "require": {
@@ -3011,6 +3012,7 @@
                 "friendsofphp/php-cs-fixer": "^3.0",
                 "mockery/mockery": "^1.3.2",
                 "orchestra/testbench": "^3.8|^4.0|^5.0|^6.0",
+                "phpstan/phpstan": "^0.12.99",
                 "phpunit/phpunit": "^8.0|^9.0",
                 "romanzipp/php-cs-fixer-config": "^3.0"
             },
@@ -3041,22 +3043,22 @@
             "description": "Store previously deleted Model attributes",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-Previously-Deleted/issues",
-                "source": "https://github.com/romanzipp/Laravel-Previously-Deleted/tree/1.3.0"
+                "source": "https://github.com/romanzipp/Laravel-Previously-Deleted/tree/1.4.0"
             },
-            "time": "2021-09-22T10:46:04+00:00"
+            "time": "2021-10-03T11:13:25+00:00"
         },
         {
             "name": "romanzipp/laravel-queue-monitor",
-            "version": "2.1.5",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-Queue-Monitor.git",
-                "reference": "849678fec3376d3718ba1a14d5a68d5bfa808a4a"
+                "reference": "d03eccf7869653f9682da01db697d902c417e243"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-Queue-Monitor/zipball/849678fec3376d3718ba1a14d5a68d5bfa808a4a",
-                "reference": "849678fec3376d3718ba1a14d5a68d5bfa808a4a",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-Queue-Monitor/zipball/d03eccf7869653f9682da01db697d902c417e243",
+                "reference": "d03eccf7869653f9682da01db697d902c417e243",
                 "shasum": ""
             },
             "require": {
@@ -3073,6 +3075,7 @@
                 "laravel/framework": "^5.5|^6.20.12|^7.30.3|^8.22.1",
                 "mockery/mockery": "^1.3.2",
                 "orchestra/testbench": "^3.8|^4.0|^5.0|^6.0",
+                "phpstan/phpstan": "^0.12.99",
                 "phpunit/phpunit": "^8.0|^9.0",
                 "romanzipp/php-cs-fixer-config": "^3.0"
             },
@@ -3103,9 +3106,9 @@
             "description": "Queue Monitoring for Laravel Database Job Queue",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-Queue-Monitor/issues",
-                "source": "https://github.com/romanzipp/Laravel-Queue-Monitor/tree/2.1.5"
+                "source": "https://github.com/romanzipp/Laravel-Queue-Monitor/tree/2.2.0"
             },
-            "time": "2021-08-06T11:01:14+00:00"
+            "time": "2021-10-03T11:26:19+00:00"
         },
         {
             "name": "romanzipp/laravel-seo",

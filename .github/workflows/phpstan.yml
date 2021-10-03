@@ -1,4 +1,4 @@
-name: Run PHP-CS-Fixer
+name: Run PHPStan
 
 on: [push]
 
@@ -10,7 +10,7 @@ jobs:
       matrix:
         php: [7.4]
 
-    name: "Run PHP-CS-Fixer"
+    name: "Run PHPStan"
 
     runs-on: ubuntu-latest
 
@@ -26,10 +26,5 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Execute PHP-CS-Fixer
-        run: vendor/bin/php-cs-fixer fix
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Fix styling
+      - name: Execute PHPStan
+        run: vendor/bin/phpstan analyse

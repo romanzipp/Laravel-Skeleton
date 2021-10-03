@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
+        "dyrynda/laravel-model-uuid": "^6.5",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

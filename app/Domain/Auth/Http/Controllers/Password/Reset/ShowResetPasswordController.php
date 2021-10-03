@@ -17,7 +17,7 @@ final class ShowResetPasswordController extends AbstractController
     {
         return view('app.pages.auth.passwords.reset', [
             'token' => $token,
-            'email' => $request->email,
+            'email' => $request->input('email'),
         ]);
     }
 }

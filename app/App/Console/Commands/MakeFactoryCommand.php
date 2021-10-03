@@ -13,9 +13,9 @@ class MakeFactoryCommand extends AbstractGeneratorCommand
 
     protected $type = 'Factory';
 
-    public function handle()
+    public function handle(): ?bool
     {
-        parent::handle();
+        return parent::handle();
     }
 
     protected function buildClass($name)

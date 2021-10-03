@@ -11,11 +11,11 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
 {
     protected string $domain;
 
-    public function handle()
+    public function handle(): ?bool
     {
         $this->domain = $this->ensureDomainOption();
 
-        parent::handle();
+        return parent::handle();
     }
 
     protected function getDomain(): ?string

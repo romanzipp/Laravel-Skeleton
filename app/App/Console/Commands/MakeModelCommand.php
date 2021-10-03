@@ -13,7 +13,7 @@ final class MakeModelCommand extends AbstractGeneratorCommand
 
     protected $type = 'Model';
 
-    public function handle()
+    public function handle(): ?bool
     {
         parent::handle();
 
@@ -37,6 +37,8 @@ final class MakeModelCommand extends AbstractGeneratorCommand
         if ($this->option('repository')) {
             $this->createRepository();
         }
+
+        return true;
     }
 
     public function createFactory()

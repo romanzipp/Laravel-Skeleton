@@ -4,6 +4,7 @@ namespace Support\Http\Resources;
 
 use Closure;
 use Domain\User\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource as BaseResource;
 use Illuminate\Http\Resources\MergeValue;
 use Illuminate\Support\Facades\Auth as AuthFacade;
@@ -24,23 +25,6 @@ abstract class AbstractResource extends BaseResource
     protected function user(): User
     {
         return AuthFacade::user();
-    }
-
-    /**
-     * Get a merge value if the current scope matches the given value.
-     *
-     * @param string $scope
-     * @param $data
-     *
-     * @return \Illuminate\Http\Resources\MergeValue|\Illuminate\Http\Resources\MissingValue|mixed
-     */
-    public function whenScope(string $scope, $data)
-    {
-        if ( ! $user = $this->user()) {
-            return null;
-        }
-
-        return $this->mergeWhen($user->tokenCan($scope), $data);
     }
 
     /**

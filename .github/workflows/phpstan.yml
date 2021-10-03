@@ -1,4 +1,4 @@
-name: Run PHPStan
+name: PHPStan
 
 on: [push]
 
@@ -9,8 +9,6 @@ jobs:
       fail-fast: false
       matrix:
         php: [7.4]
-
-    name: "Run PHPStan"
 
     runs-on: ubuntu-latest
 

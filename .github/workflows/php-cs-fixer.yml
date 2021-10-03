@@ -1,16 +1,14 @@
-name: Run PHP-CS-Fixer
+name: PHP-CS-Fixer
 
 on: [push]
 
 jobs:
-  test:
+  php-cs-fixer:
 
     strategy:
       fail-fast: false
       matrix:
         php: [7.4]
-
-    name: "Run PHP-CS-Fixer"
 
     runs-on: ubuntu-latest
 

@@ -2,14 +2,18 @@
 
 namespace Support\Models;
 
+use Dyrynda\Database\Support\GeneratesUuid;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Support\Models\Concerns\InteractsWithTable;
-use Support\Models\Concerns\UsesUuid;
+use Support\Models\Concerns\UsesUuidPrimaryKey;
 
 abstract class AbstractModel extends Eloquent
 {
     use InteractsWithTable;
-    use UsesUuid;
+    use UsesUuidPrimaryKey;
+    use GeneratesUuid {
+        UsesUuidPrimaryKey::uuidColumn insteadof GeneratesUuid;
+    }
 
     public $incrementing = false;
 

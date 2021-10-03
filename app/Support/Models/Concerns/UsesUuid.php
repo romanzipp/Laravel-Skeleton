@@ -2,7 +2,6 @@
 
 namespace Support\Models\Concerns;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -11,16 +10,6 @@ use Ramsey\Uuid\UuidInterface;
 
 trait UsesUuid
 {
-    /**
-     * Determine whether an attribute should be cast to a native type.
-     *
-     * @param string $key
-     * @param array|string|null $types
-     *
-     * @return bool
-     */
-    abstract public function hasCast($key, $types = null);
-
     /**
      * Boot the trait, adding a creating observer.
      *
@@ -117,30 +106,6 @@ trait UsesUuid
             ? $uuidColumn
             : $this->uuidColumns()[0];
 
-        if ($this->hasCast($uuidColumn)) {
-            $uuid = $this->bytesFromUuid($uuid);
-        }
-
         return $query->whereIn($uuidColumn, Arr::wrap($uuid));
-    }
-
-    /**
-     * Convert a single UUID or array of UUIDs to bytes.
-     *
-     * @param \Illuminate\Contracts\Support\Arrayable|array|string $uuid
-     *
-     * @return array
-     */
-    protected function bytesFromUuid($uuid): array
-    {
-        if (is_array($uuid) || $uuid instanceof Arrayable) {
-            array_walk($uuid, function (&$uuid) {
-                $uuid = self::resolveUuid()->fromString($uuid)->getBytes();
-            });
-
-            return $uuid;
-        }
-
-        return Arr::wrap(self::resolveUuid()->fromString($uuid)->getBytes());
     }
 }

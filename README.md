@@ -39,6 +39,26 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
   - [tailwindcss](https://github.com/tailwindcss/tailwindcss)
   - [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)
 
+### Tools
+
+#### PHP-CS-Fixer
+
+```shell
+vendor/bin/php-cs-fixer fix
+```
+
+#### PHPStan
+
+```shell
+vendor/bin/phpstan
+```
+
+#### Model-Doc Generator
+
+```shell
+php artisan model-doc:generate
+```
+
 ## Documentation
 
 ### Enums

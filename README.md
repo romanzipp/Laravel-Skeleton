@@ -33,6 +33,8 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
   - [romanzipp/laravel-queue-monitor](https://github.com/romanzipp/Laravel-Queue-Monitor)
   - [romanzipp/laravel-seo](https://github.com/romanzipp/Laravel-SEO)
   - [romanzipp/laravel-previously-deleted](https://github.com/romanzipp/Laravel-Previously-Deleted)
+  - [romanzipp/laravel-model-doc](https://github.com/romanzipp/Laravel-Model-Doc) (Run `php artisan model-doc:generate`)
+  - [romanzipp/php-cs-fixer-config](https://github.com/romanzipp/PHP-CS-Fixer-Config)
 - **npm packages**
   - [tailwindcss](https://github.com/tailwindcss/tailwindcss)
   - [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)

@@ -1,23 +1,22 @@
 # Laravel Skeleton
 
-This is a modified version of the Laravel framework skeleton.
+This is a very **opinionated** modified version of the Laravel framework which aims at providing **strong type hinting** with improved **IDE support**.
 
 ## Core Principles
 
 - [Domain oriented Laravel](https://stitcher.io/blog/laravel-beyond-crud-01-domain-oriented-laravel)
 - [Actions](https://stitcher.io/blog/laravel-beyond-crud-03-actions)
 - Database UUIDs
-- Invoked controllers
 - [Model Repository pattern](#repositories)
-- Final classes by default
+- Invoked single method controllers
 
 See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/master/app/Domain/User) directory for an example Model, Action & Data structure.
 
 ## Directory Structure
 
-- **App**: Code that is required to run the core application.
-- **Domain**: Domains
-- **Support**: Abstract classes, interfaces, traits to support the Domains
+- [app/**App**](app/App): Code that is required to run the core application.
+- [app/**Domain**](app/Domain): Domains
+- [app/**Support**](app/Support): Abstract classes, interfaces, traits to support the Domains
 
 ## Requirements
 
@@ -38,6 +37,16 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 - **npm packages**
   - [tailwindcss](https://github.com/tailwindcss/tailwindcss)
   - [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)
+
+### Generator commands
+
+In order to provide a quick kickstarting there are many generator commands.
+
+- `php artisan make:model [...] --domain [...]` (Tip: Provide a `--all` flag to create associated classes)
+- `php artisan make:factory [...] --domain [...]`
+- `php artisan make:repository [...] --domain [...]`
+- `php artisan make:resource [...] --domain [...]`
+- `php artisan make:migration [...] --domain [...]` (Coming Soon)
 
 ### Tools
 

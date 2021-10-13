@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "197364524d02ec85c1dc0bb4799be519",
+    "content-hash": "777f2f843eb7f616685d55019cb1c599",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7032,59 +7032,6 @@
             "time": "2021-10-05T08:12:17+00:00"
         },
         {
-            "name": "gossi/docblock",
-            "version": "v2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpowermove/docblock.git",
-                "reference": "b96e2c9a14a6014fd8d932643c95b4d20638756a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpowermove/docblock/zipball/b96e2c9a14a6014fd8d932643c95b4d20638756a",
-                "reference": "b96e2c9a14a6014fd8d932643c95b4d20638756a",
-                "shasum": ""
-            },
-            "require": {
-                "phootwork/collection": "^2.0",
-                "phootwork/lang": "^2.0",
-                "php": ">=7.2"
-            },
-            "require-dev": {
-                "phootwork/php-cs-fixer-config": "^0.2.2",
-                "phpunit/phpunit": "^8.0",
-                "psalm/phar": "^4.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "gossi\\docblock\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Thomas Gossmann",
-                    "homepage": "http://gos.si"
-                }
-            ],
-            "description": "PHP Docblock parser and generator. An API to read and write Docblocks.",
-            "keywords": [
-                "docblock",
-                "generator",
-                "parser"
-            ],
-            "support": {
-                "issues": "https://github.com/gossi/docblock/issues",
-                "source": "https://github.com/phpowermove/docblock/tree/v2.0.1"
-            },
-            "abandoned": "phpowermove/docblock",
-            "time": "2021-02-17T11:36:51+00:00"
-        },
-        {
             "name": "hamcrest/hamcrest-php",
             "version": "v2.0.1",
             "source": {
@@ -7778,6 +7725,58 @@
             "time": "2021-10-02T14:08:47+00:00"
         },
         {
+            "name": "phpowermove/docblock",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpowermove/docblock.git",
+                "reference": "b96e2c9a14a6014fd8d932643c95b4d20638756a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpowermove/docblock/zipball/b96e2c9a14a6014fd8d932643c95b4d20638756a",
+                "reference": "b96e2c9a14a6014fd8d932643c95b4d20638756a",
+                "shasum": ""
+            },
+            "require": {
+                "phootwork/collection": "^2.0",
+                "phootwork/lang": "^2.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phootwork/php-cs-fixer-config": "^0.2.2",
+                "phpunit/phpunit": "^8.0",
+                "psalm/phar": "^4.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "gossi\\docblock\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Gossmann",
+                    "homepage": "http://gos.si"
+                }
+            ],
+            "description": "PHP Docblock parser and generator. An API to read and write Docblocks.",
+            "keywords": [
+                "docblock",
+                "generator",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/gossi/docblock/issues",
+                "source": "https://github.com/phpowermove/docblock/tree/v2.0.1"
+            },
+            "time": "2021-02-17T11:36:51+00:00"
+        },
+        {
             "name": "phpspec/prophecy",
             "version": "1.14.0",
             "source": {
@@ -8442,24 +8441,24 @@
         },
         {
             "name": "romanzipp/laravel-model-doc",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-Model-Doc.git",
-                "reference": "7d89c38b490e30d8de5d19036786c8f826ad270a"
+                "reference": "68ba8d00b3d504dd6baf241730782201177b283a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-Model-Doc/zipball/7d89c38b490e30d8de5d19036786c8f826ad270a",
-                "reference": "7d89c38b490e30d8de5d19036786c8f826ad270a",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-Model-Doc/zipball/68ba8d00b3d504dd6baf241730782201177b283a",
+                "reference": "68ba8d00b3d504dd6baf241730782201177b283a",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^3.0|^2.9",
-                "gossi/docblock": "^2.0",
                 "illuminate/console": "^8.0",
                 "illuminate/support": "^8.0",
-                "php": "^7.4|^8.0"
+                "php": "^7.4|^8.0",
+                "phpowermove/docblock": "^2.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
@@ -8495,9 +8494,9 @@
             "description": "Laravel Model PHPDoc Generator",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-Model-Doc/issues",
-                "source": "https://github.com/romanzipp/Laravel-Model-Doc/tree/0.1.1"
+                "source": "https://github.com/romanzipp/Laravel-Model-Doc/tree/0.1.2"
             },
-            "time": "2021-10-06T07:28:43+00:00"
+            "time": "2021-10-13T15:30:34+00:00"
         },
         {
             "name": "romanzipp/php-cs-fixer-config",

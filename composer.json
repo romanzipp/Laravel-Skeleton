@@ -31,6 +31,7 @@
         "nunomaduro/collision": "^5.0",
         "phpstan/phpstan": "^0.12.99",
         "phpunit/phpunit": "^9.0",
+        "romanzipp/laravel-env-normalizer": "^0.0.2",
         "romanzipp/laravel-model-doc": "^0.1.0",
         "romanzipp/php-cs-fixer-config": "^3.0"
     },

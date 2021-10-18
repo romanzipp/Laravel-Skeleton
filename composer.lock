@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "777f2f843eb7f616685d55019cb1c599",
+    "content-hash": "114621d3295e6fe1d384b59a45a585c8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8379,20 +8379,19 @@
         },
         {
             "name": "romanzipp/laravel-env-normalizer",
-            "version": "0.0.2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-Env-Normalizer.git",
-                "reference": "f6b29c613300e07f361731a7a599c4e1ef4f79ac"
+                "reference": "d1a8245fcbfde19518d99ce4e7ec91a3c856caaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-Env-Normalizer/zipball/f6b29c613300e07f361731a7a599c4e1ef4f79ac",
-                "reference": "f6b29c613300e07f361731a7a599c4e1ef4f79ac",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-Env-Normalizer/zipball/d1a8245fcbfde19518d99ce4e7ec91a3c856caaa",
+                "reference": "d1a8245fcbfde19518d99ce4e7ec91a3c856caaa",
                 "shasum": ""
             },
             "require": {
-                "ext-json": "*",
                 "illuminate/database": "^5.4|^6.0|^7.0|^8.0",
                 "illuminate/support": "^5.4|^6.0|^7.0|^8.0",
                 "php": "^7.4|^8.0"
@@ -8432,25 +8431,25 @@
                     "homepage": "https://ich.wtf"
                 }
             ],
-            "description": "Laravel Env Normalizer",
+            "description": "Format .env files according to your .env.example structure to keep track of used and unused variables",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-Env-Normalizer/issues",
-                "source": "https://github.com/romanzipp/Laravel-Env-Normalizer/tree/0.0.2"
+                "source": "https://github.com/romanzipp/Laravel-Env-Normalizer/tree/1.0.0"
             },
-            "time": "2021-10-13T15:19:05+00:00"
+            "time": "2021-10-14T10:54:13+00:00"
         },
         {
             "name": "romanzipp/laravel-model-doc",
-            "version": "0.1.2",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-Model-Doc.git",
-                "reference": "68ba8d00b3d504dd6baf241730782201177b283a"
+                "reference": "091969c5394e4937bfc8427542b7a174ab0200db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-Model-Doc/zipball/68ba8d00b3d504dd6baf241730782201177b283a",
-                "reference": "68ba8d00b3d504dd6baf241730782201177b283a",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-Model-Doc/zipball/091969c5394e4937bfc8427542b7a174ab0200db",
+                "reference": "091969c5394e4937bfc8427542b7a174ab0200db",
                 "shasum": ""
             },
             "require": {
@@ -8494,9 +8493,9 @@
             "description": "Laravel Model PHPDoc Generator",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-Model-Doc/issues",
-                "source": "https://github.com/romanzipp/Laravel-Model-Doc/tree/0.1.2"
+                "source": "https://github.com/romanzipp/Laravel-Model-Doc/tree/1.0.5"
             },
-            "time": "2021-10-13T15:30:34+00:00"
+            "time": "2021-10-15T10:51:24+00:00"
         },
         {
             "name": "romanzipp/php-cs-fixer-config",

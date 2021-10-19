@@ -6,7 +6,7 @@
 
 This is a very **opinionated** modified version of the Laravel framework which aims at providing **strong type hinting** with improved **IDE support**.
 
-# Documentation
+## Documentation
 
 You can find the documentaiton on [romanzipp.github.io/Laravel-Skeleton](https://romanzipp.github.io/Laravel-Skeleton/)
 

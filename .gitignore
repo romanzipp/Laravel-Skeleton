@@ -11,6 +11,8 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
+docs/.vuepress/dist/
+
 storage/logs/*.log
 public/js/*.js
 public/css/*.css

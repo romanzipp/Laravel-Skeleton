@@ -12,10 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
 
-      - run: npm run docs:build
+      - run: yarn install
+
+      - run: yarn docs:build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

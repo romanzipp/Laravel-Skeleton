@@ -1,5 +1,7 @@
 # Introduction
 
+This is a very **opinionated** modified version of the Laravel framework which aims at providing **strong type hinting** with improved **IDE support**.
+
 ## Core Principles
 
 - [Domain oriented Laravel](https://stitcher.io/blog/laravel-beyond-crud-01-domain-oriented-laravel)
@@ -37,7 +39,7 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
     - [tailwindcss](https://github.com/tailwindcss/tailwindcss)
     - [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)
 
-### Generator commands
+## Generator commands
 
 In order to provide a quick kickstarting there are many generator commands.
 
@@ -66,5 +68,3 @@ vendor/bin/phpstan
 ```shell
 php artisan model-doc:generate
 ```
-
-## Documentation

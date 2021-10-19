@@ -1,4 +1,4 @@
-# Laravel Skeleton
+# Introduction
 
 ## Core Principles
 

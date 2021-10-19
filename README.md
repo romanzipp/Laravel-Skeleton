@@ -8,7 +8,7 @@ This is a very **opinionated** modified version of the Laravel framework which a
 
 ## Documentation
 
-You can find the documentaiton on [romanzipp.github.io/Laravel-Skeleton](https://romanzipp.github.io/Laravel-Skeleton/)
+You can find the documentation on [romanzipp.github.io/Laravel-Skeleton](https://romanzipp.github.io/Laravel-Skeleton/)
 
 ## License
 

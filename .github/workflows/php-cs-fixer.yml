@@ -1,6 +1,6 @@
 name: PHP-CS-Fixer
 
-on: [push]
+on: [ push ]
 
 jobs:
   php-cs-fixer:
@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.4]
+        php: [ 7.4 ]
 
     runs-on: ubuntu-latest
 

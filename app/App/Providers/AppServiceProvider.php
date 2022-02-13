@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,7 +22,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $generator)
     {
+        // Force https on all routes
+        if (Str::startsWith(config('app.url'), 'https://')) {
+            $generator->forceScheme('https');
+        }
     }
 }

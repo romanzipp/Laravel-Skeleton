@@ -1,0 +1,32 @@
+name: project
+recipe: laravel
+config:
+  php: "8.1"
+  composer_version: "2"
+  via: nginx
+  webroot: public
+  database: mariadb
+  cache: none
+  xdebug: false
+services:
+  database:
+    type: mariadb
+    portforward: true
+    creds:
+      user: developer
+      password: developer
+      database: project
+tooling:
+  node:
+    service: node
+  yarn:
+    service: node
+  phpstan:
+    service: appserver
+    cmd: /app/vendor/bin/phpstan
+  phpunit:
+    service: appserver
+    cmd: /app/vendor/bin/phpunit
+  phpcs:
+    service: appserver
+    cmd: /app/vendor/bin/php-cs-fixer

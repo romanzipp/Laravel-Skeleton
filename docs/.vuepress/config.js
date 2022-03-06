@@ -24,7 +24,18 @@ module.exports = {
                     '/documentation/table-names.md',
                 ]
             },
-            '/frontend',
+            {
+                title: 'Frontend',
+                children: [
+                    'frontend/frontend.md'
+                ]
+            },
+            {
+                title: 'Deployment',
+                children: [
+                    'deploy/deploy.md'
+                ]
+            }
         ],
         displayAllHeaders: true,
         sidebarDepth: 2

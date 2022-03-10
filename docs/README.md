@@ -20,18 +20,26 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 
 ## Requirements
 
-- [PHP 7.4](https://www.php.net) or [PHP 8.0](https://www.php.net)
+- [PHP 8.1](https://www.php.net)
 - [Composer](https://packagist.org)
 - [Yarn](https://yarnpkg.com)
 - [Lando](https://lando.dev) (optional)
 
 ## Getting Started
 
+**Start lando development container**
+
 ```shell
 lando start
 ```
 
-**Create a new user**
+**Migrate database**
+
+```shell
+lando artisan migrate:fresh
+```
+
+**Create a new Nova user**
 
 ```shell
 lando artisan nova:user

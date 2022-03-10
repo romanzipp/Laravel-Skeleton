@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', \Domain\User\Http\Controllers\IndexController::class)->name('index');
 
+Route::prefix('blog')->group(function () {
+    Route::get('', \Domain\Blog\Http\Controllers\ListPostsController::class)->name('blog.index');
+    Route::get('{post:slug}', \Domain\Blog\Http\Controllers\ShowPostController::class)->name('blog.show');
+});
+
 Route::prefix('auth')->group(function () {
     Route::prefix('login')->middleware(['guest'])->group(function () {
         Route::get('', \Domain\Auth\Http\Controllers\Login\ShowLoginController::class)->name('auth.login.show');

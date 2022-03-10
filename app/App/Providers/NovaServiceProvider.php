@@ -51,6 +51,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function resources()
     {
         self::resourcesInDomain('User');
+        self::resourcesInDomain('Blog');
     }
 
     private static function resourcesInDomain(string $domain)

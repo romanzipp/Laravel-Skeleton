@@ -21,3 +21,5 @@ public/*manifest*.json
 .idea/
 .php_cs.cache
 .php-cs-fixer.cache
+
+auth.json

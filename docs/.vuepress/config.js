@@ -22,6 +22,7 @@ module.exports = {
                     '/documentation/repositories.md',
                     '/documentation/resources.md',
                     '/documentation/table-names.md',
+                    '/documentation/events.md',
                 ]
             },
             {

@@ -7,13 +7,11 @@ use Illuminate\Support\Arr;
 
 abstract class AbstractListener
 {
-    protected array $subscribe = [];
-
-    public function listen(Dispatcher $dispatcher, string $event): void
+    final protected function listen(Dispatcher $dispatcher, string $event): void
     {
         $dispatcher->listen(
             $event,
-            sprintf('%s@on%s', static::class, $this->getClassFromNamespace($event))
+            [static::class, "on{$this->getClassFromNamespace($event)}"]
         );
     }
 
@@ -22,18 +20,5 @@ abstract class AbstractListener
         return Arr::last(explode('\\', $namespace));
     }
 
-    public function subscribe(Dispatcher $dispatcher): void
-    {
-        foreach ($this->subscribe as $event => $callback) {
-            if (is_array($callback)) {
-                if (1 === count($callback)) {
-                    $callback = [static::class, $callback[0]];
-                }
-
-                $callback = implode('@', $callback);
-            }
-
-            $dispatcher->listen($event, $callback);
-        }
-    }
+    abstract public function subscribe(Dispatcher $dispatcher): void;
 }

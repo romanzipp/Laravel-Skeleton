@@ -78,22 +78,22 @@ In order to provide a quick kickstarting there are many generator commands.
 - `php artisan make:resource [...] --domain [...]`
 - `php artisan make:migration [...] --domain [...]` (Coming Soon)
 
-### Tools
+## Tools
 
 #### PHP-CS-Fixer
 
 ```shell
-vendor/bin/php-cs-fixer fix
+lando phpcs fix
 ```
 
 #### PHPStan
 
 ```shell
-vendor/bin/phpstan
+lando phpstan
 ```
 
 #### Model-Doc Generator
 
 ```shell
-php artisan model-doc:generate
+lando artisan model-doc:generate
 ```

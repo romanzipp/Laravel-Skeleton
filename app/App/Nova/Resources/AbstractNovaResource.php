@@ -49,7 +49,7 @@ abstract class AbstractNovaResource extends Resource
         /** @var \Support\Models\AbstractModel|null $model */
         $model = $this->model();
 
-        if ($model ===null){
+        if (null === $model) {
             throw new RuntimeException('Model is not available for ' . static::class);
         }
 

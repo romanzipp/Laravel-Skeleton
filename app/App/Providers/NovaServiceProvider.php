@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-use Carbon\Carbon;
 use Domain\User\Actions\CreateUser;
 use Domain\User\Data\CreateUserData;
-use Domain\User\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Nova\Actions\ActionResource;

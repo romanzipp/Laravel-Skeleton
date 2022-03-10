@@ -52,3 +52,17 @@ if ( ! function_exists('carbon')) {
         return $carbon;
     }
 }
+
+if ( ! function_exists('domain_path')) {
+    /**
+     * Get file path for a given Domain.
+     *
+     * @param string $domain
+     * @param string $path
+     * @return string
+     */
+    function domain_path(string $domain, string $path): string
+    {
+        return base_path("app/Domain/$domain/$path");
+    }
+}

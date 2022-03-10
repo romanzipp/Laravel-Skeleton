@@ -1,0 +1,15 @@
+table.table > tbody > tr > td > div > a[href*="/resources/"], /* Main table */
+table.table > tbody > tr > td:nth-child(1) > div[via-resource] > a.text-primary, /* Link to relation, with checkbox col */
+table.table > tbody > tr > td:nth-child(2) > div[via-resource] > a.text-primary /* Link to relation, without checkbox col */
+{
+    display: inline-block;
+    max-width: 95px;
+    font-family: Menlo, Consolas, Monaco, Andale Mono, monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bg-twitch-light {
+    background-color: #D5B9FF;
+}

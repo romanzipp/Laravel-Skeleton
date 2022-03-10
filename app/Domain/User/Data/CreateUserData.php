@@ -14,6 +14,8 @@ final class CreateUserData extends AbstractData
 
     public string $name;
 
+    public string $displayName;
+
     public string $email;
 
     public string $password;

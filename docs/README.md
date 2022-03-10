@@ -31,6 +31,12 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 lando start
 ```
 
+**Create a new user**
+
+```shell
+lando artisan nova:user
+```
+
 ### Additional Packages
 
 - **Composer packages**

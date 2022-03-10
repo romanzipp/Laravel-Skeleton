@@ -12,7 +12,7 @@ final class CreateUser
     {
         $user = new User([
             'name' => $data->name,
-            'display_name' => $data->name,
+            'display_name' => $data->isset('displayName') ? $data->displayName : $data->name,
             'email' => $data->email,
             'password' => $data->password,
             'terms_accepted_at' => Carbon::now(),

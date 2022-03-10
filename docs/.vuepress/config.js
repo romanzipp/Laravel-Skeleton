@@ -16,6 +16,7 @@ module.exports = {
                 collapsable: false,
                 children: [
                     'laravel/nova.md',
+                    'laravel/blog.md',
                     'laravel/actions.md',
                     'laravel/data.md',
                     'laravel/enums.md',

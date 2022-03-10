@@ -1,6 +1,6 @@
 # Blog
 
-We also ship various tools for a basic Blog.
+The skeleton ships with a basic multilingual blog template. You can access the blog content via Laravel Nova.
 
 ## Remove Blog component
 

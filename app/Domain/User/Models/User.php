@@ -14,6 +14,9 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Support\Enums\TableName;
 use Support\Models\AbstractModel;
 
@@ -30,7 +33,7 @@ use Support\Models\AbstractModel;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  */
-final class User extends AbstractModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
+final class User extends AbstractModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, HasMedia
 {
     use Authenticatable;
     use Authorizable;
@@ -38,6 +41,7 @@ final class User extends AbstractModel implements AuthenticatableContract, Autho
     use MustVerifyEmail;
     use Notifiable;
     use HasFactory;
+    use InteractsWithMedia;
 
     protected $table = TableName::USER_USERS;
 
@@ -60,6 +64,21 @@ final class User extends AbstractModel implements AuthenticatableContract, Autho
     protected static function newFactory()
     {
         return new UserFactory();
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('avatar')
+            ->singleFile()
+            ->useDisk('avatars');
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('avatar')
+            ->withResponsiveImages();
     }
 
     public function sendPasswordResetNotification($token): void

@@ -59,6 +59,7 @@ if ( ! function_exists('domain_path')) {
      *
      * @param string $domain
      * @param string $path
+     *
      * @return string
      */
     function domain_path(string $domain, string $path): string

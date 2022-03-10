@@ -33,6 +33,12 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 lando start
 ```
 
+**Link storage folder**
+
+```shell
+lando artisan storage:link
+```
+
 **Migrate database**
 
 ```shell
@@ -48,14 +54,16 @@ lando artisan nova:user
 ### Additional Packages
 
 - **Composer packages**
-    - [myclabs/php-enum](https://github.com/myclabs/php-enum)
-    - [romanzipp/dto](https://github.com/romanzipp/dto)
-    - [romanzipp/laravel-queue-monitor](https://github.com/romanzipp/Laravel-Queue-Monitor)
-    - [romanzipp/laravel-seo](https://github.com/romanzipp/Laravel-SEO)
-    - [romanzipp/laravel-previously-deleted](https://github.com/romanzipp/Laravel-Previously-Deleted)
-    - [romanzipp/laravel-model-doc](https://github.com/romanzipp/Laravel-Model-Doc) (Run `php artisan model-doc:generate`)
-    - [romanzipp/laravel-env-normalizer](https://github.com/romanzipp/Laravel-Env-Normalizer)
-    - [romanzipp/php-cs-fixer-config](https://github.com/romanzipp/PHP-CS-Fixer-Config)
+    - [myclabs/**php-enum**](https://github.com/myclabs/php-enum)
+    - [romanzipp/**dto**](https://github.com/romanzipp/dto)
+    - [romanzipp/**laravel-queue-monitor**](https://github.com/romanzipp/Laravel-Queue-Monitor)
+    - [romanzipp/**laravel-seo**](https://github.com/romanzipp/Laravel-SEO)
+    - [romanzipp/**laravel-previously-deleted**](https://github.com/romanzipp/Laravel-Previously-Deleted)
+    - [romanzipp/**laravel-model-doc**](https://github.com/romanzipp/Laravel-Model-Doc) (Run `php artisan model-doc:generate`)
+    - [romanzipp/**laravel-env-normalizer**](https://github.com/romanzipp/Laravel-Env-Normalizer)
+    - [romanzipp/**php-cs-fixer-config**](https://github.com/romanzipp/PHP-CS-Fixer-Config)
+    - [spatie/**laravel-medialibrary**](https://github.com/spatie/laravel-medialibrary)
+    - [ebess/**advanced-nova-media-library**](https://github.com/ebess/advanced-nova-media-library)
 - **npm packages**
     - [tailwindcss](https://github.com/tailwindcss/tailwindcss)
     - [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)

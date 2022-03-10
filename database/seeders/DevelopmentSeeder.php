@@ -11,10 +11,15 @@ class DevelopmentSeeder extends Seeder
 {
     public function run(): void
     {
-        app(CreateUser::class)->execute(new CreateUserData([
+        $user = app(CreateUser::class)->execute(new CreateUserData([
             'name' => 'Roman',
             'email' => 'ich@ich.wtf',
             'password' => Hash::make('password'),
         ]));
+
+        $user
+            ->addMedia(database_path('seeders/files/avatar.jpg'))
+            ->preservingOriginal()
+            ->toMediaCollection('avatar');
     }
 }

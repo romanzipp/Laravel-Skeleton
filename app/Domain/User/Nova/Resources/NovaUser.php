@@ -4,8 +4,8 @@ namespace Domain\User\Nova\Resources;
 
 use App\Nova\Resources\AbstractNovaResource;
 use Domain\User\Models\User;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
@@ -44,7 +44,7 @@ class NovaUser extends AbstractNovaResource
         return [
             ID::make()->sortable(),
 
-            Gravatar::make()->maxWidth(50),
+            Images::make('Avatar'),
 
             Text::make('Name')
                 ->sortable()

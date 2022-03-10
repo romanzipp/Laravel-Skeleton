@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator;
 class PathGenerator extends DefaultPathGenerator
 {
     private const BLOCKED_PATHS = [
-        'ad',
+        'ad', // Avoid asset path from being blocked by Ad-Blockers
     ];
 
     /**
@@ -56,6 +56,7 @@ class PathGenerator extends DefaultPathGenerator
      */
     protected function getBasePath(Media $media): string
     {
+        /** @phpstan-ignore-next-line */
         $id = str_replace('-', '', $media->model->id ?? $media->uuid);
 
         $parts = [];
@@ -71,7 +72,7 @@ class PathGenerator extends DefaultPathGenerator
 
         return implode('/', [
             ...$parts,
-            $media->id,
+            $media->id, /** @phpstan-ignore-line */
         ]);
     }
 }

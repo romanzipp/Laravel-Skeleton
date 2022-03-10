@@ -6,6 +6,8 @@
 
 This is a very **opinionated** modified version of the Laravel framework which aims at providing **strong type hinting** with improved **IDE support**.
 
+The template repository also comes with a ready-to-go installation of [**Laravel Nova**](https://nova.laravel.com/).
+
 ## Documentation
 
 You can find the documentation on [romanzipp.github.io/Laravel-Skeleton](https://romanzipp.github.io/Laravel-Skeleton/)

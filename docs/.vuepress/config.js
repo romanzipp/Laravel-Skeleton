@@ -2,7 +2,7 @@ module.exports = {
     base: '/Laravel-Skeleton/',
     title: 'Laravel Skeleton',
     description: 'Domain Driven Laravel Skeleton with strong type hinting',
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 3001,
     themeConfig: {
         nav: [
@@ -15,14 +15,15 @@ module.exports = {
                 title: 'Laravel',
                 collapsable: false,
                 children: [
+                    '/documentation/nova.md',
                     '/documentation/actions.md',
                     '/documentation/data.md',
                     '/documentation/enums.md',
+                    '/documentation/events.md',
                     '/documentation/models.md',
                     '/documentation/repositories.md',
                     '/documentation/resources.md',
                     '/documentation/table-names.md',
-                    '/documentation/events.md',
                 ]
             },
             {
@@ -38,7 +39,6 @@ module.exports = {
                 ]
             }
         ],
-        displayAllHeaders: true,
         sidebarDepth: 2
     }
 };

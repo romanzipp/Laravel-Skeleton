@@ -14,6 +14,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -76,9 +77,14 @@ final class User extends AbstractModel implements AuthenticatableContract, Autho
 
     public function registerMediaConversions(Media $media = null): void
     {
+        /** @phpstan-ignore-next-line */
         $this
-            ->addMediaConversion('avatar')
-            ->withResponsiveImages();
+            ->addMediaConversion('crop')
+            ->performOnCollections('avatar')
+            ->withResponsiveImages()
+            ->optimize()
+            ->nonQueued()
+            ->fit(Manipulations::FIT_CROP, 300, 300);
     }
 
     public function sendPasswordResetNotification($token): void

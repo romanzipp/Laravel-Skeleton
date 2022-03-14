@@ -3,6 +3,7 @@
 namespace Domain\User\Http\Resources;
 
 use Support\Http\Resources\AbstractResource;
+use Support\Http\Resources\MediaResource;
 
 final class UserResource extends AbstractResource
 {
@@ -13,6 +14,11 @@ final class UserResource extends AbstractResource
 
         return [
             'name' => $user->name,
+
+            'avatar' => $this->whenLoaded(
+                'media',
+                fn () => new MediaResource($user->getFirstMedia('avatar'), 'crop')
+            ),
 
             $this->withDates(),
         ];

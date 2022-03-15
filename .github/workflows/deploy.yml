@@ -55,10 +55,15 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v2
+        env:
+          NOVA_USER: ${{ secrets.NOVA_USER }}
+          NOVA_PASSWORD: ${{ secrets.NOVA_PASSWORD }}
         with:
-          context: ".docker/${{ matrix.role }}"
+          context: .
+          file: ".docker/${{ matrix.role }}/Dockerfile"
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: NOVA_USER,NOVA_PASSWORD

@@ -22,7 +22,7 @@ aws_secret_access_key = ****
 
 ```
 [profile my_project]
-region = eu-west-1
+region = <REGION>
 ```
 
 ### Authenticate for Docker

@@ -23,7 +23,7 @@ services:
     volumes:
       - ../.env:/app/.env
     networks: [ app-network ]
-    depends_on: [ database, backend ]
+    depends_on: [ database ]
 
   backend-scheduler:
     container_name: backend-scheduler
@@ -33,7 +33,7 @@ services:
     volumes:
       - ../.env:/app/.env
     networks: [ app-network ]
-    depends_on: [ database, backend ]
+    depends_on: [ database ]
 
   database:
     container_name: database

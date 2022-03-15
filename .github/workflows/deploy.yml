@@ -65,4 +65,4 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             NOVA_USER=${{ secrets.NOVA_USER }}
-            NOVA_PASSWORD=${{ secrets.NOVA_USER }}
+            NOVA_PASSWORD=${{ secrets.NOVA_PASSWORD }}

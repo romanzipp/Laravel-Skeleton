@@ -86,4 +86,4 @@ docker exec -it web php artisan migrate
 
 You should be able to access the skeleton at [localhost:8000](http://localhost:8000).
 
-<< .docker/docker-compose.yml
+<< .docker/docker-compose.local.yml

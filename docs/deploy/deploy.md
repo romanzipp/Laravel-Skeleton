@@ -10,6 +10,13 @@ The Skeleton comes with a GitHub Actions workflow which builds & pushes to AWS E
 
 ## Setup AWS ECR
 
+You need to create a new repository for each container role (`web`, `queue` and `scheduler`) with the format of `<name>/<role>`. The name can be configured via the `REPOSITORY_PREFIX` value in the [Deploy GitHub Actions workflow](/.github/workflows/deploy.yml).
+
+Example:
+- `skeleton/web`
+- `skeleton/queue`
+- `skeleton/scheduler`
+
 ### ~/.aws/credentials
 
 ```

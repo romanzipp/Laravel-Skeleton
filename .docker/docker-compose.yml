@@ -3,7 +3,7 @@ version: "3.9"
 services:
   web:
     container_name: web
-    image: "${REPOSITORY_URL}/skeleton:role-web"
+    image: "${REPOSITORY_URL}/web:role-web"
     restart: unless-stopped
     env_file:
       - ./web/.env
@@ -19,7 +19,7 @@ services:
 
   backend-queue:
     container_name: backend-queue
-    image: "${REPOSITORY_URL}/skeleton:role-queue"
+    image: "${REPOSITORY_URL}/queue:role-queue"
     restart: unless-stopped
     env_file:
       - ./web/.env
@@ -36,7 +36,7 @@ services:
 
   backend-scheduler:
     container_name: backend-scheduler
-    image: "${REPOSITORY_URL}/skeleton:role-scheduler"
+    image: "${REPOSITORY_URL}/scheduler:role-scheduler"
     restart: unless-stopped
     env_file:
       - ./web/.env

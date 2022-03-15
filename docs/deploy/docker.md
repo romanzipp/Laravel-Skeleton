@@ -62,7 +62,7 @@ docker run --name scheduler \
 
 **Note**: You will need to specify the following environment variables.  See [the Docker .env.example](/.docker/.env.example) file for more information.
 
-- `REPOSITORY_URL` Container registry URL (`___.dkr.ecr.___.amazonaws.com`)
+- `REPOSITORY_URL` Container registry URL (`___.dkr.ecr.___.amazonaws.com/repository`)
 
 #### Start docker stack
 

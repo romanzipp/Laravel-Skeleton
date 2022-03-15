@@ -4,6 +4,7 @@ on: [ workflow_dispatch ]
 
 env:
   ENVIRONMENT: production
+  REPOSITORY_PREFIX: skeleton
 
 jobs:
   build:
@@ -37,9 +38,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ${{ steps.login-ecr.outputs.registry }}/${{ env.REPOSITORY }}
+          images: ${{ steps.login-ecr.outputs.registry }}/${{ env.REPOSITORY_PREFIX }}/${{ env.REPOSITORY }}
           tags: |
             type=raw,value=${{ matrix.role }},prefix=role-
+            type=raw,value=${{ env.ENVIRONMENT }},prefix=env-
             type=ref,event=branch,prefix=branch-
             type=ref,event=pr,prefix=pr-
             type=semver,pattern={{version}}

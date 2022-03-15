@@ -5,3 +5,4 @@ vendor/
 .git
 .gitignore
 .env
+.env.example

@@ -49,12 +49,11 @@ services:
     ports:
       - "8001:3306"
     volumes:
-      - ./db:/var/lib/mysql
+      - ./database:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
       MARIADB_ROOT_HOST: "%"
       MARIADB_DATABASE: skeleton
-      MARIADB_USER: web
     networks: [ app-network ]
 
   redis:

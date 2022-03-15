@@ -25,5 +25,5 @@ public/*manifest*.json
 
 auth.json
 
-.docker/db/*
-!.docker/db/.gitkeep
+.docker/database/*
+!.docker/database/.gitkeep

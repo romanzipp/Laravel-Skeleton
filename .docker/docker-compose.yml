@@ -3,14 +3,9 @@ version: "3.9"
 services:
   web:
     container_name: web
+    image: "${REPOSITORY_URL}/skeleton:role-web"
     restart: unless-stopped
     env_file: [ ../.env ]
-    build:
-      context: /Users/roman/Code/laravel-skeleton
-      dockerfile: .docker/web/Dockerfile
-      args:
-        NOVA_USERNAME: $NOVA_USERNAME
-        NOVA_PASSWORD: $NOVA_PASSWORD
     volumes:
       - ./web/app.conf:/etc/nginx/conf.d/app.conf
       - ../.env:/app/.env
@@ -20,14 +15,9 @@ services:
 
   backend-queue:
     container_name: backend-queue
+    image: "${REPOSITORY_URL}/skeleton:role-queue"
     restart: unless-stopped
     env_file: [ ../.env ]
-    build:
-      context: /Users/roman/Code/laravel-skeleton
-      dockerfile: .docker/queue/Dockerfile
-      args:
-        NOVA_USERNAME: $NOVA_USERNAME
-        NOVA_PASSWORD: $NOVA_PASSWORD
     environment:
       QUEUE: default
     volumes:
@@ -37,14 +27,9 @@ services:
 
   backend-scheduler:
     container_name: backend-scheduler
+    image: "${REPOSITORY_URL}/skeleton:role-scheduler"
     restart: unless-stopped
     env_file: [ ../.env ]
-    build:
-      context: /Users/roman/Code/laravel-skeleton
-      dockerfile: .docker/scheduler/Dockerfile
-      args:
-        NOVA_USERNAME: $NOVA_USERNAME
-        NOVA_PASSWORD: $NOVA_PASSWORD
     volumes:
       - ../.env:/app/.env
     networks: [ app-network ]

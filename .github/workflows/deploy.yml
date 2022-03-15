@@ -37,9 +37,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ${{ steps.login-ecr.outputs.registry }}/${{ env.REPOSITORY }}/${{ matrix.role }}
+          images: ${{ steps.login-ecr.outputs.registry }}/${{ env.REPOSITORY }}
           tags: |
-            type=raw,value=${{ matrix.role }},prefix=env-
+            type=raw,value=${{ matrix.role }},prefix=role-
             type=ref,event=branch,prefix=branch-
             type=ref,event=pr,prefix=pr-
             type=semver,pattern={{version}}

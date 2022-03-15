@@ -28,7 +28,8 @@ region = eu-west-1
 ### Authenticate for Docker
 
 ```
-aws ecr get-login-password --profile my_project | docker login --username AWS --password-stdin <URL>
+aws ecr get-login-password --profile <PROFILE> | docker login --username AWS --password-stdin <URL>
 ```
 
-Replace `<URL>` with your ECR URL (`<ID>.dkr.ecr.eu-central-1.amazonaws.com`)
+- Replace (or remove) `<PROFILE>`
+- Replace `<URL>` with your ECR URL (`<ID>.dkr.ecr.<REGION>.amazonaws.com`)

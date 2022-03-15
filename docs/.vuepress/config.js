@@ -38,6 +38,7 @@ module.exports = {
                 title: 'Deployment',
                 collapsable: false,
                 children: [
+                    'deploy/docker.md',
                     'deploy/deploy.md'
                 ]
             }

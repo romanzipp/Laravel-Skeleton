@@ -3,6 +3,7 @@ FROM ubuntu:latest AS web
 
 ARG NOVA_USERNAME
 ARG NOVA_PASSWORD
+
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 

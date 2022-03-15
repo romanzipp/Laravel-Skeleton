@@ -46,7 +46,7 @@ server {
     ssl_protocols              TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers                'AES128+EECDH:AES128+EDH';
     ssl_prefer_server_ciphers  on;
-    
+
     location / {
         proxy_pass        http://localhost:8000;
         proxy_set_header  Host $host;

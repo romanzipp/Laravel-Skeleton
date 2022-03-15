@@ -54,5 +54,4 @@ RUN composer dump-autoload --optimize
 
 RUN chown -R www-data:www-data /app
 
-EXPOSE 80
 ENTRYPOINT ["sh", ".docker/queue/start.sh"]

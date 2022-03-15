@@ -8,7 +8,7 @@
     
     <meta name="description" content="Domain Driven Laravel Skeleton with strong type hinting">
     
-    <link rel="preload" href="/Laravel-Skeleton/assets/css/0.styles.04e3f63a.css" as="style"><link rel="preload" href="/Laravel-Skeleton/assets/js/app.cd494808.js" as="script"><link rel="preload" href="/Laravel-Skeleton/assets/js/2.61faf9a8.js" as="script"><link rel="preload" href="/Laravel-Skeleton/assets/js/9.0e67fbe2.js" as="script"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/10.ca76c5d5.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/11.8bda6f18.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/12.cd62a986.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/13.25216c0c.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/14.2f5c8b70.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/15.31b19dde.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/16.93b7bca3.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/17.967eadea.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/18.1e97cafb.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/19.0f586656.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/20.6144875a.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/3.d71e3132.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/7.368ed4f1.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/8.38f679db.js">
+    <link rel="preload" href="/Laravel-Skeleton/assets/css/0.styles.04e3f63a.css" as="style"><link rel="preload" href="/Laravel-Skeleton/assets/js/app.b005ee43.js" as="script"><link rel="preload" href="/Laravel-Skeleton/assets/js/2.61faf9a8.js" as="script"><link rel="preload" href="/Laravel-Skeleton/assets/js/9.7fcc7dbf.js" as="script"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/10.ca76c5d5.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/11.8bda6f18.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/12.cd62a986.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/13.25216c0c.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/14.2f5c8b70.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/15.31b19dde.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/16.93b7bca3.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/17.967eadea.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/18.1e97cafb.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/19.0f586656.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/20.6144875a.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/3.d71e3132.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/7.368ed4f1.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/8.e30219f6.js">
     <link rel="stylesheet" href="/Laravel-Skeleton/assets/css/0.styles.04e3f63a.css">
   </head>
   <body>
@@ -44,13 +44,13 @@
 </code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">docker</span> run --name scheduler <span class="token punctuation">\</span>
   -v <span class="token string">&quot;<span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">pwd</span><span class="token variable">)</span></span>/.env:/app/.env&quot;</span> <span class="token punctuation">\</span>
   scheduler
-</code></pre></div><h2 id="docker-compose"><a href="#docker-compose" class="header-anchor">#</a> Docker Compose</h2> <h3 id="production-docker-compose-yml"><a href="#production-docker-compose-yml" class="header-anchor">#</a> Production docker-compose.yml</h3> <p><strong>Note</strong>: You will need to specify the following environment variables.  See <a href="/.docker/.env.example">the Docker .env.example</a> file for more information.</p> <ul><li><code>REPOSITORY_URL</code> Container registry URL (<code>___.dkr.ecr.___.amazonaws.com</code>)</li></ul> <h4 id="start-docker-stack"><a href="#start-docker-stack" class="header-anchor">#</a> Start docker stack</h4> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">docker-compose</span> -p skeleton_production -f docker-compose.yml up
+</code></pre></div><h2 id="docker-compose"><a href="#docker-compose" class="header-anchor">#</a> Docker Compose</h2> <h3 id="production-docker-compose-yml"><a href="#production-docker-compose-yml" class="header-anchor">#</a> Production docker-compose.yml</h3> <p><strong>Note</strong>: You will need to specify the following environment variables.  See <a href="/.docker/.env.example">the Docker .env.example</a> file for more information.</p> <ul><li><code>REPOSITORY_URL</code> Container registry URL (<code>___.dkr.ecr.___.amazonaws.com/repository</code>)</li></ul> <h4 id="start-docker-stack"><a href="#start-docker-stack" class="header-anchor">#</a> Start docker stack</h4> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">docker-compose</span> -p skeleton_production -f docker-compose.yml up
 </code></pre></div><div class="language-yml extra-class"><pre class="language-yml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">&quot;3.9&quot;</span>
 
 <span class="token key atrule">services</span><span class="token punctuation">:</span>
   <span class="token key atrule">web</span><span class="token punctuation">:</span>
     <span class="token key atrule">container_name</span><span class="token punctuation">:</span> web
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">&quot;${REPOSITORY_URL}/skeleton:role-web&quot;</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">&quot;${REPOSITORY_URL}/web:role-web&quot;</span>
     <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
     <span class="token key atrule">env_file</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> ./web/.env
@@ -66,7 +66,7 @@
 
   <span class="token key atrule">backend-queue</span><span class="token punctuation">:</span>
     <span class="token key atrule">container_name</span><span class="token punctuation">:</span> backend<span class="token punctuation">-</span>queue
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">&quot;${REPOSITORY_URL}/skeleton:role-queue&quot;</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">&quot;${REPOSITORY_URL}/queue:role-queue&quot;</span>
     <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
     <span class="token key atrule">env_file</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> ./web/.env
@@ -83,7 +83,7 @@
 
   <span class="token key atrule">backend-scheduler</span><span class="token punctuation">:</span>
     <span class="token key atrule">container_name</span><span class="token punctuation">:</span> backend<span class="token punctuation">-</span>scheduler
-    <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">&quot;${REPOSITORY_URL}/skeleton:role-scheduler&quot;</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">&quot;${REPOSITORY_URL}/scheduler:role-scheduler&quot;</span>
     <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
     <span class="token key atrule">env_file</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> ./web/.env
@@ -230,6 +230,6 @@
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/Laravel-Skeleton/assets/js/app.cd494808.js" defer></script><script src="/Laravel-Skeleton/assets/js/2.61faf9a8.js" defer></script><script src="/Laravel-Skeleton/assets/js/9.0e67fbe2.js" defer></script>
+    <script src="/Laravel-Skeleton/assets/js/app.b005ee43.js" defer></script><script src="/Laravel-Skeleton/assets/js/2.61faf9a8.js" defer></script><script src="/Laravel-Skeleton/assets/js/9.7fcc7dbf.js" defer></script>
   </body>
 </html>

@@ -4,7 +4,8 @@ services:
   web:
     container_name: web
     restart: unless-stopped
-    env_file: [ ./web/.env ]
+    env_file:
+      - ./web/.env
     build:
       context: /Users/roman/Code/laravel-skeleton
       dockerfile: .docker/web/Dockerfile
@@ -18,12 +19,14 @@ services:
       - ./storage/logs:/app/storage/logs
     ports:
       - "8000:80"
-    networks: [ app-network ]
+    networks:
+      - app-network
 
   backend-queue:
     container_name: backend-queue
     restart: unless-stopped
-    env_file: [ ./web/.env ]
+    env_file:
+      - ./web/.env
     build:
       context: /Users/roman/Code/laravel-skeleton
       dockerfile: .docker/queue/Dockerfile
@@ -36,13 +39,16 @@ services:
       - ./web/.env:/app/.env
       - ./storage/app:/app/storage/app
       - ./storage/logs:/app/storage/logs
-    networks: [ app-network ]
-    depends_on: [ database ]
+    networks:
+      - app-network
+    depends_on:
+      - database
 
   backend-scheduler:
     container_name: backend-scheduler
     restart: unless-stopped
-    env_file: [ ./web/.env ]
+    env_file:
+      - ./web/.env
     build:
       context: /Users/roman/Code/laravel-skeleton
       dockerfile: .docker/scheduler/Dockerfile
@@ -53,8 +59,10 @@ services:
       - ./web/.env:/app/.env
       - ./storage/app:/app/storage/app
       - ./storage/logs:/app/storage/logs
-    networks: [ app-network ]
-    depends_on: [ database ]
+    networks:
+      - app-network
+    depends_on:
+      - database
 
   database:
     container_name: database
@@ -68,13 +76,15 @@ services:
       MARIADB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
       MARIADB_ROOT_HOST: "%"
       MARIADB_DATABASE: skeleton
-    networks: [ app-network ]
+    networks:
+      - app-network
 
   redis:
     container_name: redis
     image: redis:latest
     restart: unless-stopped
-    networks: [ app-network ]
+    networks:
+      - app-network
 
 networks:
   app-network:

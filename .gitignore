@@ -12,6 +12,7 @@ npm-debug.log
 yarn-error.log
 
 docs/.vuepress/dist/
+docs/node_modules
 
 storage/logs/*.log
 public/js/*.js

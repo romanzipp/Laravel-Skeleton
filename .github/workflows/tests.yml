@@ -12,7 +12,6 @@ jobs:
         php: [ 8.1 ]
         composer-prefer: [ stable ]
     steps:
-
       - uses: actions/checkout@v2
 
       - name: Setup PHP

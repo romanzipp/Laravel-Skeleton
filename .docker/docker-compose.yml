@@ -9,6 +9,8 @@ services:
     volumes:
       - ./web/app.conf:/etc/nginx/conf.d/app.conf
       - ../.env:/app/.env
+      - ./storage/app:/app/storage/app
+      - ./storage/logs:/app/storage/logs
     ports:
       - "8000:80"
     networks: [ app-network ]
@@ -22,6 +24,8 @@ services:
       QUEUE: default
     volumes:
       - ../.env:/app/.env
+      - ./storage/app:/app/storage/app
+      - ./storage/logs:/app/storage/logs
     networks: [ app-network ]
     depends_on: [ database ]
 
@@ -32,6 +36,8 @@ services:
     env_file: [ ../.env ]
     volumes:
       - ../.env:/app/.env
+      - ./storage/app:/app/storage/app
+      - ./storage/logs:/app/storage/logs
     networks: [ app-network ]
     depends_on: [ database ]
 

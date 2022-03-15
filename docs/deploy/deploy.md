@@ -34,7 +34,22 @@ aws ecr get-login-password --profile <PROFILE> | docker login --username AWS --p
 - Replace (or remove) `<PROFILE>`
 - Replace `<URL>` with your ECR URL (`<ID>.dkr.ecr.<REGION>.amazonaws.com`)
 
-# nginx
+## Directory structure
+
+```
+.
+├── database             Persistent database storage
+├── docker-compose.yml
+├── .env                 Environment values for docker-compose
+├── storage              Laravel storage
+│   ├── app              Laravel storage
+│   └── logs             Laravel storage
+└── web
+    ├── app.conf         web Container nginx site
+    └── .env             Laravel .env file
+```
+
+## Host nginx
 
 ```nginx
 server {
@@ -48,7 +63,7 @@ server {
     ssl_prefer_server_ciphers  on;
 
     location / {
-        proxy_pass        http://localhost:8000;
+        proxy_pass        http://localhost:8000; # <----------
         proxy_set_header  Host $host;
         proxy_set_header  X-Real-IP $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;

@@ -66,10 +66,12 @@ COMPOSE_PROJECT_NAME=skeleton docker-compose up
 
 The local docker compose file uses the included Dockerfiles to build and spin up containers.
 
-Note: You will need to specify environment variables for Laravel Nova and the database container. See [the .env.example](/.docker/.env.example) file for more information.
+Note: You will need to specify environment variables for Laravel Nova and the database container. See [the Docker .env.example](/.docker/.env.example) file for more information.
 
 ```shell
 COMPOSE_PROJECT_NAME=skeleton docker-compose up --build
 ```
+
+You should be able to access the skeleton at [localhost:8000](http://localhost:8000).
 
 << .docker/docker-compose.yml

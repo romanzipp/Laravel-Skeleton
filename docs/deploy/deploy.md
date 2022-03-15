@@ -40,7 +40,7 @@ Replace `<URL>` with your ECR URL (`<ID>.dkr.ecr.eu-central-1.amazonaws.com`)
 ```shell
 docker build -t web . \
   -f .docker/web/Dockerfile \
-  --build-arg "NOVA_USER=" \
+  --build-arg "NOVA_USERNAME=" \
   --build-arg "NOVA_PASSWORD="
 ```
 
@@ -57,7 +57,7 @@ docker run --name web \
 ```shell
 docker build -t queue . \
   -f .docker/queue/Dockerfile \
-  --build-arg "NOVA_USER=" \
+  --build-arg "NOVA_USERNAME=" \
   --build-arg "NOVA_PASSWORD="
 ```
 
@@ -72,7 +72,7 @@ docker run --name queue \
 ```shell
 docker build -t scheduler . \
   -f .docker/scheduler/Dockerfile \
-  --build-arg "NOVA_USER=" \
+  --build-arg "NOVA_USERNAME=" \
   --build-arg "NOVA_PASSWORD="
 ```
 

@@ -70,7 +70,7 @@ docker run --name scheduler \
 docker-compose -p skeleton_production -f docker-compose.yml up
 ```
 
-<<< @/.docker/docker-compose.yml
+<<< @/../.docker/docker-compose.yml
 
 ### Local docker-compose.yml
 
@@ -100,4 +100,4 @@ docker exec -it web php artisan migrate
 
 You should be able to access the skeleton at [localhost:8000](http://localhost:8000).
 
-<<< @/.docker/docker-compose.local.yml
+<<< @/../.docker/docker-compose.local.yml

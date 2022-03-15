@@ -6,7 +6,14 @@
 
 This is a very **opinionated** modified version of the Laravel framework which aims at providing **strong type hinting** with improved **IDE support**.
 
-The template repository also comes with a ready-to-go installation of [**Laravel Nova**](https://nova.laravel.com/).
+## Features
+
+- **Strong type hinting** and actual IDE support (without plugins 🤨)
+- [**PHP-CS-Fixer**](https://github.com/FriendsOfPHP/PHP-CS-Fixer) with custom ruleset
+- [**PHPStan**](https://github.com/phpstan/phpstan) static analyzer
+- Ready-to-go installation of [**Laravel Nova**](https://nova.laravel.com/)
+- **[Docker](https://www.docker.com) deployment** via [GitHub Actions](https://github.com/features/actions) with separate **Dockerfiles** for web, queues & scheduler + Docker Compose example files
+- **Blog** example components (models, controllers, views, ...)
 
 ## Documentation
 

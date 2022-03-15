@@ -4,7 +4,7 @@ services:
   web:
     container_name: web
     restart: unless-stopped
-    env_file: [ ../.env ]
+    env_file: [ ./web/.env ]
     build:
       context: /Users/roman/Code/laravel-skeleton
       dockerfile: .docker/web/Dockerfile
@@ -13,7 +13,7 @@ services:
         NOVA_PASSWORD: $NOVA_PASSWORD
     volumes:
       - ./web/app.conf:/etc/nginx/conf.d/app.conf
-      - ../.env:/app/.env
+      - ./web/.env:/app/.env
       - ./storage/app:/app/storage/app
       - ./storage/logs:/app/storage/logs
     ports:
@@ -23,7 +23,7 @@ services:
   backend-queue:
     container_name: backend-queue
     restart: unless-stopped
-    env_file: [ ../.env ]
+    env_file: [ ./web/.env ]
     build:
       context: /Users/roman/Code/laravel-skeleton
       dockerfile: .docker/queue/Dockerfile
@@ -33,7 +33,7 @@ services:
     environment:
       QUEUE: default
     volumes:
-      - ../.env:/app/.env
+      - ./web/.env:/app/.env
       - ./storage/app:/app/storage/app
       - ./storage/logs:/app/storage/logs
     networks: [ app-network ]
@@ -42,7 +42,7 @@ services:
   backend-scheduler:
     container_name: backend-scheduler
     restart: unless-stopped
-    env_file: [ ../.env ]
+    env_file: [ ./web/.env ]
     build:
       context: /Users/roman/Code/laravel-skeleton
       dockerfile: .docker/scheduler/Dockerfile
@@ -50,7 +50,7 @@ services:
         NOVA_USERNAME: $NOVA_USERNAME
         NOVA_PASSWORD: $NOVA_PASSWORD
     volumes:
-      - ../.env:/app/.env
+      - ./web/.env:/app/.env
       - ./storage/app:/app/storage/app
       - ./storage/logs:/app/storage/logs
     networks: [ app-network ]

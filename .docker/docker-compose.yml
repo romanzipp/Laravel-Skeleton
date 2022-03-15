@@ -5,10 +5,10 @@ services:
     container_name: web
     image: "${REPOSITORY_URL}/skeleton:role-web"
     restart: unless-stopped
-    env_file: [ ../.env ]
+    env_file: [ ./web/.env ]
     volumes:
       - ./web/app.conf:/etc/nginx/conf.d/app.conf
-      - ../.env:/app/.env
+      - ./web/.env:/app/.env
       - ./storage/app:/app/storage/app
       - ./storage/logs:/app/storage/logs
     ports:
@@ -19,11 +19,11 @@ services:
     container_name: backend-queue
     image: "${REPOSITORY_URL}/skeleton:role-queue"
     restart: unless-stopped
-    env_file: [ ../.env ]
+    env_file: [ ./web/.env ]
     environment:
       QUEUE: default
     volumes:
-      - ../.env:/app/.env
+      - ./web/.env:/app/.env
       - ./storage/app:/app/storage/app
       - ./storage/logs:/app/storage/logs
     networks: [ app-network ]
@@ -33,9 +33,9 @@ services:
     container_name: backend-scheduler
     image: "${REPOSITORY_URL}/skeleton:role-scheduler"
     restart: unless-stopped
-    env_file: [ ../.env ]
+    env_file: [ ./web/.env ]
     volumes:
-      - ../.env:/app/.env
+      - ./web/.env:/app/.env
       - ./storage/app:/app/storage/app
       - ./storage/logs:/app/storage/logs
     networks: [ app-network ]

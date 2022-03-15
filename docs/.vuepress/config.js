@@ -29,12 +29,14 @@ module.exports = {
             },
             {
                 title: 'Frontend',
+                collapsable: false,
                 children: [
                     'frontend/frontend.md'
                 ]
             },
             {
                 title: 'Deployment',
+                collapsable: false,
                 children: [
                     'deploy/deploy.md'
                 ]

@@ -1,0 +1,71 @@
+version: "3.9"
+
+services:
+  web:
+    container_name: web
+    env_file: [ ../.env ]
+    build:
+      context: /Users/roman/Code/laravel-skeleton
+      dockerfile: .docker/web/Dockerfile
+      args:
+        NOVA_USERNAME: $NOVA_USERNAME
+        NOVA_PASSWORD: $NOVA_PASSWORD
+    volumes:
+      - ./web/app.conf:/etc/nginx/conf.d/app.conf
+    ports:
+      - "8000:80"
+    networks: [ app-network ]
+
+  backend-queue:
+    container_name: backend-queue
+    env_file: [ ../.env ]
+    build:
+      context: /Users/roman/Code/laravel-skeleton
+      dockerfile: .docker/queue/Dockerfile
+      args:
+        NOVA_USERNAME: $NOVA_USERNAME
+        NOVA_PASSWORD: $NOVA_PASSWORD
+    environment:
+      QUEUE: default
+    networks: [ app-network ]
+    depends_on: [ database, backend ]
+
+  backend-scheduler:
+    container_name: backend-scheduler
+    env_file: [ ../.env ]
+    build:
+      context: /Users/roman/Code/laravel-skeleton
+      dockerfile: .docker/scheduler/Dockerfile
+      args:
+        NOVA_USERNAME: $NOVA_USERNAME
+        NOVA_PASSWORD: $NOVA_PASSWORD
+    networks: [ app-network ]
+    depends_on: [ database, backend ]
+
+  database:
+    container_name: database
+    image: mariadb:latest
+    restart: unless-stopped
+    ports:
+      - "8001:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MARIADB_ROOT_HOST: "%"
+      MARIADB_DATABASE: skeleton
+      MARIADB_USER: web
+    networks: [ app-network ]
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: unless-stopped
+    networks: [ app-network ]
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  backend-volume:

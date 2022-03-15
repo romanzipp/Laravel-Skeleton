@@ -24,3 +24,6 @@ public/*manifest*.json
 .php-cs-fixer.cache
 
 auth.json
+
+.docker/db/*
+!.docker/db/.gitkeep

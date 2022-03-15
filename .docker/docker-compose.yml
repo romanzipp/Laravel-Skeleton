@@ -12,6 +12,7 @@ services:
         NOVA_PASSWORD: $NOVA_PASSWORD
     volumes:
       - ./web/app.conf:/etc/nginx/conf.d/app.conf
+      - ../.env:/app/.env
     ports:
       - "8000:80"
     networks: [ app-network ]
@@ -27,6 +28,8 @@ services:
         NOVA_PASSWORD: $NOVA_PASSWORD
     environment:
       QUEUE: default
+    volumes:
+      - ../.env:/app/.env
     networks: [ app-network ]
     depends_on: [ database, backend ]
 
@@ -39,6 +42,8 @@ services:
       args:
         NOVA_USERNAME: $NOVA_USERNAME
         NOVA_PASSWORD: $NOVA_PASSWORD
+    volumes:
+      - ../.env:/app/.env
     networks: [ app-network ]
     depends_on: [ database, backend ]
 

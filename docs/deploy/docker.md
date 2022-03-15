@@ -68,8 +68,20 @@ The local docker compose file uses the included Dockerfiles to build and spin up
 
 Note: You will need to specify environment variables for Laravel Nova and the database container. See [the Docker .env.example](/.docker/.env.example) file for more information.
 
+#### Start docker stack
+
+```shell
+COMPOSE_PROJECT_NAME=skeleton docker-compose up
+```
+
 ```shell
 COMPOSE_PROJECT_NAME=skeleton docker-compose up --build
+```
+
+#### Migrate database
+
+```shell
+docker exec -it web php artisan migrate
 ```
 
 You should be able to access the skeleton at [localhost:8000](http://localhost:8000).

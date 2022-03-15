@@ -3,6 +3,7 @@ version: "3.9"
 services:
   web:
     container_name: web
+    restart: unless-stopped
     env_file: [ ../.env ]
     build:
       context: /Users/roman/Code/laravel-skeleton
@@ -19,6 +20,7 @@ services:
 
   backend-queue:
     container_name: backend-queue
+    restart: unless-stopped
     env_file: [ ../.env ]
     build:
       context: /Users/roman/Code/laravel-skeleton
@@ -35,6 +37,7 @@ services:
 
   backend-scheduler:
     container_name: backend-scheduler
+    restart: unless-stopped
     env_file: [ ../.env ]
     build:
       context: /Users/roman/Code/laravel-skeleton

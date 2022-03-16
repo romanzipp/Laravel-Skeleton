@@ -64,6 +64,8 @@ docker run --name scheduler \
 
 - `COMPOSE_PROJECT_NAME`
 - `REPOSITORY_URL` Container registry URL (`___.dkr.ecr.___.amazonaws.com/repository`)
+- `DB_ROOT_PASSWORD` Initial root password for database container
+- `DB_DATABASE` Database to be created on startup
 
 #### Start docker stack
 
@@ -82,7 +84,8 @@ The local docker compose file uses the included Dockerfiles to build and spin up
 - `COMPOSE_PROJECT_NAME`
 - `NOVA_USERNAME` Laravel Nova username
 - `NOVA_PASSWORD` Laravel Nova password/API key
-- `DB_ROOT_PASSWORD` initial root password for database container
+- `DB_ROOT_PASSWORD` Initial root password for database container
+- `DB_DATABASE` Database to be created on startup
 
 #### Start docker stack
 

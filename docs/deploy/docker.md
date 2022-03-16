@@ -62,12 +62,13 @@ docker run --name scheduler \
 
 **Note**: You will need to specify the following environment variables.  See [the Docker .env.example](/.docker/.env.example) file for more information.
 
+- `COMPOSE_PROJECT_NAME`
 - `REPOSITORY_URL` Container registry URL (`___.dkr.ecr.___.amazonaws.com/repository`)
 
 #### Start docker stack
 
 ```shell
-docker-compose -p skeleton_production -f docker-compose.yml up
+docker-compose -f docker-compose.yml up
 ```
 
 <<< @/../.docker/docker-compose.yml
@@ -78,6 +79,7 @@ The local docker compose file uses the included Dockerfiles to build and spin up
 
 **Note**: You will need to specify the following environment variables.  See [the Docker .env.example](/.docker/.env.example) file for more information.
 
+- `COMPOSE_PROJECT_NAME`
 - `NOVA_USERNAME` Laravel Nova username
 - `NOVA_PASSWORD` Laravel Nova password/API key
 - `DB_ROOT_PASSWORD` initial root password for database container
@@ -85,11 +87,11 @@ The local docker compose file uses the included Dockerfiles to build and spin up
 #### Start docker stack
 
 ```shell
-docker-compose -p skeleton -f docker-compose.local.yml up
+docker-compose -f docker-compose.local.yml up
 ```
 
 ```shell
-docker-compose -p skeleton -f docker-compose.local.yml up --build
+docker-compose -f docker-compose.local.yml up --build
 ```
 
 #### Migrate database

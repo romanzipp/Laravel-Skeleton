@@ -60,7 +60,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: $DB_ROOT_PASSWORD
       MARIADB_ROOT_HOST: "%"
-      MARIADB_DATABASE: skeleton
+      MARIADB_DATABASE: $DB_DATABASE
     networks:
       - app-network
 

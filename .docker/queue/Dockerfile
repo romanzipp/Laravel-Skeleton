@@ -53,5 +53,6 @@ RUN composer dump-autoload --optimize
 # Update permissions
 
 RUN chown -R www-data:www-data /app
+RUN php artisan storage:link
 
 ENTRYPOINT ["sh", ".docker/queue/start.sh"]

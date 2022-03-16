@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web:
-    container_name: web
+    container_name: "${COMPOSER_PROJECT_NAME}_web"
     restart: unless-stopped
     env_file:
       - ./web/.env
@@ -23,7 +23,7 @@ services:
       - app-network
 
   backend-queue:
-    container_name: backend-queue
+    container_name: "${COMPOSER_PROJECT_NAME}_queue"
     restart: unless-stopped
     env_file:
       - ./web/.env
@@ -45,7 +45,7 @@ services:
       - database
 
   backend-scheduler:
-    container_name: backend-scheduler
+    container_name: "${COMPOSER_PROJECT_NAME}_scheduler"
     restart: unless-stopped
     env_file:
       - ./web/.env
@@ -65,7 +65,7 @@ services:
       - database
 
   database:
-    container_name: database
+    container_name: "${COMPOSER_PROJECT_NAME}_database"
     image: mariadb:latest
     restart: unless-stopped
     ports:
@@ -80,7 +80,7 @@ services:
       - app-network
 
   redis:
-    container_name: redis
+    container_name: "${COMPOSER_PROJECT_NAME}_redis"
     image: redis:latest
     restart: unless-stopped
     networks:

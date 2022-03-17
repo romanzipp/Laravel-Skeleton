@@ -20,16 +20,16 @@ Example:
 ### ~/.aws/credentials
 
 ```
-[my_project]
-aws_access_key_id = ****
-aws_secret_access_key = ****
+[<PROFILE>]
+aws_access_key_id=***
+aws_secret_access_key=***
 ```
 
 ### ~/.aws/config
 
 ```
-[profile my_project]
-region = <REGION>
+[profile <PROFILE>]
+region=<REGION>
 ```
 
 ### Authenticate for Docker
@@ -40,6 +40,8 @@ aws ecr get-login-password --profile <PROFILE> | docker login --username AWS --p
 
 - Replace (or remove) `<PROFILE>`
 - Replace `<URL>` with your ECR URL (`<ID>.dkr.ecr.<REGION>.amazonaws.com`)
+
+If you get a `Error response from daemon: login attempt to ... failed with status: 400 Bad Request` you propably entered the wrong region.
 
 ## Directory structure
 

@@ -16,7 +16,7 @@ services:
     networks:
       - app-network
 
-  backend-queue:
+  queue:
     image: "${REPOSITORY_URL}/queue:role-queue"
     restart: unless-stopped
     env_file:
@@ -32,7 +32,7 @@ services:
     depends_on:
       - database
 
-  backend-scheduler:
+  scheduler:
     image: "${REPOSITORY_URL}/scheduler:role-scheduler"
     restart: unless-stopped
     env_file:

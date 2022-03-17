@@ -8,7 +8,7 @@
     
     <meta name="description" content="Domain Driven Laravel Skeleton with strong type hinting">
     
-    <link rel="preload" href="/Laravel-Skeleton/assets/css/0.styles.04e3f63a.css" as="style"><link rel="preload" href="/Laravel-Skeleton/assets/js/app.fec0223c.js" as="script"><link rel="preload" href="/Laravel-Skeleton/assets/js/2.61faf9a8.js" as="script"><link rel="preload" href="/Laravel-Skeleton/assets/js/9.e97596ed.js" as="script"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/10.ce5ec5e0.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/11.39f81bad.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/12.f68f2567.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/13.01b73a91.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/14.07615df2.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/15.1e4d7e82.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/16.4dadc0c6.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/17.6577fe3e.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/18.ec2aa3da.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/19.03dfc986.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/20.94144cc2.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/3.d71e3132.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/7.368ed4f1.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/8.e144bfb2.js">
+    <link rel="preload" href="/Laravel-Skeleton/assets/css/0.styles.04e3f63a.css" as="style"><link rel="preload" href="/Laravel-Skeleton/assets/js/app.0c55696b.js" as="script"><link rel="preload" href="/Laravel-Skeleton/assets/js/2.61faf9a8.js" as="script"><link rel="preload" href="/Laravel-Skeleton/assets/js/9.cc720146.js" as="script"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/10.ca76c5d5.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/11.8bda6f18.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/12.cd62a986.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/13.25216c0c.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/14.2f5c8b70.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/15.31b19dde.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/16.93b7bca3.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/17.967eadea.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/18.1e97cafb.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/19.30b71d9c.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/20.94144cc2.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/3.d71e3132.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/7.368ed4f1.js"><link rel="prefetch" href="/Laravel-Skeleton/assets/js/8.6cd5b240.js">
     <link rel="stylesheet" href="/Laravel-Skeleton/assets/css/0.styles.04e3f63a.css">
   </head>
   <body>
@@ -63,7 +63,7 @@
     <span class="token key atrule">networks</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> app<span class="token punctuation">-</span>network
 
-  <span class="token key atrule">backend-queue</span><span class="token punctuation">:</span>
+  <span class="token key atrule">queue</span><span class="token punctuation">:</span>
     <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">&quot;${REPOSITORY_URL}/queue:role-queue&quot;</span>
     <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
     <span class="token key atrule">env_file</span><span class="token punctuation">:</span>
@@ -79,7 +79,7 @@
     <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> database
 
-  <span class="token key atrule">backend-scheduler</span><span class="token punctuation">:</span>
+  <span class="token key atrule">scheduler</span><span class="token punctuation">:</span>
     <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">&quot;${REPOSITORY_URL}/scheduler:role-scheduler&quot;</span>
     <span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped
     <span class="token key atrule">env_file</span><span class="token punctuation">:</span>
@@ -130,7 +130,7 @@
     <span class="token key atrule">env_file</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> ./web/.env
     <span class="token key atrule">build</span><span class="token punctuation">:</span>
-      <span class="token key atrule">context</span><span class="token punctuation">:</span> /Users/roman/Code/laravel<span class="token punctuation">-</span>skeleton
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> $LOCAL_PROJECT_PATH
       <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> .docker/web/Dockerfile
       <span class="token key atrule">args</span><span class="token punctuation">:</span>
         <span class="token key atrule">NOVA_USERNAME</span><span class="token punctuation">:</span> $NOVA_USERNAME
@@ -150,7 +150,7 @@
     <span class="token key atrule">env_file</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> ./web/.env
     <span class="token key atrule">build</span><span class="token punctuation">:</span>
-      <span class="token key atrule">context</span><span class="token punctuation">:</span> /Users/roman/Code/laravel<span class="token punctuation">-</span>skeleton
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> $LOCAL_PROJECT_PATH
       <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> .docker/queue/Dockerfile
       <span class="token key atrule">args</span><span class="token punctuation">:</span>
         <span class="token key atrule">NOVA_USERNAME</span><span class="token punctuation">:</span> $NOVA_USERNAME
@@ -171,7 +171,7 @@
     <span class="token key atrule">env_file</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> ./web/.env
     <span class="token key atrule">build</span><span class="token punctuation">:</span>
-      <span class="token key atrule">context</span><span class="token punctuation">:</span> /Users/roman/Code/laravel<span class="token punctuation">-</span>skeleton
+      <span class="token key atrule">context</span><span class="token punctuation">:</span> $LOCAL_PROJECT_PATH
       <span class="token key atrule">dockerfile</span><span class="token punctuation">:</span> .docker/scheduler/Dockerfile
       <span class="token key atrule">args</span><span class="token punctuation">:</span>
         <span class="token key atrule">NOVA_USERNAME</span><span class="token punctuation">:</span> $NOVA_USERNAME
@@ -220,6 +220,6 @@
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/Laravel-Skeleton/assets/js/app.fec0223c.js" defer></script><script src="/Laravel-Skeleton/assets/js/2.61faf9a8.js" defer></script><script src="/Laravel-Skeleton/assets/js/9.e97596ed.js" defer></script>
+    <script src="/Laravel-Skeleton/assets/js/app.0c55696b.js" defer></script><script src="/Laravel-Skeleton/assets/js/2.61faf9a8.js" defer></script><script src="/Laravel-Skeleton/assets/js/9.cc720146.js" defer></script>
   </body>
 </html>

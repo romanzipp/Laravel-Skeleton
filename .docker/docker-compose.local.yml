@@ -6,7 +6,7 @@ services:
     env_file:
       - ./web/.env
     build:
-      context: /Users/roman/Code/laravel-skeleton
+      context: $LOCAL_PROJECT_PATH
       dockerfile: .docker/web/Dockerfile
       args:
         NOVA_USERNAME: $NOVA_USERNAME
@@ -26,7 +26,7 @@ services:
     env_file:
       - ./web/.env
     build:
-      context: /Users/roman/Code/laravel-skeleton
+      context: $LOCAL_PROJECT_PATH
       dockerfile: .docker/queue/Dockerfile
       args:
         NOVA_USERNAME: $NOVA_USERNAME
@@ -47,7 +47,7 @@ services:
     env_file:
       - ./web/.env
     build:
-      context: /Users/roman/Code/laravel-skeleton
+      context: $LOCAL_PROJECT_PATH
       dockerfile: .docker/scheduler/Dockerfile
       args:
         NOVA_USERNAME: $NOVA_USERNAME

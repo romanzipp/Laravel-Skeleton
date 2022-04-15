@@ -3,12 +3,13 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Support\Enums\TableName;
 
 class CreateMediaTable extends Migration
 {
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create(TableName::SUPPORT_MEDIA, function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->uuidMorphs('model');

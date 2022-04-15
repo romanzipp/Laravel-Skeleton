@@ -63,4 +63,5 @@ return [
         ],
     ],
 
+    'first_party_clients' => array_map('intval', explode(',', env('PASSPORT_FIRST_PARTY_CLIENTS'), '')),
 ];

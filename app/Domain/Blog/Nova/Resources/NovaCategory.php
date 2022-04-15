@@ -4,10 +4,10 @@ namespace Domain\Blog\Nova\Resources;
 
 use App\Nova\Resources\AbstractNovaResource;
 use Domain\Blog\Models\Category;
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class NovaCategory extends AbstractNovaResource
 {
@@ -26,7 +26,7 @@ class NovaCategory extends AbstractNovaResource
      */
     public $resource;
 
-    public function fields(Request $request): array
+    public function fields(NovaRequest $request): array
     {
         $table = self::getTableName();
 

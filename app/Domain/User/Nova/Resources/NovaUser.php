@@ -4,11 +4,10 @@ namespace Domain\User\Nova\Resources;
 
 use App\Nova\Resources\AbstractNovaResource;
 use Domain\User\Models\User;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class NovaUser extends AbstractNovaResource
 {
@@ -37,14 +36,12 @@ class NovaUser extends AbstractNovaResource
         return 'User';
     }
 
-    public function fields(Request $request): array
+    public function fields(NovaRequest $request): array
     {
         $table = self::getTableName();
 
         return [
             ID::make()->sortable(),
-
-            Images::make('Avatar'),
 
             Text::make('Name')
                 ->sortable()

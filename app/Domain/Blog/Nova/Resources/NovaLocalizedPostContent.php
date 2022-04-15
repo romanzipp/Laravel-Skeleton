@@ -5,12 +5,12 @@ namespace Domain\Blog\Nova\Resources;
 use App\Nova\Resources\AbstractNovaResource;
 use Domain\Blog\Enums\Language;
 use Domain\Blog\Models\LocalizedPostContent;
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class NovaLocalizedPostContent extends AbstractNovaResource
 {
@@ -31,7 +31,7 @@ class NovaLocalizedPostContent extends AbstractNovaResource
      */
     public $resource;
 
-    public function fields(Request $request): array
+    public function fields(NovaRequest $request): array
     {
         return [
             ID::make()->sortable(),

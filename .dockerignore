@@ -1,8 +1,21 @@
-storage/app/public/
+# Git
+.git/
+*/**/.git
+.github/
+.gitignore
+
+# Docker
+.dockerignore
+
+# Vendor
 node_modules/
 vendor/
-.dockerignore
-.git
-.gitignore
+
+# Logs
+*/**/*.log
+
+# App
+tests/
+storage/app/public/
 .env
 .env.example

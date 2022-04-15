@@ -3,7 +3,6 @@
 namespace App\Nova\Resources;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource;
 use RuntimeException;
@@ -14,7 +13,7 @@ abstract class AbstractNovaResource extends Resource
 
     public static int $sidebarOrder = 0;
 
-    abstract public function fields(Request $request): array;
+    abstract public function fields(NovaRequest $request): array;
 
     public static function label()
     {

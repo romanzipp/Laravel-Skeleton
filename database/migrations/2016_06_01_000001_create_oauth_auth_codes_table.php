@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Support\Enums\TableName;
 
-return new class extends Migration
-{
+return new class() extends Migration {
     /**
      * The database schema.
      *

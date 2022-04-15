@@ -5,8 +5,6 @@ namespace Domain\Blog\Nova\Resources;
 use App\Nova\Resources\AbstractNovaResource;
 use Domain\Blog\Models\Post;
 use Domain\User\Nova\Resources\NovaUser;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Code;
@@ -15,6 +13,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
 
 class NovaPost extends AbstractNovaResource
@@ -34,7 +33,7 @@ class NovaPost extends AbstractNovaResource
      */
     public $resource;
 
-    public function fields(Request $request): array
+    public function fields(NovaRequest $request): array
     {
         $table = self::getTableName();
 
@@ -58,8 +57,6 @@ class NovaPost extends AbstractNovaResource
 
             DateTime::make('Published at'),
             DateTime::make('Created at'),
-
-            Images::make('Thumbnail'),
 
             ...$this->contentFields(),
 

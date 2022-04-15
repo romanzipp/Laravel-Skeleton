@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Nova\Dashboards\Main;
 use Domain\User\Actions\CreateUser;
 use Domain\User\Data\CreateUserData;
 use Illuminate\Support\Facades\Hash;
@@ -46,6 +47,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             ->withAuthenticationRoutes()
             ->withPasswordResetRoutes()
             ->register();
+    }
+
+    protected function dashboards()
+    {
+        return [
+            new Main(),
+        ];
     }
 
     protected function resources()

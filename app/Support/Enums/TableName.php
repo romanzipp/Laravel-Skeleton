@@ -8,6 +8,7 @@ class TableName extends AbstractEnum
     public const SUPPORT_FAILED_JOBS = 'support-failed_jobs';
     public const SUPPORT_MEDIA = 'support-media';
     public const SUPPORT_QUEUE_MONITOR = 'support-queue_monitor';
+    public const SUPPORT_PREVIOUSLY_DELETED_ATTRIBUTES = 'support-previously_deleted_attributes';
 
     public const OAUTH_AUTH_CODES = 'oauth__auth_codes';
     public const OAUTH_ACCESS_TOKENS = 'oauth__access_tokens';

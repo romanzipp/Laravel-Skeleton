@@ -1,11 +1,5 @@
 <?php
 
-use Laravel\Nova\Actions\ActionResource;
-use Laravel\Nova\Http\Middleware\Authenticate;
-use Laravel\Nova\Http\Middleware\Authorize;
-use Laravel\Nova\Http\Middleware\BootTools;
-use Laravel\Nova\Http\Middleware\DispatchServingNovaEvent;
-
 return [
     /*
     |--------------------------------------------------------------------------
@@ -98,10 +92,15 @@ return [
 
     'middleware' => [
         'web',
-        Authenticate::class,
-        DispatchServingNovaEvent::class,
-        BootTools::class,
-        Authorize::class,
+        Laravel\Nova\Http\Middleware\HandleInertiaRequests::class,
+        Laravel\Nova\Http\Middleware\DispatchServingNovaEvent::class,
+        Laravel\Nova\Http\Middleware\BootTools::class,
+    ],
+
+    'api_middleware' => [
+        'nova',
+        Laravel\Nova\Http\Middleware\Authenticate::class,
+        Laravel\Nova\Http\Middleware\Authorize::class,
     ],
 
     /*
@@ -129,7 +128,7 @@ return [
     */
 
     'actions' => [
-        'resource' => ActionResource::class,
+        'resource' => Laravel\Nova\Actions\ActionResource::class,
     ],
 
     /*
@@ -144,4 +143,38 @@ return [
     */
 
     'currency' => 'USD',
+
+    /*
+     |--------------------------------------------------------------------------
+     | Branding
+     |--------------------------------------------------------------------------
+     |
+     | These configuration values allow you to customize the branding of the
+     | Nova interface, including the primary color and the logo that will
+     | be displayed within the Nova interface. This logo value must be
+     | the absolute path to an SVG logo within the local filesystem.
+     |
+     */
+
+    'brand' => [
+        // 'logo' => '',
+        // 'colors' => [
+        //     '400' => '',
+        //     '500' => '',
+        //     '600' => '',
+        // ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Nova Storage Disk
+    |--------------------------------------------------------------------------
+    |
+    | This configuration option allows you to define the default disk that
+    | will be used to store files using the Image, File, and other file
+    | related field types. You're welcome to use any configured disk.
+    |
+     */
+
+    'storage_disk' => 'nova',
 ];

@@ -2,10 +2,11 @@
 
 namespace Support\Vendor\Passport;
 
-use Laravel\Passport\Client as BaseClient;
+use Laravel\Passport\Client;
+use Support\Enums\TableName;
 
 /**
- * @property int $id
+ * @property string $id
  * @property int|null $user_id
  * @property string $name
  * @property string|null $secret
@@ -18,8 +19,10 @@ use Laravel\Passport\Client as BaseClient;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property mixed $plain_secret
  */
-class PassportClient extends BaseClient
+class PassportClient extends Client
 {
+    protected $table = TableName::OAUTH_CLIENTS;
+
     /**
      * Determine if the client should skip the authorization prompt.
      *

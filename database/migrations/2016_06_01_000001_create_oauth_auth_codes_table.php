@@ -32,7 +32,7 @@ return new class() extends Migration {
     {
         $this->schema->create(TableName::OAUTH_AUTH_CODES, function (Blueprint $table) {
             $table->string('id', 100)->primary();
-            $table->unsignedBigInteger('user_id')->index();
+            $table->uuid('user_id')->index();
             $table->uuid('client_id');
             $table->text('scopes')->nullable();
             $table->boolean('revoked');

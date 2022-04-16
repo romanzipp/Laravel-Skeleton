@@ -32,7 +32,7 @@ return new class() extends Migration {
     {
         $this->schema->create(TableName::OAUTH_ACCESS_TOKENS, function (Blueprint $table) {
             $table->string('id', 100)->primary();
-            $table->unsignedBigInteger('user_id')->nullable()->index();
+            $table->uuid('user_id')->nullable()->index();
             $table->uuid('client_id');
             $table->string('name')->nullable();
             $table->text('scopes')->nullable();

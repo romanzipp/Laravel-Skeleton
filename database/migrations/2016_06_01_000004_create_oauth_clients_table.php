@@ -42,7 +42,7 @@ return new class() extends Migration {
     {
         $this->schema->create(TableName::OAUTH_CLIENTS, function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->unsignedBigInteger('user_id')->nullable()->index();
+            $table->uuid('user_id')->nullable()->index();
             $table->string('name');
             $table->string('secret', 100)->nullable();
             $table->string('provider')->nullable();

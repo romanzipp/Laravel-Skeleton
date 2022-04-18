@@ -81,4 +81,4 @@ RUN chown -R www-data:www-data /app
 RUN php artisan storage:link
 
 EXPOSE 80
-CMD ["sh", ".docker/web/start.sh"]
+CMD ["sh", "run/web.sh"]

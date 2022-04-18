@@ -21,39 +21,36 @@ docker run --name web \
   web
 ```
 
-### queue
+### cli
 
-The `queue` container will run the `artisan queue:work` command. An additional `QUEUE` environment variable can be passed to configure the queue name.
+The `cli` container will run any command provided by the `command` argument. By default the `run/scheduler.sh` script will be executed. `artisan queue:work` command. 
 
 ```shell
-docker build -t queue . \
+docker build -t cli . \
   -f .docker/queue/Dockerfile \
   --build-arg "NOVA_USERNAME=" \
   --build-arg "NOVA_PASSWORD="
 ```
 
+#### Run cli as scheduler
+
 ```shell
-docker run --name queue \
+docker run --name cli \
+  -v "$(pwd)/.env:/app/.env" \
+  queue \
+  run/scheduler.sh
+```
+
+#### Run cli as queue
+
+An additional `QUEUE` environment variable can be passed to configure the queue name.
+
+```shell
+docker run --name cli \
   -v "$(pwd)/.env:/app/.env" \
   -e QUEUE=default \
-  queue
-```
-
-### scheduler
-
-The `scheduler` container will execute the `artisan schedule:run` command every 60 seconds. This replaces a cron-based setup.
-
-```shell
-docker build -t scheduler . \
-  -f .docker/scheduler/Dockerfile \
-  --build-arg "NOVA_USERNAME=" \
-  --build-arg "NOVA_PASSWORD="
-```
-
-```shell
-docker run --name scheduler \
-  -v "$(pwd)/.env:/app/.env" \
-  scheduler
+  cli \
+  run/queue.sh
 ```
 
 ## Docker Compose

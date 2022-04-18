@@ -56,4 +56,4 @@ RUN composer dump-autoload --optimize
 RUN chown -R www-data:www-data /app
 RUN php artisan storage:link
 
-CMD ["sh", ".docker/scheduler/start.sh"]
+CMD ["sh", "run/scheduler.sh"]

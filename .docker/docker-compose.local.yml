@@ -22,6 +22,7 @@ services:
       - app-network
 
   queue:
+    command: ["sh", "run/queue.sh"]
     restart: unless-stopped
     env_file:
       - ./web/.env
@@ -43,6 +44,7 @@ services:
       - database
 
   scheduler:
+    command: ["sh", "run/scheduler.sh"]
     restart: unless-stopped
     env_file:
       - ./web/.env

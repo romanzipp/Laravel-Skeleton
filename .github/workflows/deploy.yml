@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        role: [ web, queue, scheduler ]
+        role: [ web, cli ]
 
     steps:
       - name: Checkout repository

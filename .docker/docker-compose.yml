@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web:
-    image: "${REPOSITORY_URL}/web:role-web"
+    image: "${REPOSITORY_URL}/web:latest"
     restart: unless-stopped
     env_file:
       - ./web/.env
@@ -17,7 +17,8 @@ services:
       - app-network
 
   queue:
-    image: "${REPOSITORY_URL}/queue:role-queue"
+    image: "${REPOSITORY_URL}/cli:latest"
+    command: ["sh", "run/queue.sh"]
     restart: unless-stopped
     env_file:
       - ./web/.env
@@ -33,7 +34,8 @@ services:
       - database
 
   scheduler:
-    image: "${REPOSITORY_URL}/scheduler:role-scheduler"
+    image: "${REPOSITORY_URL}/cli:latest"
+    command: ["sh", "run/scheduler.sh"]
     restart: unless-stopped
     env_file:
       - ./web/.env

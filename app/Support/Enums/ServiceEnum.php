@@ -11,27 +11,14 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
 
     public const APPLE = 0;
     public const GOOGLE = 1;
-
-    public static function findFromSocialiteServiceName(string $serviceName): ?self
-    {
-        foreach (self::values() as $service) {
-            if ( ! $service->canBeUsedForLogin()) {
-                continue;
-            }
-
-            if ($service->getSocialiteServiceName() === $serviceName) {
-                return $service;
-            }
-        }
-
-        return null;
-    }
+    public const TWITTER = 2;
 
     public function getTitle(): string
     {
         return match ($this->getValue()) {
             self::APPLE => 'Apple',
             self::GOOGLE => 'Google',
+            self::TWITTER => 'Twitter',
         };
     }
 
@@ -40,6 +27,7 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
         return match ($this->getValue()) {
             self::APPLE => 'apple',
             self::GOOGLE => 'google',
+            self::TWITTER => 'google',
         };
     }
 
@@ -48,6 +36,7 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
         return match ($this->getValue()) {
             self::APPLE => true,
             self::GOOGLE => true,
+            self::TWITTER => true,
             default => false
         };
     }
@@ -56,7 +45,8 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
     {
         return match ($this->getValue()) {
             self::APPLE => [0, 0, 0, 1],
-            self::GOOGLE => [360, 100, 50, 1],
+            self::GOOGLE => [5, 81, 56, 1],
+            self::TWITTER => [203, 89, 53, 1],
         };
     }
 
@@ -75,6 +65,7 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
         return match ($this->getValue()) {
             self::APPLE => null,
             self::GOOGLE => null,
+            self::TWITTER => 'https://twitter.com/{name}',
             default => null
         };
     }
@@ -84,6 +75,22 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
         return match ($this->getValue()) {
             self::APPLE => 'apple',
             self::GOOGLE => 'google',
+            default => strtolower($this->getTitle())
         };
+    }
+
+    public static function findFromSocialiteServiceName(string $serviceName): ?self
+    {
+        foreach (self::values() as $service) {
+            if ( ! $service->canBeUsedForLogin()) {
+                continue;
+            }
+
+            if ($service->getSocialiteServiceName() === $serviceName) {
+                return $service;
+            }
+        }
+
+        return null;
     }
 }

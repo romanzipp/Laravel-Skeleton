@@ -10,7 +10,14 @@ config:
   xdebug: false
 services:
   database:
-    type: mariadb
+    type: mariadb:10.6
+    portforward: true
+    creds:
+      user: web
+      password: ""
+      database: skeleton
+  database_testing:
+    type: mariadb:10.6
     portforward: true
     creds:
       user: web

@@ -1,67 +1,23 @@
-name: Deploy
+name: "Deploy"
 
 on: [ workflow_dispatch ]
 
-env:
-  ENVIRONMENT: production
-  REPOSITORY_PREFIX: skeleton
-
 jobs:
   build:
-    name: "Build ${{ matrix.role }}"
-    runs-on: ubuntu-latest
+    name: Build
+    uses: PietSmietde/Actions/.github/workflows/docker-build-push.yml@main
     strategy:
       matrix:
-        role: [ web, cli ]
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          images: ${{ steps.login-ecr.outputs.registry }}/${{ env.REPOSITORY_PREFIX }}/${{ matrix.role }}
-          tags: |
-            type=raw,value=${{ env.ENVIRONMENT }},prefix=env-
-            type=ref,event=branch,prefix=branch-
-            type=ref,event=pr,prefix=pr-
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-          github-token: ${{ github.token }}
-
-      - name: Login to ECR
-        uses: docker/login-action@v1
-        with:
-          registry: ${{ steps.login-ecr.outputs.registry }}
-          username: ${{ secrets.AWS_ACCESS_KEY }}
-          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ".docker/${{ matrix.role }}/Dockerfile"
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          build-args: |
-            NOVA_USERNAME=${{ secrets.NOVA_USERNAME }}
-            NOVA_LICENSE_KEY=${{ secrets.NOVA_LICENSE_KEY }}
+        target: [ web, cli ]
+    with:
+      environment: development
+      repository: streamfinity/${{ matrix.target }}
+      dockerfile: .docker/${{ matrix.target }}/Dockerfile
+    secrets:
+      docker-build-args: |
+        NOVA_USERNAME=${{ secrets.NOVA_USERNAME }}
+        NOVA_PASSWORD=${{ secrets.NOVA_PASSWORD }}
+        NPM_TOKEN=${{ secrets.NPM_TOKEN }}
+      aws-region: ${{ secrets.AWS_REGION }}
+      aws-access-key: ${{ secrets.AWS_ACCESS_KEY }}
+      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

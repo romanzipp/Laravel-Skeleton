@@ -8,6 +8,7 @@ This is a very **opinionated** modified version of the Laravel framework which a
 
 ## Features
 
+- **Domain driven** Laravel architecture
 - **Strong type hinting** and actual IDE support (without plugins 🤨)
 - Ready-to-go installation of [**Laravel Nova**](https://nova.laravel.com/)
 - Fully featured **OAuth authentication**

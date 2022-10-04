@@ -22,9 +22,6 @@ class NovaAccount extends AbstractNovaResource
     public function fields(NovaRequest $request): array
     {
         return [
-            Text::make('Name'),
-            Text::make('Display Name'),
-
             NovaColoredEnumField::make('Service', 'service', ServiceEnum::class)->exceptOnForms(),
             NovaEnumSelect::make('Service', 'service', ServiceEnum::class)->required()->onlyOnForms(),
 

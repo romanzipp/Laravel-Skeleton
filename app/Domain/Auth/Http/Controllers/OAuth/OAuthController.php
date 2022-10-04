@@ -7,7 +7,6 @@ use Domain\User\Actions\CreateUser;
 use Domain\User\Data\UserData;
 use Domain\User\Models\Account;
 use Domain\User\Models\User;
-use Domain\User\Repositories\AccountRepository;
 use Domain\User\Repositories\UserRepository;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Auth\Events\Registered;
@@ -16,7 +15,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\In;
 use InvalidArgumentException;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
@@ -213,38 +211,18 @@ class OAuthController
         return $user;
     }
 
-    private static function generateUsername(string $name): string
-    {
-        if (empty($name)) {
-            $name = 'anonymous';
-        }
-
-        do {
-            $i = isset($i) ? ++$i : 0;
-            $findName = $name . (0 !== $i ? $i : '');
-        } while (null !== AccountRepository::make()->findByName($findName));
-
-        return $findName;
-    }
-
     private static function createSocialAccount(ServiceEnum $serviceEnum, User $user, SocialiteUser $socialiteUser, bool $initial = true): Account
     {
-        $name = self::generateUsername(
-            Str::slug($displayName = $socialiteUser->getNickname() ?: $socialiteUser->getName())
-        );
-
         /** @var \Domain\User\Models\Account|null $account */
         $account = $user
             ->accounts()
             ->save(
                 new Account([
                     'service_user_id' => $socialiteUser->getId(),
-                    'service_user_name' => $displayName,
+                    'service_user_name' => $socialiteUser->getNickname() ?: $socialiteUser->getName(),
                     'service' => $serviceEnum,
                     'access_token' => $socialiteUser->token, /** @phpstan-ignore-line */
                     'refresh_token' => $socialiteUser->refreshToken ?? null,
-                    'name' => $name,
-                    'display_name' => $displayName,
                 ])
             );
 

@@ -20,6 +20,10 @@ final class UserResource extends AbstractResource
                 fn () => new MediaResource($user->getFirstMedia('avatar'), 'crop')
             ),
 
+            'accounts' => AccountResource::collection(
+                $this->whenLoaded('accounts')
+            ),
+
             $this->withDates(),
         ];
     }

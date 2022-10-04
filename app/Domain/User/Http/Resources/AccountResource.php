@@ -15,8 +15,6 @@ final class AccountResource extends AbstractResource
 
         return [
             'id' => $account->id,
-            'name' => $account->name,
-            'display_name' => $account->display_name,
 
             'service' => new ServiceEnumResource($account->getService()),
 

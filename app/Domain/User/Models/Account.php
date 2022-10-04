@@ -15,8 +15,6 @@ use Support\Models\AbstractModel;
 
 /**
  * @property string $id
- * @property string $name
- * @property string $display_name
  * @property string|null $user_id
  * @property int $service
  * @property string $service_user_id

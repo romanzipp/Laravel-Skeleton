@@ -11,9 +11,6 @@ return new class() extends Migration {
         Schema::create(TableName::USER_ACCOUNTS, function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->string('name')->unique()->index();
-            $table->string('display_name');
-
             $table->uuid('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on(TableName::USER_USERS)->cascadeOnDelete();
 

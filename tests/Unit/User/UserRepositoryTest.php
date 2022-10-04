@@ -4,12 +4,12 @@ namespace Tests\Unit\User;
 
 use Domain\User\Models\User;
 use Domain\User\Repositories\UserRepository;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class UserRepositoryTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function testFindUserById()
     {

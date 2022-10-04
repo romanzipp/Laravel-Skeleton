@@ -242,7 +242,7 @@ class OAuthController
                     'service_user_name' => $displayName,
                     'service' => $serviceEnum,
                     'access_token' => $socialiteUser->token, /** @phpstan-ignore-line */
-                    'refresh_token' => $socialiteUser->refreshToken ?? null, /** @phpstan-ignore-line */
+                    'refresh_token' => $socialiteUser->refreshToken ?? null,
                     'name' => $name,
                     'display_name' => $displayName,
                 ])

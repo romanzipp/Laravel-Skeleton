@@ -1,8 +1,8 @@
-/node_modules
-/public/hot
-/public/storage
-/storage/*.key
-/vendor
+node_modules
+public/hot
+public/storage
+storage/*.key
+vendor
 .env
 .env.backup
 .phpunit.result.cache
@@ -15,8 +15,11 @@ docs/.vuepress/dist/
 docs/node_modules
 
 storage/logs/*.log
+storage/passport
+storage/media-library
 public/js/*.js
 public/css/*.css
+public/css/files
 public/**/*LICENSE*
 public/*manifest*.json
 .idea/

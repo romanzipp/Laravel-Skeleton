@@ -10,3 +10,5 @@ mix.sass('resources/sass/app.scss', 'public/css')
        processCssUrls: false,
        postCss: [tailwindcss('./tailwind.config.js')],
    });
+
+mix.copyDirectory('node_modules/@fontsource/inter/files', 'public/css/files');

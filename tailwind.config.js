@@ -1,4 +1,6 @@
-const form = require('./resources/js/tailwind/form');
+const colors = require('tailwindcss/colors');
+const forms = require('@tailwindcss/forms');
+const typography = require('@tailwindcss/typography');
 const button = require('./resources/js/tailwind/button');
 
 module.exports = {
@@ -8,12 +10,18 @@ module.exports = {
         './resources/**/*.vue',
     ],
     theme: {
-        extend: { },
+        extend: {
+            colors: {
+                primary: colors.blue,
+            },
+        },
     },
     variants: {},
     plugins: [
-        require('@tailwindcss/typography'),
-        form,
+        forms({
+            strategy: 'class',
+        }),
         button,
+        typography,
     ],
 };

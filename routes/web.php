@@ -10,6 +10,13 @@ Route::prefix('blog')->group(function () {
 });
 
 Route::prefix('auth')->group(function () {
+    Route::prefix('oauth')->group(function () {
+        Route::prefix('{service}')->group(function () {
+            Route::get('redirect', [\Domain\Auth\Http\Controllers\OAuth\OAuthController::class, 'redirect'])->name('auth.connect.redirect');
+            Route::match(['GET', 'POST'], 'callback', [\Domain\Auth\Http\Controllers\OAuth\OAuthController::class, 'callback'])->name('auth.connect.callback');
+        });
+    });
+
     Route::prefix('login')->middleware(['guest'])->group(function () {
         Route::get('', \Domain\Auth\Http\Controllers\Login\ShowLoginController::class)->name('auth.login.show');
         Route::post('', \Domain\Auth\Http\Controllers\Login\ProcessLoginController::class)->name('auth.login.process');

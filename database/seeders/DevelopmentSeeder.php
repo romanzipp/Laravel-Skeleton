@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Domain\User\Actions\CreateUser;
-use Domain\User\Data\CreateUserData;
 use Domain\User\Data\UserData;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;

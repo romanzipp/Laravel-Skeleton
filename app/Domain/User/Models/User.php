@@ -12,6 +12,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Image\Manipulations;
@@ -33,6 +34,10 @@ use Support\Models\AbstractModel;
  * @property \Illuminate\Support\Carbon|null $terms_accepted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Database\Eloquent\Collection|\Domain\User\Models\Account[] $accounts
+ * @property int|null $accounts_count
+ * @property \Illuminate\Database\Eloquent\Collection|\Support\Vendor\MediaLibrary\Media[] $media
+ * @property int|null $media_count
  */
 final class User extends AbstractModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, HasMedia
 {
@@ -55,6 +60,17 @@ final class User extends AbstractModel implements AuthenticatableContract, Autho
         'email_verified_at',
         'terms_accepted_at',
     ];
+
+    /*
+     *--------------------------------------------------------------------------
+     * Relations
+     *--------------------------------------------------------------------------
+     */
+
+    public function accounts(): HasMany
+    {
+        return $this->hasMany(Account::class);
+    }
 
     /*
      *--------------------------------------------------------------------------

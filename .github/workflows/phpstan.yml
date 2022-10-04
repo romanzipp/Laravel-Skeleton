@@ -15,7 +15,7 @@ jobs:
           coverage: none
 
       - name: Authenticate composer
-        run: composer config http-basic.nova.laravel.com ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_PASSWORD }}
+        run: composer config http-basic.nova.laravel.com ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_LICENSE_KEY }}
 
       - name: Install dependencies
         run: composer install --no-interaction --no-scripts --no-progress --prefer-dist

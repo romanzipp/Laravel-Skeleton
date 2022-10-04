@@ -10,7 +10,7 @@ The `web` container comes with nginx and php8.1-fpm.
 docker build -t web . \
   -f .docker/web/Dockerfile \
   --build-arg "NOVA_USERNAME=" \
-  --build-arg "NOVA_PASSWORD="
+  --build-arg "NOVA_LICENSE_KEY="
 ```
 
 ```shell
@@ -29,7 +29,7 @@ The `cli` container will run any command provided by the `command` argument. By 
 docker build -t cli . \
   -f .docker/queue/Dockerfile \
   --build-arg "NOVA_USERNAME=" \
-  --build-arg "NOVA_PASSWORD="
+  --build-arg "NOVA_LICENSE_KEY="
 ```
 
 #### Run cli as scheduler
@@ -80,7 +80,7 @@ The local docker compose file uses the included Dockerfiles to build and spin up
 
 - `COMPOSE_PROJECT_NAME`
 - `NOVA_USERNAME` Laravel Nova username
-- `NOVA_PASSWORD` Laravel Nova password/API key
+- `NOVA_LICENSE_KEY` Laravel Nova password/API key
 - `DB_ROOT_PASSWORD` Initial root password for database container
 - `DB_DATABASE` Database to be created on startup
 

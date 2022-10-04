@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'passwords' => env('NOVA_PASSWORDS', null),
+    'passwords' => env('NOVA_LICENSE_KEYS', null),
 
     /*
     |--------------------------------------------------------------------------

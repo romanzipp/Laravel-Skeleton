@@ -82,7 +82,7 @@ In order to provide a quick kickstarting there are many generator commands.
 
 #### Laravel Nova
 
-You will need to define your Laravel Nova credentials via the `NOVA_USERNAME` and `NOVA_PASSWORD` GitHub secrets.
+You will need to define your Laravel Nova credentials via the `NOVA_USERNAME` and `NOVA_LICENSE_KEY` GitHub secrets.
 
 ## Tools
 

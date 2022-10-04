@@ -19,7 +19,7 @@ FROM composer:latest AS composer
 FROM ubuntu:latest AS web
 
 ARG NOVA_USERNAME
-ARG NOVA_PASSWORD
+ARG NOVA_LICENSE_KEY
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
@@ -71,7 +71,7 @@ COPY --from=node /app /app
 
 # Install composer dependencies
 
-RUN composer config http-basic.nova.laravel.com $NOVA_USERNAME $NOVA_PASSWORD
+RUN composer config http-basic.nova.laravel.com $NOVA_USERNAME $NOVA_LICENSE_KEY
 RUN composer install --prefer-dist --no-scripts --no-dev
 RUN composer dump-autoload --optimize
 

@@ -43,6 +43,8 @@
                       placeholder="********"
                       :required="true" />
 
+        {{ \romanzipp\Turnstile\Captcha::getChallenge() }}
+
         <div class="my-4">
 
             <button type="submit" class="button button-primary w-full">

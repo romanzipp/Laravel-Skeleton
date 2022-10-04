@@ -26,6 +26,7 @@
         "romanzipp/laravel-previously-deleted": "^1.3",
         "romanzipp/laravel-queue-monitor": "^2.1",
         "romanzipp/laravel-seo": "^2.3",
+        "romanzipp/laravel-turnstile": "^1.1",
         "socialiteproviders/apple": "^5.3",
         "socialiteproviders/google": "^4.1",
         "socialiteproviders/twitter": "^4.1",

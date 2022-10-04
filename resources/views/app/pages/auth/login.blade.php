@@ -37,6 +37,8 @@
 
         @endif
 
+        {{ \romanzipp\Turnstile\Captcha::getChallenge() }}
+
         <div>
             <button type="submit" class="button button-primary w-full">
                 {{ __('Login') }}

@@ -47,3 +47,19 @@ tooling:
   yarn:
     service: appserver
     cmd: yarn
+  ci:
+    service: appserver
+    cmd: |
+      php artisan migrate
+      php artisan model-doc:generate
+      /app/vendor/bin/php-cs-fixer fix
+      /app/vendor/bin/phpstan
+      /app/vendor/bin/phpunit
+  ci-fresh:
+    service: appserver
+    cmd: |
+      php artisan migrate:fresh --seed
+      php artisan model-doc:generate
+      /app/vendor/bin/php-cs-fixer fix
+      /app/vendor/bin/phpstan
+      /app/vendor/bin/phpunit

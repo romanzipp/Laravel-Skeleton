@@ -22,9 +22,19 @@ final class ProcessLoginController extends AbstractController
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            $this->username() => ['required', 'string'],
-            'password' => ['required', 'string'],
-            'cf-turnstile-response' => ['required', 'string', new TurnstileCaptcha()],
+            $this->username() => [
+                'required',
+                'string',
+            ],
+            'password' => [
+                'required',
+                'string',
+            ],
+            'cf-turnstile-response' => config('turnstile.site_key') ? [
+                'required',
+                'string',
+                new TurnstileCaptcha(),
+            ] : [],
         ]);
     }
 }

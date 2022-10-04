@@ -18,6 +18,7 @@ This is a very **opinionated** modified version of the Laravel framework which a
 - **Blog** example components (models, controllers, views, ...)
 - Auto-deploying **Documentation** via [vuepress](https://vuepress.vuejs.org)
 - [Tailwind CSS](https://tailwindcss.com) included
+- [Cloudflare Turnstile](https://blog.cloudflare.com/turnstile-private-captcha-alternative/) CAPTCHA
 
 ## Documentation
 

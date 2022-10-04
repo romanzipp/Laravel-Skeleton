@@ -15,7 +15,9 @@
         }
     </style>
 
-    {{ \romanzipp\Turnstile\Captcha::getScript() }}
+    @if(config('turnstile.site_key'))
+        {{ \romanzipp\Turnstile\Captcha::getScript() }}
+    @endif
 
 </head>
 <body class="frame">

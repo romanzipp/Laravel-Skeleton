@@ -173,7 +173,7 @@ class OAuthController
 
         $socialAccount = self::getExistingAccount($serviceEnum, $socialiteUser);
 
-        if ($socialAccount && ($socialUser = $socialAccount->users->first())) { // TODO where has pivot with "is_initial"
+        if ($socialAccount && ($socialUser = $socialAccount->user)) {
             return $socialUser;
         }
 

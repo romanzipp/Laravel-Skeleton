@@ -23,8 +23,6 @@ final class AccountResource extends AbstractResource
             'service_user_id' => $account->service_user_id,
             'service_user_name' => $account->service_user_name,
 
-            'is_public' => $account->is_public,
-
             'scopes' => $account->scopes,
 
             'user' => new UserResource(

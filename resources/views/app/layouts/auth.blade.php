@@ -22,8 +22,10 @@
 
         <div class="frame-left">
 
-            @if($errors->has('oauth_error'))
-                {{ dump($errors->first('oauth_error')) }}
+            @if(session()->has('oauth_error'))
+                <div class="mb-4 bg-red-100 border border-red-200 rounded-md shadow shadow-red-50 text-sm text-red-700 p-2 leading-normal">
+                    {{ session()->get('oauth_error') }}
+                </div>
             @endif
 
             <main>

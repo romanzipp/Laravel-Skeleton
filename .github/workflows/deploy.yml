@@ -11,7 +11,7 @@ jobs:
         target: [ web, cli ]
     with:
       environment: development
-      repository: streamfinity/${{ matrix.target }}
+      repository: skeleton/${{ matrix.target }}
       dockerfile: .docker/${{ matrix.target }}/Dockerfile
     secrets:
       docker-build-args: |

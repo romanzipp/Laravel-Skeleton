@@ -2,11 +2,19 @@
 
 namespace Domain\User\Data;
 
-use Support\Data\AbstractData;
+use Domain\User\Models\User;
+use romanzipp\LaravelDTO\Attributes\ForModel;
+use romanzipp\LaravelDTO\Attributes\ModelAttribute;
 
-final class UpdateUserData extends AbstractData
+#[ForModel(User::class)]
+final class UpdateUserData extends UserData
 {
-    public ?string $name;
+    #[ModelAttribute('display_name')]
+    public string $displayName;
 
-    public ?string $password;
+    #[ModelAttribute]
+    public string $email;
+
+    #[ModelAttribute]
+    public string $password;
 }

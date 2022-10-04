@@ -4,6 +4,9 @@ namespace Domain\User\Data;
 
 use Support\Data\AbstractData;
 
+/**
+ * @deprecated
+ */
 final class CreateUserData extends AbstractData
 {
     protected static array $required = [

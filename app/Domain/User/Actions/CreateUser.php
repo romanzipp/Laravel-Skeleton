@@ -3,21 +3,18 @@
 namespace Domain\User\Actions;
 
 use Carbon\Carbon;
-use Domain\User\Data\CreateUserData;
+use Domain\User\Data\UserData;
 use Domain\User\Models\User;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\UnreachableUrl;
 
 final class CreateUser
 {
-    public function execute(CreateUserData $data): User
+    public function execute(UserData $data): User
     {
-        $user = new User([
-            'name' => $data->name,
-            'display_name' => $data->isset('displayName') ? $data->displayName : $data->name,
-            'email' => $data->email,
-            'password' => $data->password,
-            'terms_accepted_at' => Carbon::now(),
-        ]);
+        $data->termsAcceptedAt = Carbon::now();
+
+        $user = $data->toModel();
+        $user->save();
 
         try {
             $user

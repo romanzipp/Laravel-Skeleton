@@ -55,7 +55,7 @@ abstract class AbstractResource extends BaseResource
 
         return $this->merge(
             $resource->only(
-                $columns ?? $resource->getDates()
+                $columns ?? array_filter($resource->getDates())
             )
         );
     }

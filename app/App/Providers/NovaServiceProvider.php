@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Nova\Dashboards\Main;
 use Domain\User\Actions\CreateUser;
-use Domain\User\Data\CreateUserData;
+use Domain\User\Data\UserData;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Nova\Actions\ActionResource;
@@ -33,7 +33,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 $command->secret('Password'),
             ];
         }, function ($name, $email, $password) {
-            app(CreateUser::class)->execute(new CreateUserData([
+            app(CreateUser::class)->execute(new UserData([
+                'displayName' => $name,
                 'name' => $name,
                 'email' => $email,
                 'password' => Hash::make($password),

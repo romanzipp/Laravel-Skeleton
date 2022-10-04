@@ -4,6 +4,7 @@ namespace Domain\Auth\Http\Controllers\Register;
 
 use Domain\User\Actions\CreateUser;
 use Domain\User\Data\CreateUserData;
+use Domain\User\Data\UserData;
 use Domain\User\Models\User;
 use Domain\User\Notifications\VerifyEmail;
 use Illuminate\Contracts\Validation\Validator;
@@ -35,7 +36,8 @@ final class ProcessRegisterController extends AbstractController
     protected function create(array $data): User
     {
         return $this->createUser->execute(
-            new CreateUserData([
+            new UserData([
+                'displayName' => $data['name'],
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),

@@ -15,7 +15,6 @@ module.exports = {
                 title: 'Laravel',
                 collapsable: false,
                 children: [
-                    'laravel/nova.md',
                     'laravel/blog.md',
                     'laravel/actions.md',
                     'laravel/data.md',

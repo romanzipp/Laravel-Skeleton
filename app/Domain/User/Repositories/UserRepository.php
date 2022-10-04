@@ -36,4 +36,9 @@ final class UserRepository extends AbstractRepository
     {
         return $this->query->find($id);
     }
+
+    public function findByMail(string $mail): ?User
+    {
+        return $this->query->where('email', $mail)->first();
+    }
 }

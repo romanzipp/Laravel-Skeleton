@@ -28,7 +28,7 @@ use Support\Models\AbstractModel;
  * @property int|null $categories_count
  * @property \Illuminate\Database\Eloquent\Collection|\Domain\Blog\Models\LocalizedPostContent[] $localizedContents
  * @property int|null $localized_contents_count
- * @property \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property \Illuminate\Database\Eloquent\Collection|\Support\Vendor\MediaLibrary\Media[] $media
  * @property int|null $media_count
  */
 class Post extends AbstractModel implements HasMedia

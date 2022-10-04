@@ -3,7 +3,6 @@
 namespace Domain\Auth\Http\Controllers\Register;
 
 use Domain\User\Actions\CreateUser;
-use Domain\User\Data\CreateUserData;
 use Domain\User\Data\UserData;
 use Domain\User\Models\User;
 use Domain\User\Notifications\VerifyEmail;

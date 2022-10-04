@@ -7,7 +7,9 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "lint": "eslint --ext \".js\" --ignore-path .gitignore .",
+        "lint:fix": "yarn lint --fix"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.0",

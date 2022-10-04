@@ -1,4 +1,4 @@
-module.exports = function ({ theme, addComponents }) {
+module.exports = function form({ theme, addComponents }) {
     addComponents({
         '.input': {
             backgroundColor: theme('colors.gray.100'),

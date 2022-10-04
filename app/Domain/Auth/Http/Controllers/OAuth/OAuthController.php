@@ -201,8 +201,8 @@ class OAuthController
         $user = app(CreateUser::class)->execute(
             new UserData([
                 'email' => $socialiteUser->getEmail(),
-                'displayName' => $socialiteUser->getNickname() ?: $socialiteUser->getName(),
-                'name' => $socialiteUser->getNickname() ?: $socialiteUser->getName(),
+                'displayName' => $name = $socialiteUser->getNickname() ?: $socialiteUser->getName(),
+                'name' => User::generateUniqueName($name),
             ])
         );
 

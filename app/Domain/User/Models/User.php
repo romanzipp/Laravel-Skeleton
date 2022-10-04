@@ -5,6 +5,7 @@ namespace Domain\User\Models;
 use Database\Factories\User\UserFactory;
 use DateTimeZone;
 use Domain\User\Notifications\ResetPasswordNotification;
+use Domain\User\Repositories\UserRepository;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -77,6 +78,20 @@ final class User extends AbstractModel implements AuthenticatableContract, Autho
      * Methods
      *--------------------------------------------------------------------------
      */
+
+    public static function generateUniqueName(string $name): string
+    {
+        if (empty($name)) {
+            $name = 'anonymous';
+        }
+
+        do {
+            $i = isset($i) ? ++$i : 0;
+            $findName = $name . (0 !== $i ? $i : '');
+        } while (null !== UserRepository::make()->findByName($findName));
+
+        return $findName;
+    }
 
     protected static function newFactory()
     {

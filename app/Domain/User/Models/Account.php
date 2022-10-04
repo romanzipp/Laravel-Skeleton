@@ -3,7 +3,6 @@
 namespace Domain\User\Models;
 
 use Database\Factories\User\AccountFactory;
-use Domain\User\Repositories\AccountRepository;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Image\Manipulations;
@@ -62,20 +61,6 @@ class Account extends AbstractModel implements HasMedia
      * Methods
      *--------------------------------------------------------------------------
      */
-
-    public static function generateName(string $name): string
-    {
-        if (empty($name)) {
-            $name = 'anonymous';
-        }
-
-        do {
-            $i = isset($i) ? ++$i : 0;
-            $findName = $name . (0 !== $i ? $i : '');
-        } while (null !== AccountRepository::make()->findByName($findName));
-
-        return $findName;
-    }
 
     public function registerMediaCollections(): void
     {

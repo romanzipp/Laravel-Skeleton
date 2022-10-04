@@ -16,7 +16,7 @@ return new class() extends Migration {
             $table->string('name')->unique();
             $table->string('display_name');
 
-            $table->string('password');
+            $table->string('password')->nullable();
 
             $table->string('timezone')->nullable();
 

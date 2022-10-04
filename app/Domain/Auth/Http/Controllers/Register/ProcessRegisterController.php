@@ -73,11 +73,11 @@ final class ProcessRegisterController extends AbstractController
                 'required',
                 'accepted',
             ],
-            'cf-turnstile-response' => [
+            'cf-turnstile-response' => config('turnstile.site_key') ? [
                 'required',
                 'string',
                 new TurnstileCaptcha(),
-            ],
+            ] : [],
         ]);
     }
 

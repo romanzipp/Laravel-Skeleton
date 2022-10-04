@@ -22,6 +22,8 @@ module.exports = {
                     'laravel/enums.md',
                     'laravel/events.md',
                     'laravel/models.md',
+                    'laravel/nova.md',
+                    'laravel/oauth.md',
                     'laravel/repositories.md',
                     'laravel/resources.md',
                     'laravel/table-names.md',

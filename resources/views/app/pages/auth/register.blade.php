@@ -43,7 +43,9 @@
                       placeholder="********"
                       :required="true" />
 
-        {{ \romanzipp\Turnstile\Captcha::getChallenge() }}
+        @if(config('turnstile.site_key'))
+            {{ \romanzipp\Turnstile\Captcha::getChallenge() }}
+        @endif
 
         <div class="my-4">
 

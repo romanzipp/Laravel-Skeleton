@@ -37,7 +37,9 @@
 
         @endif
 
-        {{ \romanzipp\Turnstile\Captcha::getChallenge() }}
+        @if(config('turnstile.site_key'))
+            {{ \romanzipp\Turnstile\Captcha::getChallenge() }}
+        @endif
 
         <div>
             <button type="submit" class="button button-primary w-full">

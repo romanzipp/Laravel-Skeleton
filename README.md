@@ -14,6 +14,7 @@ This is a very **opinionated** modified version of the Laravel framework which a
 - Ready-to-go installation of [**Laravel Nova**](https://nova.laravel.com/)
 - **[Docker](https://www.docker.com) deployment** via [GitHub Actions](https://github.com/features/actions) with separate **Dockerfiles** for web, queues & scheduler + Docker Compose example files
 - [**Lando**](https://lando.dev) config for rapid development setup
+- Fully featured **OAuth authentication**
 - **Blog** example components (models, controllers, views, ...)
 - Auto-deploying **Documentation** via [vuepress](https://vuepress.vuejs.org)
 - [Tailwind CSS](https://tailwindcss.com) included

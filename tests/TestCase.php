@@ -4,9 +4,9 @@ namespace Tests;
 
 use Faker\Generator;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Http\Request;
+use Tests\Support\Repository\RepositoryTestModel;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -36,10 +36,9 @@ abstract class TestCase extends BaseTestCase
 
     protected static function setUpDatabase(Application $app): void
     {
-        $app['db']->connection()->getSchemaBuilder()->create('tests__repository_models', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->timestamps();
-        });
+        $builder = $app['db']->connection()->getSchemaBuilder();
+
+        RepositoryTestModel::migrate($builder);
     }
 
     protected static function assertPropertyExists($object, $property): void

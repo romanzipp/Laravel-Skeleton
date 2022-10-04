@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Support\Enums\TableName;
 
-class CreateMediaTable extends Migration
-{
+return new class() extends Migration {
     public function up()
     {
         Schema::create(TableName::SUPPORT_MEDIA, function (Blueprint $table) {
@@ -31,4 +30,4 @@ class CreateMediaTable extends Migration
             $table->nullableTimestamps();
         });
     }
-}
+};

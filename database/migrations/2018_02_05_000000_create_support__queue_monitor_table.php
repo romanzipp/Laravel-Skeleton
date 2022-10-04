@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQueueMonitorTable extends Migration
-{
+return new class() extends Migration {
     public function up()
     {
         Schema::create(config('queue-monitor.table'), function (Blueprint $table) {
@@ -40,4 +39,4 @@ class CreateQueueMonitorTable extends Migration
     {
         Schema::drop(config('queue-monitor.table'));
     }
-}
+};

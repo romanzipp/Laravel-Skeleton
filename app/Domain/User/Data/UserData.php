@@ -20,6 +20,9 @@ class UserData extends AbstractModelData
     public string $displayName;
 
     #[Required, ModelAttribute]
+    public string $name;
+
+    #[Required, ModelAttribute]
     public string $email;
 
     #[ModelAttribute]

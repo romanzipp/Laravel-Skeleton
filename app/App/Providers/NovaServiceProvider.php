@@ -50,7 +50,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             ->register();
     }
 
-    protected function dashboards()
+    protected function dashboards(): array
     {
         return [
             new Main(),

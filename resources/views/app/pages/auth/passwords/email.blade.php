@@ -1,4 +1,4 @@
-@extends('app.layouts.app')
+@extends('app.layouts.auth')
 
 @section('content')
 
@@ -13,7 +13,7 @@
 
         <div class="my-4">
 
-            <button type="submit" class="button button-blue">
+            <button type="submit" class="button button-primary">
                 {{ __('Send Password Reset Link') }}
             </button>
 

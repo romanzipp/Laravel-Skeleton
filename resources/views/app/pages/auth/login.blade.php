@@ -1,46 +1,52 @@
-@extends('app.layouts.app')
+@extends('app.layouts.auth')
 
 @section('content')
 
-    <h1 class="mb-8 text-3xl">
-        {{ __('Login') }}
+    <h1 class="mb-8 text-4xl font-semibold">
+        {{ __('Sign in') }}
     </h1>
 
-    <form method="post" action="{{ route('auth.login.process') }}">
+    <x-auth.oauth-buttons :services="$oauthServices" />
+
+    <x-spacer>OR</x-spacer>
+
+    <form method="post" action="{{ route('auth.login.process') }}" class="space-y-4">
         @csrf
 
-        <x-form-field type="email" name="email" label="E-Mail Address" autocomplete="email" placeholder="john@doe.com" :required="true" />
+        <x-form-field type="email"
+                      name="email"
+                      label="E-Mail Address"
+                      autocomplete="email"
+                      placeholder="john@doe.com"
+                      :autofocus="true"
+                      :required="true" />
 
-        <x-form-field type="password" name="password" label="Password" autocomplete="current-password" placeholder="********" />
+        <x-form-field type="password"
+                      name="password"
+                      label="Password"
+                      autocomplete="current-password"
+                      placeholder="********" />
 
-        <div class="field checkbox-field my-4">
+        @if (Route::has('auth.password.request'))
 
-            <input type="checkbox"
-                   name="remember"
-                   id="remember" {{ old('remember') ? 'checked' : '' }}>
+            <div class="mt-4">
+                <a class="text-sm text-primary-600 dark:text-primary-500 font-medium" href="{{ route('auth.password.request') }}">
+                    {{ __('Forgot password') }}
+                </a>
+            </div>
 
-            <label for="remember">
-                {{ __('Remember Me') }}
-            </label>
+        @endif
 
-        </div>
-
-        <div class="my-4">
-
-            <button type="submit" class="button button-blue">
+        <div>
+            <button type="submit" class="button button-primary w-full">
                 {{ __('Login') }}
             </button>
-
-            @if (Route::has('auth.password.request'))
-
-                <a class="button button-blue button-secondary" href="{{ route('auth.password.request') }}">
-                    {{ __('Forgot Your Password?') }}
-                </a>
-
-            @endif
-
         </div>
 
     </form>
+
+    <div class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400 font-medium">
+        Don't have an account? <a href="{{ route('auth.register.show') }}" class="text-primary-600 dark:text-primary-500">{{ __('Sign up') }}</a>
+    </div>
 
 @endsection

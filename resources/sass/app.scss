@@ -1,8 +1,29 @@
-@import url('https://rsms.me/inter/inter.css');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import "@fontsource/inter/latin.css";
+@import "@fontsource/inter/variable.css";
 
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
+
+@layer components {
+    @import "frame.css";
+
+    input[type="text"].form-input {
+        @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm;
+    }
+
+    input[type="text"].form-input:focus {
+        @apply border-primary-300 ring ring-primary-500 ring-opacity-30;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        input[type="text"].form-input:focus {
+            @apply border-gray-600 bg-gray-700;
+        }
+
+        input[type="text"].form-input:focus {
+            @apply ring-primary-700 border-primary-700;
+        }
+    }
+
+}

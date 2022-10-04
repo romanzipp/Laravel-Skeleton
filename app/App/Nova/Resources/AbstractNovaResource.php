@@ -55,18 +55,18 @@ abstract class AbstractNovaResource extends Resource
         return $model::getTableName();
     }
 
-    public static function indexQuery(NovaRequest $request, $builder): Builder
+    public static function indexQuery(NovaRequest $request, $query): Builder
     {
-        return $builder;
+        return $query;
     }
 
-    public static function detailQuery(NovaRequest $request, $builder): Builder
+    public static function detailQuery(NovaRequest $request, $query): Builder
     {
-        return parent::detailQuery($request, $builder);
+        return parent::detailQuery($request, $query);
     }
 
-    public static function relatableQuery(NovaRequest $request, $builder): Builder
+    public static function relatableQuery(NovaRequest $request, $query): Builder
     {
-        return parent::relatableQuery($request, $builder);
+        return parent::relatableQuery($request, $query);
     }
 }

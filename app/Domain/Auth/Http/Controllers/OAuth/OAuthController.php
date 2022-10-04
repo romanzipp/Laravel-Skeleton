@@ -117,6 +117,7 @@ class OAuthController
         try {
             /**
              * @var \Laravel\Socialite\Two\User $socialiteUser
+             *
              * @phpstan-ignore-next-line
              */
             $socialiteUser = Socialite::driver($serviceEnum->getSocialiteServiceName())

@@ -69,14 +69,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         foreach ((new Finder())->in(domain_path($domain, 'Nova/Resources'))->files() as $resource) {
             $resource = str_replace(
-                    ['/', '.php'],
-                    ['\\', ''],
-                    Str::after($resource->getPathname(), base_path('app') . DIRECTORY_SEPARATOR)
-                );
+                ['/', '.php'],
+                ['\\', ''],
+                Str::after($resource->getPathname(), base_path('app') . DIRECTORY_SEPARATOR)
+            );
 
             if (is_subclass_of($resource, Resource::class) &&
                 ! (new ReflectionClass($resource))->isAbstract() &&
-                ! (is_subclass_of($resource, ActionResource::class))) {
+                ! is_subclass_of($resource, ActionResource::class)) {
                 $resources[] = $resource;
             }
         }

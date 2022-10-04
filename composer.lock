@@ -10639,16 +10639,16 @@
         },
         {
             "name": "romanzipp/laravel-model-doc",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-Model-Doc.git",
-                "reference": "f057a81626790d3f617ba991350317994d6c6f64"
+                "reference": "d289aa3c35754edc8697cd4775bc96e3d0074eb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-Model-Doc/zipball/f057a81626790d3f617ba991350317994d6c6f64",
-                "reference": "f057a81626790d3f617ba991350317994d6c6f64",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-Model-Doc/zipball/d289aa3c35754edc8697cd4775bc96e3d0074eb6",
+                "reference": "d289aa3c35754edc8697cd4775bc96e3d0074eb6",
                 "shasum": ""
             },
             "require": {
@@ -10692,7 +10692,7 @@
             "description": "Laravel Model PHPDoc Generator",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-Model-Doc/issues",
-                "source": "https://github.com/romanzipp/Laravel-Model-Doc/tree/1.2.2"
+                "source": "https://github.com/romanzipp/Laravel-Model-Doc/tree/1.2.3"
             },
             "funding": [
                 {
@@ -10700,7 +10700,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-05-11T06:17:31+00:00"
+            "time": "2022-10-04T15:10:12+00:00"
         },
         {
             "name": "romanzipp/php-cs-fixer-config",

@@ -7,7 +7,7 @@ use Support\Enums\TableName;
 
 /**
  * @property string $id
- * @property int|null $user_id
+ * @property string|null $user_id
  * @property string $name
  * @property string|null $secret
  * @property string|null $provider

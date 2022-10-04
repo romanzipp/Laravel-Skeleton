@@ -19,7 +19,7 @@ use Support\Models\AbstractModel;
  * @property string $slug
  * @property array|null $tags
  * @property string|null $author_id
- * @property \Carbon\Carbon|null $published_at
+ * @property \Illuminate\Support\Carbon|null $published_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Domain\User\Models\User|null $author

@@ -4,6 +4,7 @@ namespace Domain\User\Nova\Resources;
 
 use App\Nova\Resources\AbstractNovaResource;
 use Domain\User\Models\User;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
@@ -61,6 +62,8 @@ class NovaUser extends AbstractNovaResource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            HasMany::make('Accounts', 'accounts', NovaAccount::class),
         ];
     }
 }

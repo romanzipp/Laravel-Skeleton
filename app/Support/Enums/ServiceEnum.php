@@ -27,7 +27,7 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
         return match ($this->getValue()) {
             self::APPLE => 'apple',
             self::GOOGLE => 'google',
-            self::TWITTER => 'google',
+            self::TWITTER => 'twitter',
         };
     }
 

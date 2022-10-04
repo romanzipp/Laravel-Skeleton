@@ -236,15 +236,13 @@ class OAuthController
         /** @var \Domain\User\Models\Account|null $account */
         $account = $user
             ->accounts()
-            ->withPivotValue('is_initial', $initial)
-            ->withPivotValue('is_active', $initial)
             ->save(
                 new Account([
                     'service_user_id' => $socialiteUser->getId(),
                     'service_user_name' => $displayName,
                     'service' => $serviceEnum,
                     'access_token' => $socialiteUser->token, /** @phpstan-ignore-line */
-                    'refresh_token' => $socialiteUser->refreshToken, /** @phpstan-ignore-line */
+                    'refresh_token' => $socialiteUser->refreshToken ?? null, /** @phpstan-ignore-line */
                     'name' => $name,
                     'display_name' => $displayName,
                 ])

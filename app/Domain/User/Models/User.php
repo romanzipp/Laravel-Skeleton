@@ -28,7 +28,7 @@ use Support\Models\AbstractModel;
  * @property string $email
  * @property string $name
  * @property string $display_name
- * @property string $password
+ * @property string|null $password
  * @property string|null $timezone
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $email_verified_at

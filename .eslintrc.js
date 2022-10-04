@@ -13,6 +13,7 @@ module.exports = {
     },
     rules: {
         indent: ['error', 4],
+        curly: ['error', 'all'],
         'max-len': 'off',
         'no-continue': 'off',
         'no-restricted-syntax': 'off',

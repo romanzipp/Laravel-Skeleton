@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use Illuminate\Validation\Rules\Unique;
 use romanzipp\PreviouslyDeleted\Rules\NotPreviouslyDeleted;
+use romanzipp\Turnstile\Rules\TurnstileCaptcha;
 use Support\Http\Controllers\AbstractController;
 use Throwable;
 
@@ -71,6 +72,11 @@ final class ProcessRegisterController extends AbstractController
             'terms' => [
                 'required',
                 'accepted',
+            ],
+            'cf-turnstile-response' => [
+                'required',
+                'string',
+                new TurnstileCaptcha(),
             ],
         ]);
     }

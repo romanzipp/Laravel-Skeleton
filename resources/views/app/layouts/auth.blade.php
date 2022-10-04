@@ -15,6 +15,8 @@
         }
     </style>
 
+    {{ \romanzipp\Turnstile\Captcha::getScript() }}
+
 </head>
 <body class="frame">
 

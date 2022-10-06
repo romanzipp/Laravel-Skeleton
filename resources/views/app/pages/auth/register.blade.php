@@ -43,6 +43,11 @@
                       placeholder="********"
                       :required="true" />
 
+        <label for="terms">
+            <input id="terms" type="checkbox" name="terms">
+            Accept terms
+        </label>
+
         @if(config('turnstile.site_key'))
             {{ \romanzipp\Turnstile\Captcha::getChallenge() }}
         @endif

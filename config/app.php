@@ -14,6 +14,10 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'version' => ($version = @file_get_contents(base_path('version.txt')))
+        ? trim($version)
+        : env('APP_ENV'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -49,6 +50,7 @@ final class User extends AbstractModel implements AuthenticatableContract, Autho
     use Notifiable;
     use HasFactory;
     use InteractsWithMedia;
+    use HasApiTokens;
 
     protected $table = TableName::USER_USERS;
 

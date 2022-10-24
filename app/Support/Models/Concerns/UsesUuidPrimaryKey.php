@@ -8,4 +8,9 @@ trait UsesUuidPrimaryKey
     {
         return 'id';
     }
+
+    public function resolveUuidVersion(): string
+    {
+        return 'uuid6';
+    }
 }

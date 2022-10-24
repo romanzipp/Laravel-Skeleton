@@ -13,6 +13,7 @@ abstract class AbstractModel extends Eloquent
     use UsesUuidPrimaryKey;
     use GeneratesUuid {
         UsesUuidPrimaryKey::uuidColumn insteadof GeneratesUuid;
+        UsesUuidPrimaryKey::resolveUuidVersion insteadof GeneratesUuid;
     }
 
     public $incrementing = false;

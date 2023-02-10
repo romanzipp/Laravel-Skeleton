@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c583c5fd61fb0e904f094a6cd0c04951",
+    "content-hash": "e2783c656379708673d3913570efe1e8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5312,26 +5312,26 @@
         },
         {
             "name": "romanzipp/laravel-dto",
-            "version": "0.0.14",
+            "version": "0.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romanzipp/Laravel-DTO.git",
-                "reference": "ee0f5d77303e14b15a8b6a03476d3e6d1275dfd7"
+                "reference": "573a7dbbf474ff0c9a7abac50fcaf36cca4910e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romanzipp/Laravel-DTO/zipball/ee0f5d77303e14b15a8b6a03476d3e6d1275dfd7",
-                "reference": "ee0f5d77303e14b15a8b6a03476d3e6d1275dfd7",
+                "url": "https://api.github.com/repos/romanzipp/Laravel-DTO/zipball/573a7dbbf474ff0c9a7abac50fcaf36cca4910e0",
+                "reference": "573a7dbbf474ff0c9a7abac50fcaf36cca4910e0",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": "^8.0",
+                "php": "^8.1",
                 "romanzipp/dto": "^2.3.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
-                "laravel/framework": "^9.7",
+                "laravel/framework": "^9.45",
                 "orchestra/testbench": "^3.8|^4.0|^5.0|^6.0|^7.0",
                 "phpstan/phpstan": "^0.12.99|^1.0",
                 "phpunit/phpunit": "^9.0",
@@ -5357,9 +5357,9 @@
             "description": "A strongly typed Data Transfer Object integration for Laravel",
             "support": {
                 "issues": "https://github.com/romanzipp/Laravel-DTO/issues",
-                "source": "https://github.com/romanzipp/Laravel-DTO/tree/0.0.14"
+                "source": "https://github.com/romanzipp/Laravel-DTO/tree/0.0.15"
             },
-            "time": "2022-05-29T11:58:42+00:00"
+            "time": "2023-02-08T16:42:16+00:00"
         },
         {
             "name": "romanzipp/laravel-previously-deleted",

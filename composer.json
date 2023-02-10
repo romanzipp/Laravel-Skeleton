@@ -22,7 +22,7 @@
         "league/commonmark": "^2.2",
         "myclabs/php-enum": "^1.7",
         "romanzipp/dto": "^2.3",
-        "romanzipp/laravel-dto": "^0.0.14",
+        "romanzipp/laravel-dto": "^0.0.15",
         "romanzipp/laravel-previously-deleted": "^1.3",
         "romanzipp/laravel-queue-monitor": "^2.1",
         "romanzipp/laravel-seo": "^2.3",

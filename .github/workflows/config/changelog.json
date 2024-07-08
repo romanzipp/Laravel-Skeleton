@@ -1,0 +1,45 @@
+{
+    "categories": [
+        {
+            "title": "## Features",
+            "labels": [
+                "pr/feature"
+            ]
+        },
+        {
+            "title": "## Fixes",
+            "labels": [
+                "pr/fix"
+            ]
+        },
+        {
+            "title": "## Changes",
+            "labels": [
+                "pr/enhancement",
+                "pr/refactor",
+                "pr/test"
+            ]
+        },
+        {
+            "title": "## Dependencies",
+            "labels": [
+                "dependencies"
+            ]
+        }
+    ],
+    "ignore_labels": [
+        "ignore"
+    ],
+    "sort": "ASC",
+    "template": "${{CHANGELOG}}",
+    "pr_template": "- **#${{NUMBER}}**: ${{TITLE}}",
+    "empty_template": "- no changes",
+    "transformers": [],
+    "max_tags_to_fetch": 200,
+    "max_pull_requests": 200,
+    "max_back_track_time_days": 365,
+    "exclude_merge_branches": [],
+    "tag_resolver": {
+        "method": "semver"
+    }
+}

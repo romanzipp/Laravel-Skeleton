@@ -25,10 +25,5 @@ class AuthServiceProvider extends ServiceProvider
         );
 
         Passport::loadKeysFrom(storage_path('passport'));
-
-        /** @phpstan-ignore-next-line */
-        if ( ! $this->app->routesAreCached()) {
-            Passport::routes();
-        }
     }
 }

@@ -10,14 +10,12 @@
     "require": {
         "php": "^8.3",
         "ext-json": "*",
-        "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^9.0",
-        "laravel/nova": "^4.0",
-        "laravel/passport": "^10.4",
+        "laravel/framework": "^10.0",
+        "laravel/passport": "^11.0",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0",
+        "laravel/ui": "^4.0",
         "league/commonmark": "^2.2",
         "myclabs/php-enum": "^1.7",
         "romanzipp/dto": "^2.3",
@@ -32,13 +30,13 @@
         "spatie/laravel-medialibrary": "^10.1"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.0",
+        "spatie/laravel-ignition": "^2.0",
         "fakerphp/faker": "^1.16",
         "friendsofphp/php-cs-fixer": "^3.1.0",
         "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^6.1",
+        "nunomaduro/collision": "^7.0",
         "phpstan/phpstan": "^1.0",
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^10.0",
         "romanzipp/laravel-env-normalizer": "^1.0.0",
         "romanzipp/laravel-model-doc": "^1.0.0",
         "romanzipp/php-cs-fixer-config": "^3.0"
@@ -70,7 +68,7 @@
             "Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
         "format": [

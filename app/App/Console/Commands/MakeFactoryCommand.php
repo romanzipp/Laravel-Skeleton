@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
-class MakeFactoryCommand extends AbstractGeneratorCommand
+final class MakeFactoryCommand extends AbstractGeneratorCommand
 {
     protected $name = 'make:factory';
 

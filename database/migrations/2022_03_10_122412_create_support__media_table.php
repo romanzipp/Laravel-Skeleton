@@ -11,9 +11,9 @@ return new class() extends Migration {
         Schema::create(TableName::SUPPORT_MEDIA, function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->uuidMorphs('model');
+            $table->ulidMorphs('model');
 
-            $table->uuid('uuid')->nullable()->unique();
+            $table->ulid('uuid')->nullable()->unique();
             $table->string('collection_name');
             $table->string('name');
             $table->string('file_name');

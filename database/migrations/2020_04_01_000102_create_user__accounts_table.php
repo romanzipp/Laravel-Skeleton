@@ -9,9 +9,9 @@ return new class() extends Migration {
     public function up()
     {
         Schema::create(TableName::USER_ACCOUNTS, function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->ulid('id')->primary();
 
-            $table->uuid('user_id')->nullable();
+            $table->ulid('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on(TableName::USER_USERS)->cascadeOnDelete();
 
             /** @see \Support\Enums\ServiceEnum */

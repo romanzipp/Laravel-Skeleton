@@ -9,13 +9,13 @@ return new class() extends Migration {
     public function up()
     {
         Schema::create(TableName::BLOG_POSTS, function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->ulid('id')->primary();
 
             $table->string('slug')->unique();
 
             $table->json('tags')->nullable();
 
-            $table->uuid('author_id')->nullable();
+            $table->ulid('author_id')->nullable();
             $table->foreign('author_id')->references('id')->on(TableName::USER_USERS)->cascadeOnDelete();
 
             $table->timestamp('published_at')->nullable();

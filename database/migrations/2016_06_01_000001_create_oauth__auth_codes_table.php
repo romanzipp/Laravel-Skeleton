@@ -32,8 +32,8 @@ return new class() extends Migration {
     {
         $this->schema->create(TableName::OAUTH_AUTH_CODES, function (Blueprint $table) {
             $table->string('id', 100)->primary();
-            $table->uuid('user_id')->index();
-            $table->uuid('client_id');
+            $table->ulid('user_id')->index();
+            $table->ulid('client_id');
             $table->text('scopes')->nullable();
             $table->boolean('revoked');
             $table->dateTime('expires_at')->nullable();

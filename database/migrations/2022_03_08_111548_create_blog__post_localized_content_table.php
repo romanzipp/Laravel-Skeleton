@@ -9,7 +9,7 @@ return new class() extends Migration {
     public function up()
     {
         Schema::create(TableName::BLOG_POST_LOCALIZED_CONTENTS, function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->ulid('id')->primary();
 
             $table->string('language')->index();
 
@@ -17,7 +17,7 @@ return new class() extends Migration {
             $table->text('intro');
             $table->longText('content');
 
-            $table->uuid('post_id');
+            $table->ulid('post_id');
             $table->foreign('post_id')->references('id')->on(TableName::BLOG_POSTS)->cascadeOnDelete();
 
             $table->unique(['language', 'post_id']);

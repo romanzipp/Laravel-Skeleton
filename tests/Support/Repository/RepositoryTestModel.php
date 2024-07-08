@@ -17,7 +17,7 @@ class RepositoryTestModel extends AbstractModel
         }
 
         $builder->create('tests__repository_models', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->ulid('id')->primary();
             $table->timestamps();
         });
     }

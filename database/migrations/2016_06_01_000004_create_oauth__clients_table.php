@@ -41,8 +41,8 @@ return new class() extends Migration {
     public function up()
     {
         $this->schema->create(TableName::OAUTH_CLIENTS, function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('user_id')->nullable()->index();
+            $table->ulid('id')->primary();
+            $table->ulid('user_id')->nullable()->index();
             $table->string('name');
             $table->string('secret', 100)->nullable();
             $table->string('provider')->nullable();

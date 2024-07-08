@@ -9,7 +9,7 @@ return new class() extends Migration {
     public function up()
     {
         Schema::create(TableName::TABLE, function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->ulid('id')->primary();
 
             $table->timestamps();
         });

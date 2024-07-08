@@ -31,8 +31,8 @@ return new class() extends Migration {
     public function up()
     {
         $this->schema->create(TableName::OAUTH_PERSONAL_ACCESS_CLIENTS, function (Blueprint $table) {
-            $table->uuid('id');
-            $table->uuid('client_id');
+            $table->ulid('id');
+            $table->ulid('client_id');
             $table->timestamps();
         });
     }

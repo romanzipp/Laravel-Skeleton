@@ -9,10 +9,10 @@ return new class() extends Migration {
     public function up()
     {
         Schema::create(TableName::BLOG_POST_CATEGORIES, function (Blueprint $table) {
-            $table->uuid('post_id');
+            $table->ulid('post_id');
             $table->foreign('post_id')->references('id')->on(TableName::BLOG_POSTS)->cascadeOnDelete();
 
-            $table->uuid('category_id');
+            $table->ulid('category_id');
             $table->foreign('category_id')->references('id')->on(TableName::BLOG_CATEGORIES)->cascadeOnDelete();
 
             $table->unique(['post_id', 'category_id']);

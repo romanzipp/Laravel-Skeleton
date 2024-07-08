@@ -9,7 +9,7 @@ return new class() extends Migration {
     public function up()
     {
         Schema::create(TableName::BLOG_CATEGORIES, function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->ulid('id')->primary();
 
             $table->string('title');
             $table->string('slug')->unique();

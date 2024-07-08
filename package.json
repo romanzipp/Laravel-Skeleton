@@ -1,39 +1,36 @@
 {
     "private": true,
+    "type": "module",
     "scripts": {
         "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
+        "development": "vite",
+        "watch": "vite",
         "prod": "npm run production",
-        "production": "mix --production",
-        "lint": "eslint --ext \".js\" --ignore-path .gitignore .",
-        "lint:fix": "yarn lint --fix"
+        "production": "vite build",
+        "lint": "eslint --ext .js .",
+        "lint:fix": "npm run lint --fix"
     },
     "devDependencies": {
+        "@babel/eslint-parser": "^7.23.3",
+        "@fontsource-variable/inter": "^5.0.17",
+        "@fontsource-variable/red-hat-display": "^5.0.20",
+        "@fontsource/inter": "^4.5.10",
+        "@redocly/cli": "^1.0.0-beta.124",
+        "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/typography": "^0.5.0",
         "axios": "^0.25",
-        "babel-eslint": "^10.1.0",
         "color": "^4.0.1",
-        "cross-env": "^7.0",
         "eslint": "^8.10.0",
         "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-import-resolver-webpack": "^0.13.0",
-        "eslint-loader": "^4.0.2",
         "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-vue": "^8.5.0",
+        "eslint-plugin-tailwindcss": "^3.14.0",
         "laravel-mix": "^6.0.29",
-        "lodash": "^4.17.19",
+        "laravel-vite-plugin": "^1.0.1",
         "postcss": "^8.4.8",
-        "resolve-url-loader": "^4.0.0",
-        "sass": "^1.20.1",
-        "sass-loader": "^12.1.0",
-        "tailwindcss": "^3.0",
-        "webpack": "^5.70.0"
-    },
-    "dependencies": {
-        "@fontsource/inter": "^4.5.13",
-        "@tailwindcss/forms": "^0.5.3"
+        "postcss-nesting": "^12.1.0",
+        "tailwindcss": "^3.4.1",
+        "vite": "^5.0.12",
+        "vite-plugin-eslint": "^1.8.1",
+        "vite-plugin-static-copy": "^1.0.0"
     }
 }

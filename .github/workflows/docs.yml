@@ -16,10 +16,10 @@ jobs:
         with:
           node-version: 14
 
-      - run: yarn install
+      - run: npm
         working-directory: docs
 
-      - run: yarn docs:build
+      - run: npm run docs:build
         working-directory: docs
 
       - name: Deploy

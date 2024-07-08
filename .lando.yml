@@ -47,9 +47,6 @@ tooling:
   npm:
     service: appserver
     cmd: npm
-  yarn:
-    service: appserver
-    cmd: yarn
   ci:
     service: appserver
     cmd: |

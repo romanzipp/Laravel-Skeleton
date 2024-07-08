@@ -1,53 +1,76 @@
 name: Tests
 
-on: [ push, pull_request ]
+on:
+  push:
+    branches: [ '*' ]
 
 jobs:
-  test:
+  build-and-test:
+    name: Build & Run Test Suite
     runs-on: ubuntu-latest
-    name: "PHP ${{ matrix.php }} - ${{ matrix.composer-prefer }}"
-    strategy:
-      fail-fast: false
-      matrix:
-        php: [ 8.3 ]
-        composer-prefer: [ stable ]
     services:
       database:
         image: mariadb:10.6
         env:
-          MYSQL_DATABASE: skeleton
+          MYSQL_DATABASE: web
           MYSQL_USER: web
           MYSQL_PASSWORD: web
           MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306
+        ports: [ 3306 ]
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      redis:
+        image: redis
+        ports: [ 6379 ]
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Container
+        uses: docker/build-push-action@v5
         with:
-          php-version: ${{ matrix.php }}
-          coverage: none
+          tags: cli-tests
+          context: .
+          file: .docker/cli/Dockerfile
+          push: false
+          outputs: type=docker,dest=/tmp/cli.tar
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            VERSION=dev
+            PRODUCTION=false
 
-      - name: Authenticate composer
-        run: composer config http-basic.nova.laravel.com ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_LICENSE_KEY }}
+      - name: Load image
+        run: docker load --input /tmp/cli.tar
 
-      - name: Install dependencies
-        run: composer update --no-interaction --no-scripts --no-progress --prefer-dist --prefer-${{ matrix.composer-prefer }}
+      - name: Run Tests
+        uses: addnab/docker-run-action@v3
+        with:
+          image: cli-tests
+          options: |
+            --add-host=host.docker.internal:host-gateway
+            -e APP_KEY=base64:j5ERGC6iSKfmKXvN+B+FiJdfnNvAhq2SomhdFGNi+5I=
+            -e DB_PORT=${{ job.services.database.ports[3306] }}
+            -e DB_HOST=host.docker.internal
+            -e DB_USERNAME=root
+            -e DB_PASSWORD=root
+            -e DB_DATABASE=web
+            -e REDIS_HOST=host.docker.interal
+            -e REDIS_PORT=${{ job.services.redis.ports[6379] }}
+          run: |
+            php artisan passport:keys
+            php artisan test --parallel
 
-      - name: Generate app key
-        run: |
-          cp .env.example .env
-          php artisan key:generate
+      - name: Run PHPStan
+        uses: addnab/docker-run-action@v3
+        with:
+          image: cli-tests
+          run: vendor/bin/phpstan analyse
 
-      - name: Execute tests
-        run: vendor/bin/phpunit
-        env:
-          DB_PORT: ${{ job.services.database.ports[3306] }}
-          DB_HOST: 127.0.0.1
-          DB_USERNAME: web
-          DB_PASSWORD: web
-          DB_DATABASE: skeleton
-
+      - name: Run PHP-CS-Fixer
+        uses: addnab/docker-run-action@v3
+        with:
+          image: cli-tests
+          run: vendor/bin/php-cs-fixer fix --stop-on-violation --dry-run

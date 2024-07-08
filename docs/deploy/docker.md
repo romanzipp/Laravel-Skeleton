@@ -4,7 +4,7 @@
 
 ### web
 
-The `web` container comes with nginx and php8.1-fpm.
+The `web` container comes with nginx and php8.3-fpm.
 
 ```shell
 docker build -t web . \

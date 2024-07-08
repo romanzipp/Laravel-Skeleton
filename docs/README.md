@@ -20,7 +20,7 @@ See the [app/Domain/User](https://github.com/romanzipp/Laravel-Skeleton/tree/mas
 
 ## Requirements
 
-- [PHP 8.1](https://www.php.net)
+- [PHP 8.3](https://www.php.net)
 - [Composer](https://packagist.org)
 - [Yarn](https://yarnpkg.com)
 - [Lando](https://lando.dev) (optional)

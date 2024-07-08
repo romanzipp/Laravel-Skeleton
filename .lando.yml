@@ -1,7 +1,7 @@
 name: skeleton
 recipe: laravel
 config:
-  php: "8.1"
+  php: "8.3"
   composer_version: 2
   via: nginx
   webroot: public
@@ -24,7 +24,7 @@ services:
       password: ""
       database: skeleton
   appserver:
-    type: php:8.1
+    type: php:8.3
     run_as_root:
       - curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
       - apt-get install -y nodejs

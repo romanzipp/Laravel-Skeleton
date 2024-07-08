@@ -27,18 +27,18 @@ RUN apt-get install -y \
 RUN add-apt-repository ppa:ondrej/php -y
 RUN apt-get update
 RUN apt-get install -y \
-    php8.1-cli \
-    php8.1-mysql \
-    php8.1-gd \
-    php8.1-imagick \
-    php8.1-bcmath \
-    php8.1-common \
-    php8.1-mbstring \
-    php8.1-xml \
-    php8.1-pdo \
-    php8.1-redis \
-    php8.1-intl \
-    php8.1-curl
+    php8.3-cli \
+    php8.3-mysql \
+    php8.3-gd \
+    php8.3-imagick \
+    php8.3-bcmath \
+    php8.3-common \
+    php8.3-mbstring \
+    php8.3-xml \
+    php8.3-pdo \
+    php8.3-redis \
+    php8.3-intl \
+    php8.3-curl
 
 # Publish files
 

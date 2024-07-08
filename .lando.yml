@@ -25,12 +25,12 @@ services:
       database: skeleton
   appserver:
     type: php:8.3
-    run_as_root:
-      - curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-      - apt-get install -y nodejs
-      - npm install --global yarn
     build:
       - composer install
+  redis:
+    type: redis
+    app_mount: false
+    portforward: true
 tooling:
   phpstan:
     service: appserver

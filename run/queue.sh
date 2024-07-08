@@ -1,16 +1,17 @@
 #!/bin/sh
 
-echo "Running in queue mode with queue '$QUEUE'"
+echo "Running in queue monde for queue $QUEUE"
+echo "PHP version: $(php -v| head -n 1)"
 
-if [ ! "$DB_HOST" ] || [ ! "$DB_PORT" ]; then
-    echo "DB_HOST or DB_PORT unconfigured"
-    exit 1
-fi
+n=0
+until [ "$n" -ge 10 ]
+do
+   php /app/artisan queue:work --verbose --timeout=0 --queue=$QUEUE && break
+   n=$((n+1))
 
-echo "Waiting for database connection"
-until nc -z -v -w30 "$DB_HOST" "$DB_PORT"; do
-    echo "No response..."
-    sleep 2
+   echo "Queue worker failed to start. Attempt $n/10. Retrying in 5 seconds..."
+   sleep 5
 done
 
-php /app/artisan queue:work --verbose --tries=3 --timeout=0 --queue=$QUEUE
+echo "Queue worker failed to start 10 times. Exiting."
+exit 1

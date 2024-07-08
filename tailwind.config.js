@@ -1,27 +1,10 @@
-const colors = require('tailwindcss/colors');
-const forms = require('@tailwindcss/forms');
-const typography = require('@tailwindcss/typography');
-const button = require('./resources/js/tailwind/button');
-
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
     content: [
-        './resources/**/*.blade.php',
+        './resources/views/**/*.blade.php',
         './resources/**/*.js',
         './resources/**/*.vue',
+        './storage/framework/views/*.php',
     ],
-    theme: {
-        extend: {
-            colors: {
-                primary: colors.blue,
-            },
-        },
-    },
-    variants: {},
-    plugins: [
-        forms({
-            strategy: 'class',
-        }),
-        button,
-        typography,
-    ],
+    darkMode: 'media',
 };

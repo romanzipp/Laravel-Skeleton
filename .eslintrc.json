@@ -1,0 +1,28 @@
+{
+    "env": {},
+    "extends": [
+        "airbnb-base",
+        "plugin:tailwindcss/recommended"
+    ],
+    "parserOptions": {
+        "parser": "@babel/eslint-parser"
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "curly": ["error", "all"],
+        "max-len": "off",
+        "no-continue": "off",
+        "no-restricted-syntax": "off",
+        "import/no-unresolved": "off",
+        "import/no-extraneous-dependencies": "off",
+        "tailwindcss/no-custom-classname": ["warn", {
+            "cssFiles": ["src/assets/css/tailwind.css"],
+            "whitelist": [
+                "adsbygoogle"
+            ]
+        }]
+    },
+    "globals": {
+        "process": true
+    }
+}

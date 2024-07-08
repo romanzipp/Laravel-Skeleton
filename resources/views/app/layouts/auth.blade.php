@@ -6,8 +6,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script src="{{ manifest('js/app.js') }}" defer></script>
-    <link href="{{ manifest('css/app.css') }}" rel="stylesheet">
+    @vite('resources/js/app.js')
+    @vite('resources/css/app.css')
 
     <style>
         .bg-pattern {

@@ -1,4 +1,5 @@
 node_modules
+public/build
 public/hot
 public/storage
 storage/*.key
@@ -22,12 +23,22 @@ public/css/*.css
 public/css/files
 public/**/*LICENSE*
 public/*manifest*.json
+public/sitemaps/*.xml
 .idea/
 .php_cs.cache
-.php-cs-fixer.cache
 .phpunit.cache
+.php-cs-fixer.cache
 
 auth.json
 
 .docker/database/*
 !.docker/database/.gitkeep
+
+.cloudflare/*.pem
+.cloudflare/*.json
+
+*.dump
+.scribe/
+.lando/grafana/
+.lando/loki/
+.lando/prometheus/

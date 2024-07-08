@@ -4,7 +4,7 @@ namespace {{ namespace }};
 
 use Support\Repositories\AbstractRepository;
 
-class {{ class }} extends AbstractRepository
+final class {{ class }} extends AbstractRepository
 {
     public function getModelClass(): string
     {

@@ -32,6 +32,9 @@ services:
     app_mount: false
     portforward: true
 tooling:
+  tests:
+    service: appserver
+    cmd: php artisan test --parallel
   phpstan:
     service: appserver
     cmd: /app/vendor/bin/phpstan

@@ -1,28 +1,41 @@
 {
-    "env": {},
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
     "extends": [
-        "airbnb-base",
-        "plugin:tailwindcss/recommended"
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended"
     ],
     "parserOptions": {
-        "parser": "@babel/eslint-parser"
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
+    "plugins": [
+        "react"
+    ],
     "rules": {
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
+        "no-unused-vars": "warn",
+        "no-console": "warn",
         "indent": ["error", 4],
-        "curly": ["error", "all"],
-        "max-len": "off",
-        "no-continue": "off",
-        "no-restricted-syntax": "off",
-        "import/no-unresolved": "off",
-        "import/no-extraneous-dependencies": "off",
-        "tailwindcss/no-custom-classname": ["warn", {
-            "cssFiles": ["src/assets/css/tailwind.css"],
-            "whitelist": [
-                "adsbygoogle"
-            ]
-        }]
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "comma-dangle": ["error", "always-multiline"],
+        "object-curly-spacing": ["error", "always"],
+        "array-bracket-spacing": ["error", "never"],
+        "max-len": ["error", { "code": 100 }]
     },
-    "globals": {
-        "process": true
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }

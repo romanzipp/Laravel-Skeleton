@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::fallback(\Support\Http\Controllers\SpaController::class)->name('root');
+
+return;
+
 Route::get('', \Domain\User\Http\Controllers\IndexController::class)->name('index');
 
 Route::prefix('blog')->group(function () {

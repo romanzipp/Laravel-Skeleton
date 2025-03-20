@@ -12,9 +12,9 @@ use Support\Models\AbstractPivotModel;
  * @property string $category_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Domain\Blog\Models\Post|null $post
+ * @property \Domain\Blog\Models\PostModel|null $post
  * @property int|null $posts_count
- * @property \Domain\Blog\Models\Category|null $category
+ * @property \Domain\Blog\Models\CategoryModel|null $category
  * @property int|null $categories_count
  */
 class PostCategory extends AbstractPivotModel
@@ -31,12 +31,12 @@ class PostCategory extends AbstractPivotModel
 
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(PostModel::class);
     }
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(CategoryModel::class);
     }
 
     /*

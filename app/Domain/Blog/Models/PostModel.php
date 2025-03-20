@@ -3,7 +3,7 @@
 namespace Domain\Blog\Models;
 
 use Carbon\Carbon;
-use Domain\User\Models\User;
+use Domain\User\Models\UserModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -22,11 +22,11 @@ use Support\Models\AbstractModel;
  * @property \Illuminate\Support\Carbon|null $published_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Domain\User\Models\User|null $author
+ * @property \Domain\User\Models\UserModel|null $author
  * @property int|null $authors_count
- * @property \Illuminate\Database\Eloquent\Collection|\Domain\Blog\Models\Category[] $categories
+ * @property \Illuminate\Database\Eloquent\Collection|\Domain\Blog\Models\CategoryModel[] $categories
  * @property int|null $categories_count
- * @property \Illuminate\Database\Eloquent\Collection|\Domain\Blog\Models\LocalizedPostContent[] $localizedContents
+ * @property \Illuminate\Database\Eloquent\Collection|\Domain\Blog\Models\LocalizedPostContentModel[] $localizedContents
  * @property int|null $localized_contents_count
  * @property \Illuminate\Database\Eloquent\Collection|\Support\Vendor\MediaLibrary\Media[] $media
  * @property int|null $media_count
@@ -51,17 +51,17 @@ class Post extends AbstractModel implements HasMedia
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserModel::class);
     }
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class, PostCategory::class);
+        return $this->belongsToMany(CategoryModel::class, PostCategory::class);
     }
 
     public function localizedContents(): HasMany
     {
-        return $this->hasMany(LocalizedPostContent::class);
+        return $this->hasMany(LocalizedPostContentModel::class);
     }
 
     /*
@@ -87,10 +87,10 @@ class Post extends AbstractModel implements HasMedia
 
     public function getLanguages(): array
     {
-        return array_map(fn (LocalizedPostContent $content) => $content->language, [...$this->localizedContents]);
+        return array_map(fn (LocalizedPostContentModel $content) => $content->language, [...$this->localizedContents]);
     }
 
-    public function getContent(?string $lang = null): ?LocalizedPostContent
+    public function getContent(?string $lang = null): ?LocalizedPostContentModel
     {
         foreach ($this->localizedContents as $localizedContent) {
             if ($localizedContent->language === $lang) {

@@ -14,7 +14,7 @@ if ( ! function_exists('manifest')) {
      *
      * @return string|null
      */
-    function manifest(string $path = null, bool $absolute = false, string $manifest = 'mix-manifest.json'): ?string
+    function manifest(?string $path = null, bool $absolute = false, string $manifest = 'mix-manifest.json'): ?string
     {
         return Manifest::make()->manifest($manifest)->url($path, $absolute);
     }
@@ -30,7 +30,7 @@ if ( ! function_exists('carbon')) {
      *
      * @return \Carbon\Carbon
      */
-    function carbon(string $date = null, bool $local = false): Carbon
+    function carbon(?string $date = null, bool $local = false): Carbon
     {
         $tz = null;
 

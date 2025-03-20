@@ -2,9 +2,7 @@
 
 namespace Support\Repositories\Concerns;
 
-use BadMethodCallException;
 use Illuminate\Http\Request;
-use stdClass;
 use Support\Http\Resources\AbstractResource;
 use Support\Http\Resources\ResourceCollection;
 
@@ -20,7 +18,7 @@ trait BuildsResources
         $class = $this->getResourceClass();
 
         if ( ! method_exists($class, 'collection')) {
-            throw new BadMethodCallException('Can not build given repository resource class to collection');
+            throw new \BadMethodCallException('Can not build given repository resource class to collection');
         }
 
         return $class::collection(
@@ -54,7 +52,7 @@ trait BuildsResources
      *
      * @return \stdClass|null
      */
-    public function toView(Request $request, bool $collection): ?stdClass
+    public function toView(Request $request, bool $collection): ?\stdClass
     {
         $resources = null;
 
@@ -78,7 +76,7 @@ trait BuildsResources
      *
      * @return \stdClass|null
      */
-    public function oneToView(Request $request): ?stdClass
+    public function oneToView(Request $request): ?\stdClass
     {
         return $this->toView($request, false);
     }
@@ -90,7 +88,7 @@ trait BuildsResources
      *
      * @return \stdClass
      */
-    public function manyToView(Request $request): stdClass
+    public function manyToView(Request $request): \stdClass
     {
         return $this->toView($request, true);
     }

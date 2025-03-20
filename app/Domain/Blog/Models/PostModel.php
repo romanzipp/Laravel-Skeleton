@@ -78,7 +78,7 @@ final class PostModel extends AbstractModel implements HasMedia
             ->useDisk('blog');
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this
             ->addMediaConversion('thumb')

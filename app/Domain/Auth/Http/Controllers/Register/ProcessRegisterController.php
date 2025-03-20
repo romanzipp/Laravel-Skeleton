@@ -15,7 +15,6 @@ use Illuminate\Validation\Rules\Unique;
 use romanzipp\PreviouslyDeleted\Rules\NotPreviouslyDeleted;
 use romanzipp\Turnstile\Rules\TurnstileCaptcha;
 use Support\Http\Controllers\AbstractController;
-use Throwable;
 
 final class ProcessRegisterController extends AbstractController
 {
@@ -49,7 +48,7 @@ final class ProcessRegisterController extends AbstractController
     {
         try {
             $user->notify(new VerifyEmail());
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
             report($e);
         }
     }

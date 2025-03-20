@@ -3,7 +3,6 @@
 namespace Support\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use InvalidArgumentException;
 
 class EnumValue implements Rule
 {
@@ -19,7 +18,7 @@ class EnumValue implements Rule
     public function __construct(string $enum, bool $strict = false)
     {
         if ( ! class_exists($enum)) {
-            throw new InvalidArgumentException('Invalid enum');
+            throw new \InvalidArgumentException('Invalid enum');
         }
 
         $this->strict = $strict;

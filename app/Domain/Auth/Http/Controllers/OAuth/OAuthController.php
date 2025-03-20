@@ -16,12 +16,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\In;
-use InvalidArgumentException;
 use Laravel\Socialite\Contracts\User as SocialiteUser;
 use Laravel\Socialite\Facades\Socialite;
 use League\OAuth1\Client\Credentials\CredentialsException;
 use Support\Enums\ServiceEnum;
-use Throwable;
 
 class OAuthController
 {
@@ -57,7 +55,7 @@ class OAuthController
                 ->redirect();
         } catch (CredentialsException $e) {
             return self::sendFailedResponse($request, __('auth.oauth_mismatch_config', ['service' => $serviceEnum->getTitle()]));
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
             return self::sendFailedResponse($request, $e->getMessage());
         }
 
@@ -124,11 +122,11 @@ class OAuthController
         } catch (ClientException $e) {
             // Possible used or outdated code
             throw new OAuthException(__('auth.oauth_data_err', ['service' => $serviceEnum->getTitle()]));
-        } catch (InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
             // Service provider down
             report($e);
             throw new OAuthException(__('auth.oauth_data_invalid', ['service' => $serviceEnum->getTitle()]));
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
             report($e);
             throw new OAuthException(__('auth.oauth_data_unknown', ['service' => $serviceEnum->getTitle()]));
         }

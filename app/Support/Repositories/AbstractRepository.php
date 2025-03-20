@@ -2,10 +2,8 @@
 
 namespace Support\Repositories;
 
-use BadMethodCallException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use RuntimeException;
 use stdClass;
 use Support\Http\Resources\AbstractResource;
 use Support\Http\Resources\ResourceCollection;
@@ -90,7 +88,7 @@ abstract class AbstractRepository implements RepositoryContract
     protected function prepare(): Builder
     {
         if ($this->prepared) {
-            throw new RuntimeException('Can not prepare a repository query multiple times');
+            throw new \RuntimeException('Can not prepare a repository query multiple times');
         }
 
         $this
@@ -259,7 +257,7 @@ abstract class AbstractRepository implements RepositoryContract
         $class = $this->getResourceClass();
 
         if ( ! method_exists($class, 'collection')) {
-            throw new BadMethodCallException('Can not build given repository resource class to collection');
+            throw new \BadMethodCallException('Can not build given repository resource class to collection');
         }
 
         return $class::collection(
@@ -292,7 +290,7 @@ abstract class AbstractRepository implements RepositoryContract
      *
      * @return \stdClass|null
      */
-    public function toObject(Request $request): ?stdClass
+    public function toObject(Request $request): ?\stdClass
     {
         if (null === ($resource = $this->toResource())) {
             return null;
@@ -308,7 +306,7 @@ abstract class AbstractRepository implements RepositoryContract
      *
      * @return \stdClass
      */
-    public function toObjects(Request $request): stdClass
+    public function toObjects(Request $request): \stdClass
     {
         return $this->toResources()->toView($request);
     }

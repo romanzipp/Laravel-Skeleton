@@ -37,7 +37,7 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
             self::APPLE => true,
             self::GOOGLE => true,
             self::TWITTER => true,
-            default => false
+            default => false,
         };
     }
 
@@ -66,7 +66,7 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
             self::APPLE => null,
             self::GOOGLE => null,
             self::TWITTER => 'https://twitter.com/{name}',
-            default => null
+            default => null,
         };
     }
 
@@ -75,7 +75,7 @@ class ServiceEnum extends AbstractEnum implements ColoredEnum
         return match ($this->getValue()) {
             self::APPLE => 'apple',
             self::GOOGLE => 'google',
-            default => strtolower($this->getTitle())
+            default => strtolower($this->getTitle()),
         };
     }
 

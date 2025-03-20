@@ -22,13 +22,13 @@ class Field extends Component
     public function __construct(
         string $type,
         string $name,
-        string $value = null,
-        string $label = null,
-        string $placeholder = null,
-        string $autocomplete = null,
-        string $class = null,
+        ?string $value = null,
+        ?string $label = null,
+        ?string $placeholder = null,
+        ?string $autocomplete = null,
+        ?string $class = null,
         bool $required = false,
-        bool $autofocus = false
+        bool $autofocus = false,
     ) {
         $this->type = $type;
         $this->name = $name;

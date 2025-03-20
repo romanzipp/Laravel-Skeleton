@@ -2,7 +2,6 @@
 
 namespace Support\Http\Resources;
 
-use Closure;
 use Domain\User\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource as BaseResource;
@@ -34,7 +33,7 @@ abstract class AbstractResource extends BaseResource
      *
      * @return \Illuminate\Http\Resources\MergeValue|\Illuminate\Http\Resources\MissingValue|mixed
      */
-    public function withPolicies(Closure $callback)
+    public function withPolicies(\Closure $callback)
     {
         return $this->mergeWhen($this->includePolicies(), [
             'can' => $callback($this->user()),
@@ -67,7 +66,7 @@ abstract class AbstractResource extends BaseResource
      *
      * @return \stdClass
      */
-    public function toView(Request $request): stdClass
+    public function toView(Request $request): \stdClass
     {
         return $this
             ->toResponse($request)

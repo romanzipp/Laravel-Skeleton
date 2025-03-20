@@ -68,7 +68,7 @@ final class AccountModel extends AbstractModel implements HasMedia
             ->useDisk('avatars');
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         /** @phpstan-ignore-next-line */
         $this

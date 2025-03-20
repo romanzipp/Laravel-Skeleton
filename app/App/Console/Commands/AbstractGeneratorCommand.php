@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Str;
-use InvalidArgumentException;
-use LogicException;
 
 abstract class AbstractGeneratorCommand extends GeneratorCommand
 {
@@ -21,7 +19,7 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
     protected function getDomain(): ?string
     {
         if ( ! isset($this->domain)) {
-            throw new LogicException('Can not access domain');
+            throw new \LogicException('Can not access domain');
         }
 
         return $this->domain;
@@ -64,7 +62,7 @@ abstract class AbstractGeneratorCommand extends GeneratorCommand
     public function ensureDomainOption(): string
     {
         if ( ! $domain = $this->option('domain')) {
-            throw new InvalidArgumentException('The --domain option must be specified');
+            throw new \InvalidArgumentException('The --domain option must be specified');
         }
 
         return $domain;

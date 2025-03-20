@@ -2,9 +2,7 @@
 
 namespace Support\Http\Middleware;
 
-use Closure;
 use Illuminate\Http\JsonResponse;
-use stdClass;
 
 class ProcessApiResponseData
 {
@@ -16,7 +14,7 @@ class ProcessApiResponseData
      *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, \Closure $next)
     {
         $response = $next($request);
 
@@ -45,7 +43,7 @@ class ProcessApiResponseData
      *
      * @return \stdClass
      */
-    private function appendSuccessState($response, $data): stdClass
+    private function appendSuccessState($response, $data): \stdClass
     {
         if (is_array($data)) {
             $data = (object) $data;
@@ -81,7 +79,7 @@ class ProcessApiResponseData
      */
     private function isEditableData($data): bool
     {
-        return is_array($data) || $data instanceof stdClass;
+        return is_array($data) || $data instanceof \stdClass;
     }
 
     /**

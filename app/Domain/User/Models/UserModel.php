@@ -3,7 +3,6 @@
 namespace Domain\User\Models;
 
 use Database\Factories\User\UserFactory;
-use DateTimeZone;
 use Domain\User\Notifications\ResetPasswordNotification;
 use Domain\User\Repositories\UserRepository;
 use Illuminate\Auth\Authenticatable;
@@ -108,7 +107,7 @@ final class UserModel extends AbstractModel implements AuthenticatableContract, 
             ->useDisk('avatars');
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         /** @phpstan-ignore-next-line */
         $this
@@ -125,8 +124,8 @@ final class UserModel extends AbstractModel implements AuthenticatableContract, 
         $this->notify(new ResetPasswordNotification($token));
     }
 
-    public function getTimezone(): DateTimeZone
+    public function getTimezone(): \DateTimeZone
     {
-        return new DateTimeZone($this->timezone ?? config('app.timezone'));
+        return new \DateTimeZone($this->timezone ?? config('app.timezone'));
     }
 }

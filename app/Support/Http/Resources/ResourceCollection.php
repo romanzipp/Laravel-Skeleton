@@ -7,7 +7,6 @@ use Illuminate\Http\Resources\Json\ResourceCollection as BaseResourceCollection;
 use Illuminate\Http\Resources\MissingValue;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Collection;
-use stdClass;
 
 class ResourceCollection extends BaseResourceCollection
 {
@@ -70,7 +69,7 @@ class ResourceCollection extends BaseResourceCollection
      *
      * @return \stdClass
      */
-    public function toView(Request $request): stdClass
+    public function toView(Request $request): \stdClass
     {
         return $this
             ->toResponse($request)

@@ -12,7 +12,7 @@ class AccountRepository extends AbstractRepository
 {
     public function getModelClass(): string
     {
-        return \Domain\User\Models\AccountModel::class;
+        return AccountModel::class;
     }
 
     public function getResourceClass(): string

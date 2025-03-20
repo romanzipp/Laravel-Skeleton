@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostCategoryFactory extends Factory
 {
-    protected $model = \Domain\Blog\Models\PostCategory::class;
+    protected $model = \Domain\Blog\Models\PostCategoryModel::class;
 
     public function definition()
     {

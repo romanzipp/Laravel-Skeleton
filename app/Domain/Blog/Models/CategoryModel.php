@@ -13,10 +13,10 @@ use Support\Models\AbstractModel;
  * @property string $slug
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Database\Eloquent\Collection|\Domain\Blog\Models\Post[] $posts
+ * @property \Illuminate\Database\Eloquent\Collection|\Domain\Blog\Models\PostModel[] $posts
  * @property int|null $posts_count
  */
-class Category extends AbstractModel
+final class CategoryModel extends AbstractModel
 {
     use HasFactory;
 
@@ -29,6 +29,6 @@ class Category extends AbstractModel
 
     public function posts(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class, PostCategory::class);
+        return $this->belongsToMany(PostModel::class, PostCategoryModel::class);
     }
 }

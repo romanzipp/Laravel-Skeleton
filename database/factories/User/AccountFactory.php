@@ -7,7 +7,7 @@ use Support\Enums\ServiceEnum;
 
 class AccountFactory extends Factory
 {
-    protected $model = \Domain\User\Models\Account::class;
+    protected $model = \Domain\User\Models\AccountModel::class;
 
     public function definition()
     {

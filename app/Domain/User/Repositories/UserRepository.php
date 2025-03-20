@@ -3,14 +3,14 @@
 namespace Domain\User\Repositories;
 
 use Domain\User\Http\Resources\UserResource;
-use Domain\User\Models\User;
+use Domain\User\Models\UserModel;
 use Support\Repositories\AbstractRepository;
 
 final class UserRepository extends AbstractRepository
 {
     public function getModelClass(): string
     {
-        return User::class;
+        return UserModel::class;
     }
 
     public function getResourceClass(): string
@@ -32,17 +32,17 @@ final class UserRepository extends AbstractRepository
         return $this;
     }
 
-    public function findById(string $id): ?User
+    public function findById(string $id): ?UserModel
     {
         return $this->query->find($id);
     }
 
-    public function findByMail(string $mail): ?User
+    public function findByMail(string $mail): ?UserModel
     {
         return $this->query->where('email', $mail)->first();
     }
 
-    public function findByName(string $name): ?User
+    public function findByName(string $name): ?UserModel
     {
         return $this->query->where('name', $name)->first();
     }

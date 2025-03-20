@@ -17,7 +17,7 @@ use Support\Models\AbstractPivotModel;
  * @property \Domain\Blog\Models\CategoryModel|null $category
  * @property int|null $categories_count
  */
-class PostCategory extends AbstractPivotModel
+final class PostCategoryModel extends AbstractPivotModel
 {
     use HasFactory;
 

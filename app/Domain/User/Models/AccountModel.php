@@ -24,12 +24,12 @@ use Support\Models\AbstractModel;
  * @property string|null $scopes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Domain\User\Models\User|null $user
+ * @property \Domain\User\Models\UserModel|null $user
  * @property int|null $users_count
  * @property \Illuminate\Database\Eloquent\Collection|\Support\Vendor\MediaLibrary\Media[] $media
  * @property int|null $media_count
  */
-class Account extends AbstractModel implements HasMedia
+final class AccountModel extends AbstractModel implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
@@ -51,7 +51,7 @@ class Account extends AbstractModel implements HasMedia
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserModel::class);
     }
 
     /*

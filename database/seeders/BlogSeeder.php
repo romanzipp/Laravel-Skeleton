@@ -3,25 +3,25 @@
 namespace Database\Seeders;
 
 use Domain\Blog\Enums\Language;
-use Domain\Blog\Models\Category;
-use Domain\Blog\Models\LocalizedPostContent;
-use Domain\Blog\Models\Post;
-use Domain\User\Models\User;
+use Domain\Blog\Models\CategoryModel;
+use Domain\Blog\Models\LocalizedPostContentModel;
+use Domain\Blog\Models\PostModel;
+use Domain\User\Models\UserModel;
 use Illuminate\Database\Seeder;
 
 class BlogSeeder extends Seeder
 {
     public function run(): void
     {
-        /** @var \Domain\User\Models\User $user */
-        $user = User::query()->first() ?? User::factory()->create();
+        /** @var \Domain\User\Models\UserModel $user */
+        $user = UserModel::query()->first() ?? UserModel::factory()->create();
 
-        /** @var \Domain\Blog\Models\Category $category */
-        $category = Category::factory()->create();
+        /** @var \Domain\Blog\Models\CategoryModel $category */
+        $category = CategoryModel::factory()->create();
 
         for ($i = 1; $i <= 5; ++$i) {
-            /** @var \Domain\Blog\Models\Post $post */
-            $post = Post::factory()->create();
+            /** @var \Domain\Blog\Models\PostModel $post */
+            $post = PostModel::factory()->create();
             $post->author()->associate($user);
             $post->save();
 
@@ -31,13 +31,13 @@ class BlogSeeder extends Seeder
                 ->toMediaCollection('thumbnail');
 
             $post->localizedContents()->save(
-                LocalizedPostContent::factory()->make([
+                LocalizedPostContentModel::factory()->make([
                     'language' => Language::DE,
                 ])
             );
 
             $post->localizedContents()->save(
-                LocalizedPostContent::factory()->make([
+                LocalizedPostContentModel::factory()->make([
                     'language' => Language::EN,
                 ])
             );

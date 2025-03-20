@@ -5,8 +5,8 @@ namespace Domain\Auth\Http\Controllers\OAuth;
 use Domain\Auth\Exceptions\OAuthException;
 use Domain\User\Actions\CreateUser;
 use Domain\User\Data\UserData;
-use Domain\User\Models\Account;
-use Domain\User\Models\User;
+use Domain\User\Models\AccountModel;
+use Domain\User\Models\UserModel;
 use Domain\User\Repositories\UserRepository;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Auth\Events\Registered;
@@ -110,7 +110,7 @@ class OAuthController
     /**
      * @throws \Domain\Auth\Exceptions\OAuthException
      */
-    private function findOrCreateUser(Request $request, ServiceEnum $serviceEnum): ?User
+    private function findOrCreateUser(Request $request, ServiceEnum $serviceEnum): ?UserModel
     {
         try {
             /**
@@ -138,7 +138,7 @@ class OAuthController
             throw new OAuthException("No mail has been provided by {$serviceEnum->getTitle()}");
         }
 
-        /** @var \Domain\User\Models\User|null $user */
+        /** @var \Domain\User\Models\UserModel|null $user */
         $user = $request->user();
 
         // A user is currently logged in
@@ -182,7 +182,7 @@ class OAuthController
 
         if ($user) {
             /**
-             * @var \Domain\User\Models\Account $socialAccount|null
+             * @var \Domain\User\Models\AccountModel $socialAccount|null
              */
             $socialAccount = $user->accounts->first();
 
@@ -200,7 +200,7 @@ class OAuthController
             new UserData([
                 'email' => $socialiteUser->getEmail(),
                 'displayName' => $name = $socialiteUser->getNickname() ?: $socialiteUser->getName(),
-                'name' => User::generateUniqueName($name),
+                'name' => UserModel::generateUniqueName($name),
             ])
         );
 
@@ -211,13 +211,13 @@ class OAuthController
         return $user;
     }
 
-    private static function createSocialAccount(ServiceEnum $serviceEnum, User $user, SocialiteUser $socialiteUser, bool $initial = true): Account
+    private static function createSocialAccount(ServiceEnum $serviceEnum, UserModel $user, SocialiteUser $socialiteUser, bool $initial = true): AccountModel
     {
-        /** @var \Domain\User\Models\Account|null $account */
+        /** @var \Domain\User\Models\AccountModel|null $account */
         $account = $user
             ->accounts()
             ->save(
-                new Account([
+                new AccountModel([
                     'service_user_id' => $socialiteUser->getId(),
                     'service_user_name' => $socialiteUser->getNickname() ?: $socialiteUser->getName(),
                     'service' => $serviceEnum,
@@ -229,10 +229,10 @@ class OAuthController
         return $account;
     }
 
-    private static function getExistingAccount(ServiceEnum $serviceEnum, SocialiteUser $socialiteUser): ?Account
+    private static function getExistingAccount(ServiceEnum $serviceEnum, SocialiteUser $socialiteUser): ?AccountModel
     {
-        /** @var \Domain\User\Models\Account|null $account */
-        $account = Account::query()
+        /** @var \Domain\User\Models\AccountModel|null $account */
+        $account = AccountModel::query()
             ->where('service', $serviceEnum)
             ->where('service_user_id', $socialiteUser->getId())
             ->first();
@@ -240,25 +240,25 @@ class OAuthController
         return $account;
     }
 
-    private static function getAccountForUser(ServiceEnum $serviceEnum, User $user): ?Account
+    private static function getAccountForUser(ServiceEnum $serviceEnum, UserModel $user): ?AccountModel
     {
-        /** @var \Domain\User\Models\Account|null $account */
-        $account = Account::query()
+        /** @var \Domain\User\Models\AccountModel|null $account */
+        $account = AccountModel::query()
             ->where('service', $serviceEnum)
-            ->whereHas('users', fn (Builder $builder) => $builder->where(User::primaryColumn(), $user->id))
+            ->whereHas('users', fn (Builder $builder) => $builder->where(UserModel::primaryColumn(), $user->id))
             ->whereNotNull('service_user_id')
             ->first();
 
         return $account;
     }
 
-    private static function getForeignAccount(ServiceEnum $serviceEnum, User $user, SocialiteUser $socialiteUser): ?Account
+    private static function getForeignAccount(ServiceEnum $serviceEnum, UserModel $user, SocialiteUser $socialiteUser): ?AccountModel
     {
-        /** @var \Domain\User\Models\Account|null $account */
-        $account = Account::query()
+        /** @var \Domain\User\Models\AccountModel|null $account */
+        $account = AccountModel::query()
             ->where('service', $serviceEnum)
             ->where('service_user_id', $socialiteUser->getId())
-            ->whereDoesntHave('users', fn (Builder $builder) => $builder->where(User::primaryColumn(), $user->id))
+            ->whereDoesntHave('users', fn (Builder $builder) => $builder->where(UserModel::primaryColumn(), $user->id))
             ->whereNotNull('service_user_id')
             ->first();
 

@@ -8,7 +8,7 @@ final class LocalizedPostContentResource extends AbstractResource
 {
     public function toArray($request): array
     {
-        /** @var \Domain\Blog\Models\LocalizedPostContent $localizedPostContent */
+        /** @var \Domain\Blog\Models\LocalizedPostContentModel $localizedPostContent */
         $localizedPostContent = $this->resource;
 
         return [

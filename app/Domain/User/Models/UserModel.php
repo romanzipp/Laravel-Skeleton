@@ -36,12 +36,12 @@ use Support\Models\AbstractModel;
  * @property \Illuminate\Support\Carbon|null $terms_accepted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Database\Eloquent\Collection|\Domain\User\Models\Account[] $accounts
+ * @property \Illuminate\Database\Eloquent\Collection|\Domain\User\Models\AccountModel[] $accounts
  * @property int|null $accounts_count
  * @property \Illuminate\Database\Eloquent\Collection|\Support\Vendor\MediaLibrary\Media[] $media
  * @property int|null $media_count
  */
-final class User extends AbstractModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, HasMedia
+final class UserModel extends AbstractModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, HasMedia
 {
     use Authenticatable;
     use Authorizable;
@@ -72,7 +72,7 @@ final class User extends AbstractModel implements AuthenticatableContract, Autho
 
     public function accounts(): HasMany
     {
-        return $this->hasMany(Account::class);
+        return $this->hasMany(AccountModel::class);
     }
 
     /*

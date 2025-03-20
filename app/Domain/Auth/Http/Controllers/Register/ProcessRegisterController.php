@@ -4,7 +4,7 @@ namespace Domain\Auth\Http\Controllers\Register;
 
 use Domain\User\Actions\CreateUser;
 use Domain\User\Data\UserData;
-use Domain\User\Models\User;
+use Domain\User\Models\UserModel;
 use Domain\User\Notifications\VerifyEmail;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -33,7 +33,7 @@ final class ProcessRegisterController extends AbstractController
         return $this->register($request);
     }
 
-    protected function create(array $data): User
+    protected function create(array $data): UserModel
     {
         return $this->createUser->execute(
             new UserData([
@@ -88,8 +88,8 @@ final class ProcessRegisterController extends AbstractController
             'min:3',
             'max:32',
             'regex:/^([A-z0-9-_\.]+)$/',
-            new Unique(User::class, 'name'),
-            new NotPreviouslyDeleted(User::class, 'name'),
+            new Unique(UserModel::class, 'name'),
+            new NotPreviouslyDeleted(UserModel::class, 'name'),
         ];
     }
 
@@ -99,8 +99,8 @@ final class ProcessRegisterController extends AbstractController
             'string',
             'email',
             'max:255',
-            new Unique(User::class, 'email'),
-            new NotPreviouslyDeleted(User::class, 'email'),
+            new Unique(UserModel::class, 'email'),
+            new NotPreviouslyDeleted(UserModel::class, 'email'),
         ];
     }
 

@@ -3,7 +3,7 @@
 namespace Support\Http\Resources;
 
 use Closure;
-use Domain\User\Models\User;
+use Domain\User\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource as BaseResource;
 use Illuminate\Http\Resources\MergeValue;
@@ -20,9 +20,9 @@ abstract class AbstractResource extends BaseResource
     /**
      * Get the authenticated user.
      *
-     * @return \Domain\User\Models\User
+     * @return \Domain\User\Models\UserModel
      */
-    protected function user(): User
+    protected function user(): UserModel
     {
         return AuthFacade::user();
     }

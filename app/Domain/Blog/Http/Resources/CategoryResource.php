@@ -8,7 +8,7 @@ final class CategoryResource extends AbstractResource
 {
     public function toArray($request): array
     {
-        /** @var \Domain\Blog\Models\Category $category */
+        /** @var \Domain\Blog\Models\CategoryModel $category */
         $category = $this->resource;
 
         return [

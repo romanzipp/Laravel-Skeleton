@@ -8,7 +8,7 @@ class CategoryRepository extends AbstractRepository
 {
     public function getModelClass(): string
     {
-        return \Domain\Blog\Models\Category::class;
+        return \Domain\Blog\Models\CategoryModel::class;
     }
 
     public function getResourceClass(): string

@@ -4,7 +4,7 @@ namespace Domain\Blog\Http\Controllers;
 
 use Domain\Blog\Http\Resources\LocalizedPostContentResource;
 use Domain\Blog\Http\Resources\PostResource;
-use Domain\Blog\Models\Post;
+use Domain\Blog\Models\PostModel;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -12,7 +12,7 @@ use romanzipp\Seo\Structs\Link;
 
 class ShowPostController
 {
-    public function __invoke(Request $request, Post $post)
+    public function __invoke(Request $request, PostModel $post)
     {
         if ( ! $post->isPublished()) {
             throw new ModelNotFoundException();

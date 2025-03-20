@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
 {
-    protected $model = \Domain\Blog\Models\Post::class;
+    protected $model = \Domain\Blog\Models\PostModel::class;
 
     public function definition()
     {

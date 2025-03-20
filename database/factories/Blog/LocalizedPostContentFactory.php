@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LocalizedPostContentFactory extends Factory
 {
-    protected $model = \Domain\Blog\Models\LocalizedPostContent::class;
+    protected $model = \Domain\Blog\Models\LocalizedPostContentModel::class;
 
     public function definition()
     {

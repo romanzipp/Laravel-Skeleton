@@ -8,7 +8,7 @@ class PostCategoryRepository extends AbstractRepository
 {
     public function getModelClass(): string
     {
-        return \Domain\Blog\Models\PostCategory::class;
+        return \Domain\Blog\Models\PostCategoryModel::class;
     }
 
     public function getResourceClass(): string

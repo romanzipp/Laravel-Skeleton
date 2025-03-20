@@ -4,12 +4,12 @@ namespace Domain\User\Actions;
 
 use Carbon\Carbon;
 use Domain\User\Data\UserData;
-use Domain\User\Models\User;
+use Domain\User\Models\UserModel;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\UnreachableUrl;
 
 final class CreateUser
 {
-    public function execute(UserData $data): User
+    public function execute(UserData $data): UserModel
     {
         $data->termsAcceptedAt = Carbon::now();
 

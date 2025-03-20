@@ -31,7 +31,7 @@ use Support\Models\AbstractModel;
  * @property \Illuminate\Database\Eloquent\Collection|\Support\Vendor\MediaLibrary\Media[] $media
  * @property int|null $media_count
  */
-class Post extends AbstractModel implements HasMedia
+final class PostModel extends AbstractModel implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
@@ -56,7 +56,7 @@ class Post extends AbstractModel implements HasMedia
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(CategoryModel::class, PostCategory::class);
+        return $this->belongsToMany(CategoryModel::class, PostCategoryModel::class);
     }
 
     public function localizedContents(): HasMany

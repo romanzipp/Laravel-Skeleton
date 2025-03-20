@@ -17,7 +17,7 @@ class PostRepository extends AbstractRepository
 
     public function getModelClass(): string
     {
-        return \Domain\Blog\Models\Post::class;
+        return \Domain\Blog\Models\PostModel::class;
     }
 
     public function getResourceClass(): string

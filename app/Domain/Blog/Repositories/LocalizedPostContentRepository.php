@@ -8,7 +8,7 @@ class LocalizedPostContentRepository extends AbstractRepository
 {
     public function getModelClass(): string
     {
-        return \Domain\Blog\Models\LocalizedPostContent::class;
+        return \Domain\Blog\Models\LocalizedPostContentModel::class;
     }
 
     public function getResourceClass(): string

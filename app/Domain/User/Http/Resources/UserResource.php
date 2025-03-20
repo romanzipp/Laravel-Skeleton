@@ -9,7 +9,7 @@ final class UserResource extends AbstractResource
 {
     public function toArray($request): array
     {
-        /** @var \Domain\User\Models\User $user */
+        /** @var \Domain\User\Models\UserModel $user */
         $user = $this->resource;
 
         return [

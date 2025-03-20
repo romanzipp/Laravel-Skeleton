@@ -2,13 +2,13 @@
 
 namespace Database\Factories\User;
 
-use Domain\User\Models\User;
+use Domain\User\Models\UserModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
-    protected $model = User::class;
+    protected $model = UserModel::class;
 
     public function definition()
     {

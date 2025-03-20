@@ -21,10 +21,10 @@ use Support\Vendor\CommonMark\ImageExtension;
  * @property string $post_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Domain\Blog\Models\Post|null $post
+ * @property \Domain\Blog\Models\PostModel|null $post
  * @property int|null $posts_count
  */
-class LocalizedPostContent extends AbstractModel
+final class LocalizedPostContentModel extends AbstractModel
 {
     use HasFactory;
 
@@ -38,7 +38,7 @@ class LocalizedPostContent extends AbstractModel
 
     public function post(): BelongsTo
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(PostModel::class);
     }
 
     public function getParsedContent(): string

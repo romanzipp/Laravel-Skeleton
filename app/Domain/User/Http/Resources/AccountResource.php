@@ -10,7 +10,7 @@ final class AccountResource extends AbstractResource
 {
     public function toArray($request): array
     {
-        /** @var \Domain\User\Models\Account $account */
+        /** @var \Domain\User\Models\AccountModel $account */
         $account = $this->resource;
 
         return [

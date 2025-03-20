@@ -2,7 +2,7 @@
 
 namespace Domain\Blog\Http\Resources;
 
-use Domain\Blog\Models\LocalizedPostContent;
+use Domain\Blog\Models\LocalizedPostContentModel;
 use Support\Http\Resources\AbstractResource;
 use Support\Http\Resources\MediaResource;
 
@@ -10,7 +10,7 @@ final class PostResource extends AbstractResource
 {
     public function toArray($request): array
     {
-        /** @var \Domain\Blog\Models\Post $post */
+        /** @var \Domain\Blog\Models\PostModel $post */
         $post = $this->resource;
 
         $primaryContent = new LocalizedPostContentResource($post->localizedContents->first());
@@ -23,7 +23,7 @@ final class PostResource extends AbstractResource
             'primary_content' => $primaryContent,
             'localized_contents' => LocalizedPostContentResource::collection($post->localizedContents),
 
-            'languages' => array_map(fn (LocalizedPostContent $content) => $content->language, [...$post->localizedContents]),
+            'languages' => array_map(fn (LocalizedPostContentModel $content) => $content->language, [...$post->localizedContents]),
 
             'thumbnail' => new MediaResource(
                 $post->getFirstMedia('thumbnail')

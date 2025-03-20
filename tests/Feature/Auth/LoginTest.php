@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
-use Domain\User\Models\User;
+use Domain\User\Models\UserModel;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -55,9 +55,9 @@ class LoginTest extends TestCase
         }
     }
 
-    private function createUser(array $attributes = []): User
+    private function createUser(array $attributes = []): UserModel
     {
-        return User::factory()->create([
+        return UserModel::factory()->create([
             'email' => 'john@doe.com',
             'password' => bcrypt('123456789'),
         ] + $attributes);

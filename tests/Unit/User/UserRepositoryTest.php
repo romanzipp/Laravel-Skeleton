@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\User;
 
-use Domain\User\Models\User;
+use Domain\User\Models\UserModel;
 use Domain\User\Repositories\UserRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -13,11 +13,11 @@ class UserRepositoryTest extends TestCase
 
     public function testFindUserById()
     {
-        $user = User::factory()->create();
+        $user = UserModel::factory()->create();
 
         $users = new UserRepository();
 
-        self::assertInstanceOf(User::class, $found = $users->findById($user->id));
+        self::assertInstanceOf(UserModel::class, $found = $users->findById($user->id));
         self::assertEquals($found->id, $user->id);
     }
 }

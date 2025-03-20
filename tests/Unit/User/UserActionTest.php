@@ -6,7 +6,7 @@ use Domain\User\Actions\CreateUser;
 use Domain\User\Actions\UpdateUser;
 use Domain\User\Data\UpdateUserData;
 use Domain\User\Data\UserData;
-use Domain\User\Models\User;
+use Domain\User\Models\UserModel;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -25,17 +25,17 @@ class UserActionTest extends TestCase
             ])
         );
 
-        self::assertEquals('foo', User::query()->first()->name);
+        self::assertEquals('foo', UserModel::query()->first()->name);
     }
 
     public function testUpdate()
     {
-        /** @var User $user */
-        $user = User::factory()->create([
+        /** @var UserModel $user */
+        $user = UserModel::factory()->create([
             'name' => 'foo',
         ]);
 
-        self::assertEquals('foo', User::query()->first()->name);
+        self::assertEquals('foo', UserModel::query()->first()->name);
 
         app(UpdateUser::class)->execute(
             $user,
@@ -44,6 +44,6 @@ class UserActionTest extends TestCase
             ])
         );
 
-        self::assertEquals('bar', User::query()->first()->name);
+        self::assertEquals('bar', UserModel::query()->first()->name);
     }
 }

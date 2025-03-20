@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use stdClass;
 use Support\Http\Resources\ResourceCollection;
 use Tests\Support\Repository\RepositoryTestModel;
 use Tests\Support\Repository\RepositoryTestResource;
@@ -139,7 +138,7 @@ class RepositoryTest extends TestCase
 
         $repository = new TestRepository();
 
-        self::assertInstanceOf(stdClass::class, $result = $repository->orderBy('created_at', 'asc')->toObject(self::mockRequest()));
+        self::assertInstanceOf(\stdClass::class, $result = $repository->orderBy('created_at', 'asc')->toObject(self::mockRequest()));
         self::assertSame($models[0]->id, $result->id);
     }
 
@@ -149,7 +148,7 @@ class RepositoryTest extends TestCase
 
         $repository = new TestRepository();
 
-        self::assertInstanceOf(stdClass::class, $results = $repository->orderBy('created_at', 'asc')->toObjects(self::mockRequest()));
+        self::assertInstanceOf(\stdClass::class, $results = $repository->orderBy('created_at', 'asc')->toObjects(self::mockRequest()));
         self::assertTrue(property_exists($results, 'data'));
         self::assertCount(3, $results->data);
         self::assertSame($models[0]->id, $results->data[0]->id);
@@ -162,7 +161,7 @@ class RepositoryTest extends TestCase
         $repository = new TestRepository();
         $repository->paginate();
 
-        self::assertInstanceOf(stdClass::class, $result = $repository->orderBy('created_at', 'asc')->toObject(self::mockRequest()));
+        self::assertInstanceOf(\stdClass::class, $result = $repository->orderBy('created_at', 'asc')->toObject(self::mockRequest()));
         self::assertSame($models[0]->id, $result->id);
     }
 
@@ -173,7 +172,7 @@ class RepositoryTest extends TestCase
         $repository = new TestRepository();
         $repository->paginate();
 
-        self::assertInstanceOf(stdClass::class, $results = $repository->orderBy('created_at', 'asc')->toObjects(self::mockRequest()));
+        self::assertInstanceOf(\stdClass::class, $results = $repository->orderBy('created_at', 'asc')->toObjects(self::mockRequest()));
         self::assertPropertyExists($results, 'data');
         self::assertCount(3, $results->data);
         self::assertSame($models[0]->id, $results->data[0]->id);

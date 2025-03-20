@@ -92,15 +92,15 @@ return [
 
     'middleware' => [
         'web',
-        Laravel\Nova\Http\Middleware\HandleInertiaRequests::class,
-        Laravel\Nova\Http\Middleware\DispatchServingNovaEvent::class,
-        Laravel\Nova\Http\Middleware\BootTools::class,
+        \Laravel\Nova\Http\Middleware\HandleInertiaRequests::class,
+        \Laravel\Nova\Http\Middleware\DispatchServingNovaEvent::class,
+        \Laravel\Nova\Http\Middleware\BootTools::class,
     ],
 
     'api_middleware' => [
         'nova',
-        Laravel\Nova\Http\Middleware\Authenticate::class,
-        Laravel\Nova\Http\Middleware\Authorize::class,
+        \Laravel\Nova\Http\Middleware\Authenticate::class,
+        \Laravel\Nova\Http\Middleware\Authorize::class,
     ],
 
     /*
@@ -128,7 +128,7 @@ return [
     */
 
     'actions' => [
-        'resource' => Laravel\Nova\Actions\ActionResource::class,
+        'resource' => \Laravel\Nova\Actions\ActionResource::class,
     ],
 
     /*

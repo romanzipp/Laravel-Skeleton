@@ -11,6 +11,7 @@ This is a very **opinionated** modified version of the Laravel framework which a
 - **Domain driven** Laravel architecture
 - **Strong type hinting** and actual IDE support (without plugins 🤨)
 - Fully featured **OAuth authentication**
+- **React** starter **without Inertia**
 - **Blog** example components (models, controllers, views, ...)
 - [Cloudflare Turnstile](https://blog.cloudflare.com/turnstile-private-captcha-alternative/) CAPTCHA
 

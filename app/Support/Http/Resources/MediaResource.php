@@ -29,8 +29,8 @@ class MediaResource extends AbstractResource
                 ? $media->getResponsiveImageUrls($this->conversion)
                 : $media->getResponsiveImageUrls(),
 
-            'name' => $media->name, /** @phpstan-ignore-line */
-            'size' => $media->size, /** @phpstan-ignore-line */
+            'name' => $media->name,
+            'size' => $media->size,
         ];
     }
 }

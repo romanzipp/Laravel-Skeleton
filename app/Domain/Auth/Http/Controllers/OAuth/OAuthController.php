@@ -49,9 +49,8 @@ class OAuthController
         }
 
         try {
-            /** @phpstan-ignore-next-line */
             $socialite = Socialite::driver($service)
-                ->scopes(self::getScopes($service))
+                ->scopes(self::getScopes($service)) /** @phpstan-ignore method.notFound */
                 ->redirect();
         } catch (CredentialsException $e) {
             return self::sendFailedResponse($request, __('auth.oauth_mismatch_config', ['service' => $serviceEnum->getTitle()]));
@@ -113,11 +112,9 @@ class OAuthController
         try {
             /**
              * @var \Laravel\Socialite\Two\User $socialiteUser
-             *
-             * @phpstan-ignore-next-line
              */
             $socialiteUser = Socialite::driver($serviceEnum->getSocialiteServiceName())
-                ->stateless()
+                ->stateless() /** @phpstan-ignore method.notFound */
                 ->user();
         } catch (ClientException $e) {
             // Possible used or outdated code
@@ -290,7 +287,6 @@ class OAuthController
 
     private static function sendFailedResponse(Request $request, string $message): RedirectResponse
     {
-        /** @phpstan-ignore-next-line */
         $request->session()->flash(self::SESSION_KEY_ERROR, $message);
 
         return redirect()->route('auth.login.show', ['oauth_error' => $message]);

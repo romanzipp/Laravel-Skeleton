@@ -19,7 +19,6 @@ class AuthServiceProvider extends ServiceProvider
         Passport::useTokenModel(PassportModels\PassportToken::class);
         Passport::useRefreshTokenModel(PassportModels\PassportRefreshToken::class);
         Passport::useAuthCodeModel(PassportModels\PassportAuthCode::class);
-        Passport::usePersonalAccessClientModel(PassportModels\PassportPersonalAccessClient::class);
         Passport::tokensCan(
             ScopeEnum::forPassport()
         );

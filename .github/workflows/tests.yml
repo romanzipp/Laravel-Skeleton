@@ -10,26 +10,26 @@ jobs:
     runs-on: ubuntu-latest
     services:
       database:
-        image: mariadb:10.6
+        image: mariadb:11.8
         env:
           MYSQL_DATABASE: web
           MYSQL_USER: web
           MYSQL_PASSWORD: web
           MYSQL_ROOT_PASSWORD: root
         ports: [ 3306 ]
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=10s --health-timeout=5s --health-retries=3
       redis:
         image: redis
         ports: [ 6379 ]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Build Container
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           tags: cli-tests
           context: .
@@ -57,7 +57,7 @@ jobs:
             -e DB_USERNAME=root
             -e DB_PASSWORD=root
             -e DB_DATABASE=web
-            -e REDIS_HOST=host.docker.interal
+            -e REDIS_HOST=host.docker.internal
             -e REDIS_PORT=${{ job.services.redis.ports[6379] }}
           run: |
             php artisan passport:keys

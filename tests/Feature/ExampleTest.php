@@ -11,7 +11,7 @@ class ExampleTest extends TestCase
 
     public function testBasicTest()
     {
-        $response = $this->get('/');
+        $response = $this->withoutVite()->get('/');
 
         $response->assertStatus(200);
     }

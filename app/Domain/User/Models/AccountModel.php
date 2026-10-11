@@ -5,7 +5,7 @@ namespace Domain\User\Models;
 use Database\Factories\User\AccountFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\Image\Manipulations;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -70,14 +70,13 @@ final class AccountModel extends AbstractModel implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        /** @phpstan-ignore-next-line */
         $this
             ->addMediaConversion('crop')
             ->performOnCollections('avatar')
             ->withResponsiveImages()
             ->optimize()
-            ->nonQueued()
-            ->fit(Manipulations::FIT_CROP, 300, 300);
+            ->nonQueued() /** @phpstan-ignore method.notFound */
+            ->fit(Fit::Crop, 300, 300);
     }
 
     public function getService(): ServiceEnum

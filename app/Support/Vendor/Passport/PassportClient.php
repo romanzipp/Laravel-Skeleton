@@ -2,6 +2,7 @@
 
 namespace Support\Vendor\Passport;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\Passport\Client;
 use Support\Enums\TableName;
 
@@ -28,7 +29,7 @@ class PassportClient extends Client
      *
      * @return bool
      */
-    public function skipsAuthorization(): bool
+    public function skipsAuthorization(Authenticatable $user, array $scopes): bool
     {
         return in_array($this->id, config('passport.first_party_clients'));
     }
@@ -40,6 +41,6 @@ class PassportClient extends Client
      */
     public function firstParty(): bool
     {
-        return parent::firstParty() || $this->skipsAuthorization();
+        return parent::firstParty() || in_array($this->id, config('passport.first_party_clients'));
     }
 }

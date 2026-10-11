@@ -15,8 +15,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\Contracts\OAuthenticatable;
 use Laravel\Passport\HasApiTokens;
-use Spatie\Image\Manipulations;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -40,7 +41,7 @@ use Support\Models\AbstractModel;
  * @property \Illuminate\Database\Eloquent\Collection|\Support\Vendor\MediaLibrary\Media[] $media
  * @property int|null $media_count
  */
-final class UserModel extends AbstractModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, HasMedia
+final class UserModel extends AbstractModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, HasMedia, OAuthenticatable
 {
     use Authenticatable;
     use Authorizable;
@@ -109,14 +110,13 @@ final class UserModel extends AbstractModel implements AuthenticatableContract, 
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        /** @phpstan-ignore-next-line */
         $this
             ->addMediaConversion('crop')
             ->performOnCollections('avatar')
             ->withResponsiveImages()
             ->optimize()
-            ->nonQueued()
-            ->fit(Manipulations::FIT_CROP, 300, 300);
+            ->nonQueued() /** @phpstan-ignore method.notFound */
+            ->fit(Fit::Crop, 300, 300);
     }
 
     public function sendPasswordResetNotification($token): void

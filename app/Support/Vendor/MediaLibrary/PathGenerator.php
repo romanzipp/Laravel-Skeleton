@@ -56,7 +56,6 @@ class PathGenerator extends DefaultPathGenerator
      */
     protected function getBasePath(Media $media): string
     {
-        /** @phpstan-ignore-next-line */
         $id = str_replace('-', '', $media->model_id ?? $media->uuid);
 
         $parts = [];

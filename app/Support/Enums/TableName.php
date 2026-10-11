@@ -14,7 +14,6 @@ class TableName extends AbstractEnum
     public const OAUTH_ACCESS_TOKENS = 'oauth__access_tokens';
     public const OAUTH_REFRESH_TOKENS = 'oauth__refresh_tokens';
     public const OAUTH_CLIENTS = 'oauth__clients';
-    public const OAUTH_PERSONAL_ACCESS_CLIENTS = 'oauth__personal_access_clients';
 
     public const USER_USERS = 'user__users';
     public const USER_ACCOUNTS = 'user__accounts';

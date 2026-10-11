@@ -7,9 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 class EnumValue implements Rule
 {
     /**
-     * @phpstan-ignore-next-line
-     *
-     * @var \Support\Enums\AbstractEnum
+     * @var class-string<\Support\Enums\AbstractEnum>
      */
     private string $enum;
 
